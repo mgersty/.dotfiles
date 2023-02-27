@@ -5,6 +5,30 @@ require('lualine').setup {
     options = { theme = 'nord' }
 }
 
+-- MASON
+require'mason'.setup()
+require'mason-lspconfig'.setup()
+
+-- TREE SITTER
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {
+        "java",
+        "bash",
+        "lua",
+        "vim",
+        "help",
+        "typescript",
+        "python"
+    },
+    sync_install=false,
+    highlight={
+        enable = true,
+        additional_vim_regex_highlighting=false
+    }
+
+}
+
+-- BARBAR
 -- Set barbar's options
 require'bufferline'.setup {
   -- Enable/disable animations
@@ -69,7 +93,7 @@ require'bufferline'.setup {
   -- Configure icons on the bufferline.
   icon_separator_active = '▎',
   icon_separator_inactive = '▎',
-  icon_close_tab = '󰅙',
+  icon_close_tab = '',
   icon_close_tab_modified = '●',
   icon_pinned = '車',
 

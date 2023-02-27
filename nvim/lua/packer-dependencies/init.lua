@@ -9,8 +9,12 @@ return require('packer').startup(function()
             }
             
     }
+    use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-cmp'
     use 'rcarriga/nvim-notify'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyaxdani42/nvim-web-devicons', opt=true}
