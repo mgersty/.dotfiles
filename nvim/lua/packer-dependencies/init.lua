@@ -13,6 +13,7 @@ return require('packer').startup(function()
 	use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
     use 'rcarriga/nvim-notify'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use {
