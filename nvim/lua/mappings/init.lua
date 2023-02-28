@@ -5,13 +5,16 @@ local opts = { noremap=true, silent=true }
 vim.g.mapleader=' '
 
 map('n', '<leader>e', ':NvimTreeToggle<CR>',opts)
+map('n', '<leader>o', ':NvimTreeFocus<CR>',opts)
+map('n', '<leader>ff', ':Telescope find_files<CR>',opts)
 
 -- Move to previous/next
-map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<leader>,', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<leader>.', '<Cmd>BufferNext<CR>', opts)
+
 -- Re-order to previous/next
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+map('n', '<leader><', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<leader>>', '<Cmd>BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
 map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
@@ -26,7 +29,7 @@ map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Pin/unpin buffer
 map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
-map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<leader>c', '<Cmd>BufferClose<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -45,4 +48,5 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
--- :BarbarDisable - very bad command, should never be used
+-- :BarbarDisable - vercope find_files
+-- bad command, should never be used

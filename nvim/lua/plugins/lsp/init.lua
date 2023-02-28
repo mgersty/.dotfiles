@@ -1,4 +1,12 @@
 
+--TELESCOPE
+require("telescope").setup({
+	defaults = {
+		file_ignore_patterns = { "node_modules" },
+	},
+})
+
+--AUTO COMPLETION
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 cmp.setup({
