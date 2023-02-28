@@ -12,6 +12,7 @@ return require('packer').startup(function()
     use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
+    use 'onsails/lspkind-nvim'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'rcarriga/nvim-notify'
