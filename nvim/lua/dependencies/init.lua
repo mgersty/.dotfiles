@@ -21,6 +21,15 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'
     use 'rcarriga/nvim-notify'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 
+        'numToStr/Comment.nvim', 
+        config=function() 
+            require('Comment').setup()
+        end 
+    }
+    use 'p00f/nvim-ts-rainbow'
+    use 'windwp/nvim-ts-autotag' -- auto complete html tags    
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyaxdani42/nvim-web-devicons', opt=true}
