@@ -3,6 +3,7 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'EdenEast/nightfox.nvim'
+    use 'arcticicestudio/nord-vim'
     use {'nvim-tree/nvim-tree.lua',
             requires = {
                 'nvim-tree/nvim-web-devicons',

@@ -15,7 +15,7 @@ set.splitright = true
 set.wrap = false
 set.scrolloff = 5
 set.fileencoding = 'utf-8'
---set.termguicolors = true
+set.termguicolors = true
 set.relativenumber = true
 set.number=true
 set.cursorline = true
@@ -23,7 +23,7 @@ set.cursorline = true
 
 
 
-vim.cmd("colorscheme carbonfox")
+vim.cmd("colorscheme nord")
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 --
