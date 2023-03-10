@@ -19,6 +19,8 @@ return require('packer').startup(function()
     use 'onsails/lspkind-nvim'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
+    use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
+    use("L3MON4D3/LuaSnip")
     use 'rcarriga/nvim-notify'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 
@@ -27,9 +29,11 @@ return require('packer').startup(function()
             require('Comment').setup()
         end 
     }
+    use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'p00f/nvim-ts-rainbow'
     use 'windwp/nvim-ts-autotag' -- auto complete html tags    
     use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use "lukas-reineke/indent-blankline.nvim"
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyaxdani42/nvim-web-devicons', opt=true}

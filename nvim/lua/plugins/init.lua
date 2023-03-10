@@ -25,6 +25,9 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting=false
     },
+    indent={
+       enable=true 
+    },
     context_commentstring = {
         enable=true
     },
@@ -33,8 +36,18 @@ require'nvim-treesitter.configs'.setup {
     },
     rainbow={
         enable=true
+    },
+    refactor={
+        smart_rename={ enable = true, keymaps={smart_rename='grr'} }
     }
 
+}
+
+-- INDENTATION GUIDE
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
 }
 
 
