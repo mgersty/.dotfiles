@@ -22,6 +22,8 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp'
     use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
     use("L3MON4D3/LuaSnip")
+    use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
+	use("tami5/lspsaga.nvim") --> icons for LSP diagnostics 
     use 'rcarriga/nvim-notify'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 
@@ -43,5 +45,16 @@ return require('packer').startup(function()
         'romgrk/barbar.nvim',
         requires = { 'kyaxdani42/nvim-web-devicons', opt=true}
     }
+    use {
+  "folke/trouble.nvim",
+  requires = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
  
 end)

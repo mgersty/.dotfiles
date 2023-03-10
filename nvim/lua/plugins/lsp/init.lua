@@ -64,9 +64,98 @@ cmp.setup({
         { name = "luasnip" }
     }
 })
+require'lspsaga'.setup {
+    debug = false,
+    use_saga_diagnostic_sign = true,
+    -- diagnostic sign
+    error_sign = "",
+    warn_sign = "",
+    hint_sign = "",
+    infor_sign = "",
+    diagnostic_header_icon = "   ",
+    -- code action title icon
+    code_action_icon = " ",
+    code_action_prompt = {
+    enable = true,
+    sign = true,
+    sign_priority = 40,
+    virtual_text = true,
+    },
+    finder_definition_icon = "  ",
+    finder_reference_icon = "  ",
+    max_preview_lines = 10,
+    finder_action_keys = {
+    open = "o",
+    vsplit = "s",
+    split = "i",
+    quit = "q",
+    scroll_down = "<C-f>",
+    scroll_up = "<C-b>",
+    },
+    code_action_keys = {
+    quit = "q",
+    exec = "<CR>",
+    },
+    rename_action_keys = {
+    quit = "<C-c>",
+    exec = "<CR>",
+    },
+    definition_preview_icon = "  ",
+    border_style = "single",
+    rename_prompt_prefix = "➤",
+    server_filetype_map = {},
+    diagnostic_prefix_format = "%d. ",
+}
+
+-- NULL-LS LINTING/FORMATTING
+local null_ls = require("null-ls")
+
+local formatting = null_ls.builtins.formatting
+local code_actions = null_ls.builtins.code_actions
+local diagnostics = null_ls.builtins.diagnostics
+
+local sources = {
+	--[[ formatting ]]    formatting.eslint_d,
+formatting.prettier,
+
+	--[[ code actions ]]
+	code_actions.eslint_d,
+
+	--[[ diagnostics ]]
+	diagnostics.eslint_d,
+}
 
 
+local lsp_formatting = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			-- apply whatever logic you want (in this example, we'll only use null-ls)
+			return client.name == "null-ls"
+		end,
+		bufnr = bufnr,
+	})
+end
 
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local on_attach = function(client, bufnr)
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				lsp_formatting(bufnr)
+			end,
+		})
+	end
+end
+
+null_ls.setup({
+	sources = sources,
+	on_attach = on_attach,
+})
 
 
 -- Mappings.
