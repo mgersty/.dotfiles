@@ -1,148 +1,68 @@
-require("nvim-tree").setup({})
+require("plugins.plugins-config")
 
-require("lualine").setup({
-	options = { theme = "nord" },
-})
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
--- MASON
-require("mason").setup()
-require("mason-lspconfig").setup()
-
--- TREE SITTER
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"java",
-		"bash",
-		"lua",
-		"vim",
-		"help",
-		"typescript",
-		"python",
-	},
-	sync_install = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-	indent = {
-		enable = true,
-	},
-	context_commentstring = {
-		enable = true,
-	},
-	autotag = {
-		enable = true,
-	},
-	rainbow = {
-		enable = true,
-	},
-	refactor = {
-		smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
-	},
-})
-
--- INDENTATION GUIDE
-require("indent_blankline").setup({
-	-- for example, context is off by default, use this to turn it on
-	show_current_context = true,
-	show_current_context_start = true,
-})
-
--- BARBAR
--- Set barbar's options
-require("bufferline").setup({
-	-- Enable/disable animations
-	animation = true,
-
-	-- Enable/disable auto-hiding the tab bar when there is a single buffer
-	auto_hide = false,
-
-	-- Enable/disable current/total tabpages indicator (top right corner)
-	tabpages = true,
-
-	-- Enable/disable close button
-	closable = true,
-
-	-- Enables/disable clickable tabs
-	--  - left-click: go to buffer
-	--  - middle-click: delete buffer
-	clickable = true,
-
-	-- Enables / disables diagnostic symbols
-	diagnostics = {
-		-- you can use a list
-		{ enabled = true, icon = "ﬀ" }, -- ERROR
-		{ enabled = false }, -- WARN
-		{ enabled = false }, -- INFO
-		{ enabled = true }, -- HINT
-
-		-- OR `vim.diagnostic.severity`
-		[vim.diagnostic.severity.ERROR] = { enabled = true, icon = "ﬀ" },
-		[vim.diagnostic.severity.WARN] = { enabled = false },
-		[vim.diagnostic.severity.INFO] = { enabled = false },
-		[vim.diagnostic.severity.HINT] = { enabled = true },
-	},
-
-	-- Excludes buffers from the tabline
-	exclude_ft = { "javascript" },
-	exclude_name = { "package.json" },
-
-	-- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-	hide = { extensions = false, inactive = false },
-
-	-- Disable highlighting alternate buffers
-	highlight_alternate = false,
-
-	-- Disable highlighting file icons in inactive buffers
-	highlight_inactive_file_icons = false,
-
-	-- Enable highlighting visible buffers
-	highlight_visible = true,
-
-	-- Enable/disable icons
-	-- if set to 'numbers', will show buffer index in the tabline
-	-- if set to 'both', will show buffer index and icons in the tabline
-	icons = true,
-
-	-- If set, the icon color will follow its corresponding buffer
-	-- highlight group. By default, the Buffer*Icon group is linked to the
-	-- Buffer* group (see Highlighting below). Otherwise, it will take its
-	-- default value as defined by devicons.
-	icon_custom_colors = false,
-
-	-- Configure icons on the bufferline.
-	icon_separator_active = "▎",
-	icon_separator_inactive = "▎",
-	icon_close_tab = "",
-	icon_close_tab_modified = "●",
-	icon_pinned = "車",
-
-	-- If true, new buffers will be inserted at the start/end of the list.
-	-- Default is to insert after current buffer.
-	insert_at_end = false,
-	insert_at_start = false,
-
-	-- Sets the maximum padding width with which to surround each tab
-	maximum_padding = 1,
-
-	-- Sets the minimum padding width with which to surround each tab
-	minimum_padding = 1,
-
-	-- Sets the maximum buffer name length.
-	maximum_length = 30,
-
-	-- If set, the letters for each buffer in buffer-pick mode will be
-	-- assigned based on their name. Otherwise or in case all letters are
-	-- already assigned, the behavior is to assign letters in order of
-	-- usability (see order below)
-	semantic_letters = true,
-
-	-- New buffer letters are assigned in this order. This order is
-	-- optimal for the qwerty keyboard layout but might need adjustement
-	-- for other layouts.
-	letters = "asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
-
-	-- Sets the name of unnamed buffers. By default format is "[Buffer X]"
-	-- where X is the buffer number. But only a static string is accepted here.
-	no_name_title = nil,
-})
+return require("packer").startup(function(use)
+	use("wbthomason/packer.nvim")
+	use("EdenEast/nightfox.nvim")
+	use("arcticicestudio/nord-vim")
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	})
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.1",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("mfussenegger/nvim-dap")
+	use("neovim/nvim-lspconfig")
+	use("onsails/lspkind-nvim")
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
+	use("L3MON4D3/LuaSnip")
+	use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
+	use("tami5/lspsaga.nvim") --> icons for LSP diagnostics
+	use("rcarriga/nvim-notify")
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+	use("nvim-treesitter/nvim-treesitter-refactor")
+	use("p00f/nvim-ts-rainbow")
+	use("windwp/nvim-ts-autotag") -- auto complete html tags
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("lukas-reineke/indent-blankline.nvim")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyaxdani42/nvim-web-devicons", opt = true },
+	})
+	use({
+		"romgrk/barbar.nvim",
+		requires = { "kyaxdani42/nvim-web-devicons", opt = true },
+	})
+	use({
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
+	-- use({
+	-- 	"folke/which-key.nvim",
+	-- 	config = function()
+	-- 		vim.o.timeout = true
+	-- 		vim.o.timeoutlen = 300
+	-- 		require("which-key").setup({})
+	-- 	end,
+	-- })
+	use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
+end)
