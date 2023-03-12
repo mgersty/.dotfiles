@@ -1,6 +1,5 @@
-require('settings')
-require('dependencies')
-require('plugins')
-require('plugins.lsp')
-require('mappings')
-
+require("settings")
+require("dependencies")
+require("plugins")
+require("plugins.lsp")
+require("mappings")

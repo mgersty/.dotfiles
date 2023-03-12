@@ -1,6 +1,6 @@
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'EdenEast/nightfox.nvim'
     use 'arcticicestudio/nord-vim'
@@ -8,7 +8,6 @@ return require('packer').startup(function()
             requires = {
                 'nvim-tree/nvim-web-devicons',
             }
-            
     }
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -27,11 +26,11 @@ return require('packer').startup(function()
 	use("tami5/lspsaga.nvim") --> icons for LSP diagnostics 
     use 'rcarriga/nvim-notify'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use { 
-        'numToStr/Comment.nvim', 
-        config=function() 
+    use {
+        'numToStr/Comment.nvim',
+        config=function()
             require('Comment').setup()
-        end 
+        end
     }
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'p00f/nvim-ts-rainbow'
@@ -47,15 +46,18 @@ return require('packer').startup(function()
         requires = { 'kyaxdani42/nvim-web-devicons', opt=true}
     }
     use {
-  "folke/trouble.nvim",
-  requires = "nvim-tree/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
     }
-  end
-}
- 
+    use {
+        'folke/which-key.nvim',
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup{}
+        end
+    }
 end)

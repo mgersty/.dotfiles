@@ -30,7 +30,7 @@
 [core]
 #	editor = code --wait
 [commit]
-	template = /home/mpg26/.gitmessage
+	template = ~/.gitmessage
 [core]
 	editor = vim
 [init]
