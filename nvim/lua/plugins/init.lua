@@ -64,5 +64,5 @@ return require("packer").startup(function(use)
 	-- 		require("which-key").setup({})
 	-- 	end,
 	-- })
-	use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
+	use({ "mfussenegger/nvim-jdtls" })
 end)

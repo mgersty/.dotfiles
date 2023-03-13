@@ -1,7 +1,6 @@
-require('plugins.plugins-config.lsp.diagnostics')
-require('plugins.plugins-config.lsp.autocompletion')
-require('plugins.plugins-config.lsp.null-ls')
-
+require("plugins.plugins-config.lsp.diagnostics")
+require("plugins.plugins-config.lsp.autocompletion")
+require("plugins.plugins-config.lsp.null-ls")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
