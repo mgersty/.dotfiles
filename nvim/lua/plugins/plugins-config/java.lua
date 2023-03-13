@@ -2,7 +2,12 @@ local jdtls = vim.fn.stdpath("data")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = os.getenv("HOME") .. "/.eclipse.workspaces/" .. project_name
 local JDTLS_LOCATION = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
-print(workspace_dir)
+local root_markers = { "pom.xml" }
+local root_dir = require("jdtls.setup").find_root(root_markers)
+print(root_dir)
+if root_dir == nil then
+	return
+end
 local config = {
 	cmd = {
 		"java",
@@ -24,6 +29,5 @@ local config = {
 		"-data",
 		workspace_dir,
 	},
-	root_dir = vim.fs.dirname(vim.fs.find({ ".git", "pom.xml" }, { upward = true })[1]),
 }
 require("jdtls").start_or_attach(config)
