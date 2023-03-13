@@ -6,16 +6,16 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local sources = {
 	--[[ formatting ]]
-	formatting.eslint_d,
+	-- formatting.eslint_d,
 	formatting.prettier,
 	formatting.stylua,
 	formatting.google_java_format,
 
 	--[[ code actions ]]
-	code_actions.eslint_d,
+	-- code_actions.eslint_d,
 
 	--[[ diagnostics ]]
-	diagnostics.eslint_d,
+	-- diagnostics.eslint_d,
 }
 
 local lsp_formatting = function(bufnr)
