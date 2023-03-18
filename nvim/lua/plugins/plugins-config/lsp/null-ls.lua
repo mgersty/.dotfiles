@@ -10,6 +10,7 @@ local sources = {
 	formatting.prettier,
 	formatting.stylua,
 	formatting.google_java_format,
+	formatting.black,
 
 	--[[ code actions ]]
 	-- code_actions.eslint_d,

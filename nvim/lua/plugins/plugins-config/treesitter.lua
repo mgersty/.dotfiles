@@ -6,6 +6,7 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"help",
 		"typescript",
+		"javascript",
 		"python",
 	},
 	sync_install = false,
