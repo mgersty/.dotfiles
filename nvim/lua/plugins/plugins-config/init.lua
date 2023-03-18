@@ -18,5 +18,5 @@ require("telescope").setup({
 })
 
 require("jester").setup({
-	cmd = "npx jest -t '$result' -- $file",
+	path_to_jest_run = "npx jest",
 })
