@@ -16,3 +16,7 @@ require("telescope").setup({
 		file_ignore_patterns = { "node_modules" },
 	},
 })
+
+require("jester").setup({
+	cmd = "npx jest -t '$result' -- $file",
+})

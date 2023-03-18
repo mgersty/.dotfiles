@@ -61,8 +61,12 @@ return require("packer").startup(function(use)
 	-- 	config = function()
 	-- 		vim.o.timeout = true
 	-- 		vim.o.timeoutlen = 300
-	-- 		require("which-key").setup({})
+	-- 		require 'which-key'.setup({})
 	-- 	end,
 	-- })
+	-- JAVA --
 	use({ "mfussenegger/nvim-jdtls" })
+
+	-- TYPESCRIPT --
+	use("David-Kunz/jester")
 end)
