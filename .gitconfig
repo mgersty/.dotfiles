@@ -5,9 +5,11 @@
 	helper = !aws codecommit credential-helper $@ --profile default
 	UseHttpPath = true
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 [difftool]
 	prompt = false
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [user]
 	name = Matthew Gerstemeier
 	email = mgerstemeier@cas.org
@@ -22,7 +24,7 @@
     d = difftool
     db = branch -D
     cb = checkout -b
-    sb = checkout
+    sw = checkout
     ps = push
     pl = pull
     f = fetch

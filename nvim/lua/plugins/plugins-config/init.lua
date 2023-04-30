@@ -3,7 +3,7 @@ require("plugins.plugins-config.barbar")
 require("plugins.plugins-config.lualine")
 require("plugins.plugins-config.mason")
 require("plugins.plugins-config.treesitter")
--- require("plugins.plugins-config.java")
+require("plugins.plugins-config.java")
 -- INDENTATION GUIDE
 require("indent_blankline").setup({
 	-- for example, context is off by default, use this to turn it on
