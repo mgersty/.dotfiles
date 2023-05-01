@@ -37,7 +37,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("nvim-treesitter/nvim-treesitter-refactor")
-	use("p00f/nvim-ts-rainbow")
 	use("windwp/nvim-ts-autotag") -- auto complete html tags
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lukas-reineke/indent-blankline.nvim")
@@ -45,10 +44,10 @@ return require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyaxdani42/nvim-web-devicons", opt = true },
 	})
-	use({
-		"romgrk/barbar.nvim",
-		requires = { "kyaxdani42/nvim-web-devicons", opt = true },
-	})
+	-- use({
+	-- 	"romgrk/barbar.nvim",
+	-- 	requires = { "kyaxdani42/nvim-web-devicons", opt = true },
+	-- })
 	use({
 		"folke/trouble.nvim",
 		requires = "nvim-tree/nvim-web-devicons",

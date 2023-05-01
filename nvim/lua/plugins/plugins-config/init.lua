@@ -1,5 +1,5 @@
 require("plugins.plugins-config.nvim-tree")
-require("plugins.plugins-config.barbar")
+-- require("plugins.plugins-config.barbar")
 require("plugins.plugins-config.lualine")
 require("plugins.plugins-config.mason")
 require("plugins.plugins-config.treesitter")
