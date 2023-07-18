@@ -8,17 +8,7 @@ return require('packer').startup(function(use)
 	use {
 		"williamboman/mason-lspconfig.nvim",
 	}
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.2',
-		requires = { { 'nvim-lua/plenary.nvim' } }
-	}
-    use 'nvim-telescope/telescope-ui-select.nvim'
-    use 'nvim-telescope/telescope-file-browser.nvim'
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
-	use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap'
 	use 'mfussenegger/nvim-jdtls'
 	use 'nvim-lua/plenary.nvim'
 	use 'neovim/nvim-lspconfig'
@@ -26,6 +16,24 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
+    use {
+		'nvim-telescope/telescope.nvim', tag = '0.1.2',
+		requires = { { 'nvim-lua/plenary.nvim' } }
+	}
+    use ({
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            "nvim-tree/nvim-web-devicons"
+        }
+    })
+    use 'nvim-telescope/telescope-ui-select.nvim'
+    use 'nvim-telescope/telescope-file-browser.nvim'
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use 'lukas-reineke/indent-blankline.nvim'
     use("EdenEast/nightfox.nvim")
     use("arcticicestudio/nord-vim")
     use({

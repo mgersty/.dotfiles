@@ -19,4 +19,4 @@ set.fileencoding = "utf-8"
 set.relativenumber = true
 set.number = true
 set.cursorline = true
-vim.cmd("colorscheme nordfox")
+vim.cmd("colorscheme carbonfox")

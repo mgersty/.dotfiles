@@ -16,9 +16,39 @@ require('telescope').setup({
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
 
+--NVIM-TREE
+require("nvim-tree").setup({auto_reload_on_write = true })
 
--- CMP AutoCompletion
 
+--TREE-SITTER
+require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+                "java",
+                "bash",
+                "lua",
+                "vim",
+                "typescript",
+                "javascript",
+                "python",
+        },
+        sync_install = false,
+        highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+        },
+        indent = {
+                enable = true,
+        },
+        context_commentstring = {
+                enable = true,
+        },
+        refactor = {
+                smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
+        },
+})
+
+
+-- CMP AUTOCOMPLETION
 local cmp = require('cmp')
 
 cmp.setup {
@@ -58,8 +88,7 @@ cmp.setup {
   }),
   }
 
-
-  -- LUALINE Status Bar
+-- LUALINE Status Bar
   require("lualine").setup({
 options = { theme = "nord" }
   })
