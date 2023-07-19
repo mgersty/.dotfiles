@@ -90,5 +90,7 @@ cmp.setup {
 
 -- LUALINE Status Bar
   require("lualine").setup({
-options = { theme = "nord" }
+
+    options = { theme = "nord"},
+    sections = {lualine_c={'buffers'}}
   })
