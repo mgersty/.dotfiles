@@ -92,5 +92,13 @@ cmp.setup {
   require("lualine").setup({
 
     options = { theme = "nord"},
-    sections = {lualine_c={'buffers'}}
+    sections = {
+        lualine_b={'tabs'},
+        lualine_c={'buffers'},
+        lualine_y={'branch','diff','diagnostics'}
+    },
+    inactive_sections={ 
+        lualine_x={},
+        lualine_z={},
+    }
   })
