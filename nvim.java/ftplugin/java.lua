@@ -54,7 +54,8 @@ local java_cmd
 
 if vim.loop.os_uname().sysname == 'Linux' then
     java_cmd = {
-            "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+           -- "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+            "java",
             "-Declipse.application=org.eclipse.jdt.ls.core.id1",
             "-Dosgi.bundles.defaultStartLevel=4",
             "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -87,12 +88,13 @@ else
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- to the location where you installed jdtls
-    '-jar', vim.fn.glob('/usr/local/Cellar/jdtls/1.25.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar'),
+    '-jar', 
+    vim.fn.glob(JDTLS_LOCATION .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
 
     -- The configuration for jdtls is also placed where jdtls was installed. This will
     -- need to be updated depending on your environment
-    '-configuration', '/usr/local/Cellar/jdtls/1.25.0/libexec/config_mac',
-
+    '-configuration',
+    JDTLS_LOCATION .. "/config_mac",
     -- Use the workspace_folder defined above to store data for this project
     '-data', workspace_folder,
   }
