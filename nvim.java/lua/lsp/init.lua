@@ -37,7 +37,7 @@ local lsp_flags = {
 
 local lspconfig = require("lspconfig")
 
-local servers = { "lua_ls", "jdtls" }
+local servers = { "lua_ls", "jdtls", "tsserver" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({

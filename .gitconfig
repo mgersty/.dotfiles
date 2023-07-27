@@ -23,7 +23,7 @@
     d = difftool
     db = branch -D
     cb = checkout -b
-    sw = checkout
+    sb = checkout
     ps = push
     pl = pull
     f = fetch
