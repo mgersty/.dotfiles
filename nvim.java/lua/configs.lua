@@ -157,3 +157,6 @@ null_ls.setup({
         lualine_z={},
     }
   })
+
+-- SYMBOLS OUTLINE
+require("symbols-outline").setup()

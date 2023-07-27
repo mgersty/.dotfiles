@@ -1,0 +1,15 @@
+
+alias ll='ls -all -h'
+alias grep='grep --exclude-dir=node_modules'
+alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
+alias profile="vim ~/.zshrc"
+alias src="source ~/.zshrc"
+alias vim="nvim"
+alias v="vim"
+alias rm='rm -rf'
+alias t='tree .'
+alias mvni='mvn clean install'
+alias dotfiles='cd ~/.dotfiles'
+alias clear_vim_swp='find ~/.local/state/nvim -type f -name "*.sw[klmnop]" -delete'
+alias lookup_path="tr ':' '\n' <<< $PATH"
+
