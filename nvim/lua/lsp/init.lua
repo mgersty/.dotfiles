@@ -37,12 +37,12 @@ local lsp_flags = {
 
 local lspconfig = require("lspconfig")
 
-local servers = { "lua_ls", "jdtls", "tsserver" }
+local servers = { "lua_ls", "tsserver" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		flags = lsp_flags,
---		capabilities = capabilities,
+		--		capabilities = capabilities,
 	})
 end
