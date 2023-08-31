@@ -12,4 +12,5 @@ alias mvni='mvn clean install'
 alias dotfiles='cd ~/.dotfiles'
 alias clear_vim_swp='find ~/.local/state/nvim -type f -name "*.sw[klmnop]" -delete'
 alias lookup_path="tr ':' '\n' <<< $PATH"
-
+alias sandbox='cd ~/sandbox'
+alias aws_creds='vim ~/.aws/credentials'

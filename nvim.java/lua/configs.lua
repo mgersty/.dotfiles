@@ -17,8 +17,12 @@ require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
 
 --NVIM-TREE
-require("nvim-tree").setup({auto_reload_on_write = true })
-
+require("nvim-tree").setup({
+    auto_reload_on_write = true,
+    renderer={
+        group_empty=true
+    }
+})
 
 --TREE-SITTER
 require("nvim-treesitter.configs").setup({

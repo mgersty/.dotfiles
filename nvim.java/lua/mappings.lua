@@ -9,6 +9,7 @@ map("n", "<C-J>", "<C-W>j", opts)
 map("n", "<C-L>", "<C-W>l", opts)
 map("n", "<C-K>", "<C-W>k", opts)
 
+
 --NVIM-TREE
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
