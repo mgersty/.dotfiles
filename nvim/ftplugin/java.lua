@@ -1,10 +1,3 @@
--- local jdtls_location = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/jdtls"
-
--- require("jdtls").start_or_attach({
--- 	cmd = { jdtls_location .. "/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar" },
--- 	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw", "pom.xml" }, { upward = true })[1]),
--- })
-
 local status, jdtls = pcall(require, "jdtls")
 if not status then
 	return
@@ -35,33 +28,35 @@ local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 
 --Make sure DAP is activated by default
-JAVA_DAP_ACTIVE = false
+JAVA_DAP_ACTIVE = true
 
 ----------------------------
 -- Prepare JAR dependencies
 ----------------------------
---Debugging
---local bundles = {
---	vim.fn.glob(home .. "/.config/nvim/jars/java-debug/com.microsoft.java.debug.plugin-*.jar", 1),
---}
+-- Debugging
+local bundles = {
+	vim.fn.glob(home .. "/.config/nvim/jars/java-debug/com.microsoft.java.debug.plugin-*.jar", 1),
+}
 
-----Testing
---for _, bundle in ipairs(vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-test/server/*.jar", 1), "\n")) do
---	--These two jars are not bundles, therefore don't put them in the table
---	if
---		not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
---		and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
---	then
---		table.insert(bundles, bundle)
---	end
---end
+--Testing
+for _, bundle in ipairs(vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-test/server/*.jar", 1), "\n")) do
+	--These two jars are not bundles, therefore don't put them in the table
+	print(bundle)
+	if
+		not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
+		and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
+	then
+		print(bundle)
+		table.insert(bundles, bundle)
+	end
+end
 
-----Decompiler
---for _, bundle in
---	ipairs(vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-decompiler/server/*.jar", 1), "\n"))
---do
---	table.insert(bundles, bundle)
---end
+--Decompiler
+for _, bundle in
+	ipairs(vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-decompiler/server/*.jar", 1), "\n"))
+do
+	table.insert(bundles, bundle)
+end
 
 -------------------------------
 -- Prepare on_attach and capabilities
@@ -93,8 +88,8 @@ end
 local on_attach = function(client, bufnr)
 	if client.name == "jdtls" then
 		require("jdtls.setup").add_commands()
-		-- require("jdtls").setup_dap({ hotcodereplace = "auto" })
-		-- require("jdtls.dap").setup_dap_main_class_configs()
+		require("jdtls").setup_dap({ hotcodereplace = "auto" })
+		require("jdtls.dap").setup_dap_main_class_configs()
 		require("lsp_signature").on_attach({
 			bind = true,
 			use_lspsaga = false,
@@ -248,7 +243,7 @@ local config = {
 	--
 	-- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
 	init_options = {
-		-- bundles = bundles,
+		bundles = bundles,
 		extendedClientCapabilities = extendedClientCapabilities,
 	},
 	on_attach = on_attach,
