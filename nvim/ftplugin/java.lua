@@ -41,12 +41,10 @@ local bundles = {
 --Testing
 for _, bundle in ipairs(vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-test/server/*.jar", 1), "\n")) do
 	--These two jars are not bundles, therefore don't put them in the table
-	print(bundle)
 	if
 		not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
 		and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
 	then
-		print(bundle)
 		table.insert(bundles, bundle)
 	end
 end
