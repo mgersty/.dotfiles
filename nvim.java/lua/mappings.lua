@@ -8,6 +8,9 @@ map("n", "<C-H>", "<C-W>h", opts)
 map("n", "<C-J>", "<C-W>j", opts)
 map("n", "<C-L>", "<C-W>l", opts)
 map("n", "<C-K>", "<C-W>k", opts)
+map("n", "<C-S-i>",":%!jq .", opts) --format json
+map("n", "<C-S-d>",":%bd|e#", opts) --format json
+
 
 
 --NVIM-TREE
