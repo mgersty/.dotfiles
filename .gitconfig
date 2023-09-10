@@ -17,6 +17,7 @@
 	s = status -sb
 	#lg = log --pretty=format:\"%h%x09%an%x09%ad%x09%s\"
 	ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+	lls = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
 	sh = show --pretty="" --name-only
     c = commit -a
     r = reset --hard HEAD
