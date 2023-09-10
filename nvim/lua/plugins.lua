@@ -7,12 +7,12 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"williamboman/mason-lspconfig.nvim",
-	}
+	})
     use 'tpope/vim-commentary'
     use 'mfussenegger/nvim-dap'
-	use 'mfussenegger/nvim-jdtls'
-	use 'nvim-lua/plenary.nvim'
-	use 'neovim/nvim-lspconfig'
+    use 'mfussenegger/nvim-jdtls'
+    use 'nvim-lua/plenary.nvim'
+    use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-vsnip'
