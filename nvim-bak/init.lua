@@ -1,5 +1,0 @@
-require("settings")
-require("plugins")
-require("plugins.plugins-config")
-require("plugins.plugins-config.lsp")
-require("mappings")
