@@ -33,11 +33,11 @@ local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
---local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require("lspconfig")
 
-local servers = { "lua_ls", "tsserver" }
+local servers = { "lua_ls", "tsserver", "bashls" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -52,6 +52,6 @@ for _, lsp in ipairs(servers) do
 		},
 		on_attach = on_attach,
 		flags = lsp_flags,
-		--		capabilities = capabilities,
+		capabilities = capabilities,
 	})
 end
