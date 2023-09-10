@@ -1,4 +1,3 @@
-
 alias ll='ls -all -h'
 alias grep='grep --exclude-dir=node_modules'
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
@@ -21,3 +20,4 @@ alias gps='git ps'
 alias gf='git f'
 alias gr='git r'
 alias reboot='sudo reboot'
+alias shutdown='sudo shutdown -h now'
