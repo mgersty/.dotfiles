@@ -2,16 +2,17 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 -- TELESCOPE
-require('telescope').setup({
+require("telescope").setup({
 	defaults = {
-		  path_display = {
-      shorten = {
-        len = 3, exclude = {1, -1}
-      },
-      truncate = true
-    },
-    dynamic_preview_title = true,
-	}
+		path_display = {
+			shorten = {
+				len = 3,
+				exclude = { 1, -1 },
+			},
+			truncate = true,
+		},
+		dynamic_preview_title = true,
+	},
 })
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
@@ -50,47 +51,51 @@ require("nvim-treesitter.configs").setup({
                 smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
         },
 })
+-- NVIM-DAP
+require("dap.ext.vscode").load_launchjs()
 
+local dap = require("dap")
+dap.defaults.fallback.terminal_win_cmd = "tabnew"
 
 -- CMP AUTOCOMPLETION
-local cmp = require('cmp')
+local cmp = require("cmp")
 
-cmp.setup {
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'vsnip' },
-  },
-  snippet = {
-    expand = function(args)
-      -- Comes from vsnip
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  }),
-  }
+cmp.setup({
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "vsnip" },
+	},
+	snippet = {
+		expand = function(args)
+			-- Comes from vsnip
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		}),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	}),
+})
 -- NULL LS --
 
 local null_ls = require("null-ls")
@@ -145,22 +150,20 @@ null_ls.setup({
 	on_attach = on_attach,
 })
 
-
-
 -- LUALINE Status Bar
-  require("lualine").setup({
+require("lualine").setup({
 
-    options = { theme = "nord"},
-    sections = {
-        lualine_b={'tabs'},
-        lualine_c={'buffers'},
-        lualine_y={'branch','diff','diagnostics'}
-    },
-    inactive_sections={ 
-        lualine_x={},
-        lualine_z={},
-    }
-  })
+	options = { theme = "nord" },
+	sections = {
+		lualine_b = { "tabs" },
+		lualine_c = { "buffers" },
+		lualine_y = { "branch", "diff", "diagnostics" },
+	},
+	inactive_sections = {
+		lualine_x = {},
+		lualine_z = {},
+	},
+})
 
 -- SYMBOLS OUTLINE
 require("symbols-outline").setup()

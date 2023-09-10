@@ -37,12 +37,21 @@ local lsp_flags = {
 
 local lspconfig = require("lspconfig")
 
-local servers = { "lua_ls", "jdtls", "tsserver" }
+local servers = { "lua_ls", "tsserver" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
+		settings = {
+			Lua = {
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+					disable = { "lowercase-global" },
+				},
+			},
+		},
 		on_attach = on_attach,
 		flags = lsp_flags,
---		capabilities = capabilities,
+		--		capabilities = capabilities,
 	})
 end
