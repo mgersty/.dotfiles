@@ -165,24 +165,24 @@ local config = {
 			},
 			configuration = {
 				updateBuildConfiguration = "interactive",
-				-- runtimes = {
-				-- 	{
-				-- 		name = "JavaSE-1.8",
-				-- 		path = "/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home",
-				-- 	},
-				-- 	{
-				-- 		name = "JavaSE-1.8",
-				-- 		path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home",
-				-- 	},
-				-- 	{
-				-- 		name = "JavaSE-11",
-				-- 		path = "/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home",
-				-- 	},
-				-- 	{
-				-- 		name = "JavaSE-19",
-				-- 		path = "/opt/homebrew/Cellar/openjdk/19.0.2/libexec/openjdk.jdk/Contents/Home",
-				-- 	},
-				-- },
+				runtimes = {
+					{
+						name = "JavaSE-1.8",
+						path = '/usr/lib/jvm/java-8-openjdk-amd64/bin',
+					}
+					-- {
+					-- 	name = "JavaSE-1.8",
+					-- 	path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home",
+					-- },
+					-- {
+					-- 	name = "JavaSE-11",
+					-- 	path = "/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home",
+					-- },
+					-- {
+					-- 	name = "JavaSE-19",
+					-- 	path = "/opt/homebrew/Cellar/openjdk/19.0.2/libexec/openjdk.jdk/Contents/Home",
+					-- },
+				},
 			},
 			maven = {
 				downloadSources = true,
