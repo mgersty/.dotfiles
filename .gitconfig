@@ -6,6 +6,7 @@
 	UseHttpPath = true
 [diff]
 	tool = nvimdiff
+	renames = true
 [difftool]
 	prompt = false
 [difftool "nvimdiff"]
@@ -35,5 +36,19 @@
 	template = ~/.gitmessage
 [core]
 	editor = vim
+	excludesfile = /home/mpg26/.cas-git-tools/etc/default-excludesfile
 [init]
 	defaultBranch = master 
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	keepBackup = false
+	trustExitCode = false
+[color]
+	ui = true
+[gerrit]
+	createchangeid = true
+[casgittools]
+	gerritAlias = osd
+	sshAlias = gerrit
+	httpServer = osd-review.cas.org
