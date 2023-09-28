@@ -169,4 +169,10 @@ require("lualine").setup({
 })
 
 -- SYMBOLS OUTLINE
-require("symbols-outline").setup()
+require("symbols-outline").setup(
+    {
+        autofold_depth=1
+    }
+
+)
+
