@@ -114,6 +114,7 @@ local sources = {
 	formatting.stylua,
 	formatting.google_java_format,
 	formatting.black,
+    formatting.xmlformat,
 
 	--[[ code actions ]]
 	code_actions.eslint_d,
