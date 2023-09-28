@@ -1,2 +1,6 @@
 nvim/plugin/
 **/packer_compiled.lua
+target
+.settings
+.project
+.classpath
