@@ -18,4 +18,4 @@ set.termguicolors = true
 set.relativenumber = true
 set.number = true
 set.cursorline = true
-vim.cmd("colorscheme dayfox")
+vim.cmd("colorscheme nightfox")

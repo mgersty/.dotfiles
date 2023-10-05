@@ -30,109 +30,25 @@ vim.keymap.set("n", "<leader>fh", telescope_builtins.help_tags, {})
 vim.keymap.set('n', "<A-o>", jdtls.organize_imports, opts)
 vim.keymap.set('n', "<leader>tc", jdtls.test_class, opts)
 vim.keymap.set('n', "<leader>tm", jdtls.test_nearest_method, opts)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts, "Go to declaration")
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts, "Go to definition")
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts, "Go to implementation")
 
---LSP
--- vim.keymap.set(
--- 	"v",
--- 	"<space>ca",
--- 	"<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
--- 	{ noremap = true, silent = true, buffer = bufnr, desc = "Code actions" }
--- )
-
--- -- key_mapping --
--- local key_map = function(mode, key, result)
--- 	vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
--- end
-
--- -- run debug
--- function get_test_runner(test_name, debug)
--- 	if debug then
--- 		return 'mvn test -Dmaven.surefire.debug -Dtest="' .. test_name .. '"'
--- 	end
--- 	return 'mvn test -Dtest="' .. test_name .. '"'
--- end
-
--- function run_java_test_method(debug)
--- 	local utils = require("utils")
--- 	local method_name = utils.get_current_full_method_name("\\#")
--- 	vim.cmd("term " .. get_test_runner(method_name, debug))
--- end
-
--- function run_java_test_class(debug)
--- 	local utils = require("utils")
--- 	local class_name = utils.get_current_full_class_name()
--- 	vim.cmd("term " .. get_test_runner(class_name, debug))
--- end
-
--- function get_spring_boot_runner(profile, debug)
--- 	local debug_param = ""
--- 	if debug then
--- 		debug_param =
--- 			' -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" '
--- 	end
-
--- 	local profile_param = ""
--- 	if profile then
--- 		profile_param = " -Dspring-boot.run.profiles=" .. profile .. " "
--- 	end
-
--- 	return "mvn spring-boot:run " .. profile_param .. debug_param
--- end
-
--- function run_spring_boot(debug)
--- 	vim.cmd("term " .. get_spring_boot_runner("local", debug))
--- end
-
--- vim.keymap.set("n", "<leader>tm", function()
--- 	run_java_test_method()
--- end)
--- vim.keymap.set("n", "<leader>TM", function()
--- 	run_java_test_method(true)
--- end)
--- vim.keymap.set("n", "<leader>tc", function()
--- 	run_java_test_class()
--- end)
--- vim.keymap.set("n", "<leader>TC", function()
--- 	run_java_test_class(true)
--- end)
--- vim.keymap.set("n", "<F9>", function()
--- 	run_spring_boot()
--- end)
--- vim.keymap.set("n", "<F10>", function()
--- 	run_spring_boot(true)
--- end)
-
--- -- setup debug
--- key_map("n", "<leader>b", ':lua require"dap".toggle_breakpoint()<CR>')
--- key_map("n", "<leader>B", ':lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<CR>')
--- key_map("n", "<leader>bl", ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: "))<CR>')
--- key_map("n", "<leader>dr", ':lua require"dap".repl.open()<CR>')
-
--- -- view informations in debug
--- function show_dap_centered_scopes()
--- 	local widgets = require("dap.ui.widgets")
--- 	widgets.centered_float(widgets.scopes)
--- end
--- key_map("n", "gs", ":lua show_dap_centered_scopes()<CR>")
-
--- -- move in debug
--- key_map("n", "<F5>", ':lua require"dap".continue()<CR>')
--- key_map("n", "<F8>", ':lua require"dap".step_over()<CR>')
--- key_map("n", "<F7>", ':lua require"dap".step_into()<CR>')
--- key_map("n", "<S-F8>", ':lua require"dap".step_out()<CR>')
-
--- function attach_to_debug()
--- 	local dap = require("dap")
--- 	dap.configurations.java = {
--- 		{
--- 			type = "java",
--- 			request = "attach",
--- 			name = "Attach to the process",
--- 			hostName = "localhost",
--- 			port = "5005",
--- 		},
--- 	}
--- 	dap.continue()
--- end
-
--- key_map("n", "<leader>da", ":lua attach_to_debug()<CR>")
+--DAP
+vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts, "Set breakpoint")
+vim.keymap.set("n", "<leader>br", "<cmd>lua require'dap'.clear_breakpoints()<cr>", opts, "Clear breakpoints")
+vim.keymap.set("n", "<leader>bl", "<cmd>Telescope dap list_breakpoints<cr>", opts, "List breakpoints")
+vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts, "Continue")
+vim.keymap.set("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", opts, "Step over")
+vim.keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", opts, "Step into")
+vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", opts, "Step out")
+vim.keymap.set("n", "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", opts, "Disconnect")
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts, "Terminate")
+vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts, "Open REPL")
+vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts, "Run last")
+vim.keymap.set("n", "<leader>di", function() require"dap.ui.widgets".hover() end, opts, "Variables")
+vim.keymap.set("n", "<leader>d?", function() local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes) end, opts, "Scopes")
+vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", opts, "List frames")
+vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", opts, "List commands")
+vim.keymap.set("n", "<leader>duo", "<cmd>lua require'dapui'.open()<cr>", opts, "Open DAPUI")
+vim.keymap.set("n", "<leader>duc", "<cmd>lua require'dapui'.close()<cr>", opts, "Close DAPUI")
