@@ -57,6 +57,10 @@ require("dap.ext.vscode").load_launchjs()
 local dap = require("dap")
 dap.defaults.fallback.terminal_win_cmd = "tabnew"
 
+vim.fn.sign_define('DapBreakpoint', {text='󰱯', texthl='Search', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='󰱯', texthl='', linehl='', numhl=''})
+
+
 -- NVIM-DAP-UI
 require("dapui").setup()
 
