@@ -168,7 +168,8 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-1.8",
-						path = '/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin',
+                        path = '/usr/lib/jvm/java-8-openjdk-amd64/bin',
+						-- path = '/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin',
 					}
 					-- {
 					-- 	name = "JavaSE-1.8",
