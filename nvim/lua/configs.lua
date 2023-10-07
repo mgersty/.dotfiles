@@ -16,40 +16,41 @@ require("telescope").setup({
 })
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("notify")
 
 --NVIM-TREE
 require("nvim-tree").setup({
-    auto_reload_on_write = true,
-    renderer={
-        group_empty=true
-    }
+	auto_reload_on_write = true,
+	renderer = {
+		group_empty = true,
+	},
 })
 
 --TREE-SITTER
 require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-                "java",
-                "bash",
-                "lua",
-                "vim",
-                "typescript",
-                "javascript",
-                "python",
-        },
-        sync_install = false,
-        highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-        },
-        indent = {
-                enable = true,
-        },
-        context_commentstring = {
-                enable = true,
-        },
-        refactor = {
-                smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
-        },
+	ensure_installed = {
+		"java",
+		"bash",
+		"lua",
+		"vim",
+		"typescript",
+		"javascript",
+		"python",
+	},
+	sync_install = false,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
+	context_commentstring = {
+		enable = true,
+	},
+	refactor = {
+		smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
+	},
 })
 -- NVIM-DAP
 require("dap.ext.vscode").load_launchjs()
@@ -57,9 +58,8 @@ require("dap.ext.vscode").load_launchjs()
 local dap = require("dap")
 dap.defaults.fallback.terminal_win_cmd = "tabnew"
 
-vim.fn.sign_define('DapBreakpoint', {text='󰱯', texthl='Search', linehl='', numhl=''})
-vim.fn.sign_define('DapStopped', {text='󰱯', texthl='', linehl='', numhl=''})
-
+vim.fn.sign_define("DapBreakpoint", { text = "󰱯", texthl = "Search", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "󰱯", texthl = "", linehl = "", numhl = "" })
 
 -- NVIM-DAP-UI
 require("dapui").setup()
@@ -118,7 +118,7 @@ local sources = {
 	formatting.stylua,
 	formatting.google_java_format,
 	formatting.black,
-    formatting.xmlformat,
+	formatting.xmlformat,
 
 	--[[ code actions ]]
 	code_actions.eslint_d,
@@ -158,7 +158,7 @@ null_ls.setup({
 	on_attach = on_attach,
 })
 
--- LUALINE Status Bar
+--LUALINE Status Bar
 require("lualine").setup({
 
 	options = { theme = "nord" },
@@ -174,10 +174,9 @@ require("lualine").setup({
 })
 
 -- SYMBOLS OUTLINE
-require("symbols-outline").setup(
-    {
-        autofold_depth=1
-    }
+require("symbols-outline").setup({
+	autofold_depth = 1,
+})
 
-)
-
+--NOTIFY
+-- vim.notify = require("notify")

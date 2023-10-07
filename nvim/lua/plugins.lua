@@ -8,16 +8,16 @@ return require("packer").startup(function(use)
 	use({
 		"williamboman/mason-lspconfig.nvim",
 	})
-    use 'tpope/vim-commentary'
-    use 'mfussenegger/nvim-dap'
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-    use 'mfussenegger/nvim-jdtls'
-    use 'nvim-lua/plenary.nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
+	use("tpope/vim-commentary")
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use("mfussenegger/nvim-jdtls")
+	use("nvim-lua/plenary.nvim")
+	use("neovim/nvim-lspconfig")
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
 	use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
 	use("simrat39/symbols-outline.nvim")
 	use({
@@ -45,4 +45,5 @@ return require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
 	})
+	use("rcarriga/nvim-notify")
 end)
