@@ -159,21 +159,49 @@ null_ls.setup({
 })
 
 --LUALINE Status Bar
+local colors = {
+  nord1  = '#3B4252',
+  nord3  = '#4C566A',
+  nord5  = '#E5E9F0',
+  nord6  = '#ECEFF4',
+  nord7  = '#8FBCBB',
+  nord8  = '#88C0D0',
+  nord13 = '#EBCB8B',
+}
+
+local customized_nord_theme = {
+  normal = {
+    a = { fg = colors.nord1, bg = colors.nord8, gui = 'bold' },
+    b = { fg = colors.nord1, bg = colors.nord6 },
+    c = { fg = colors.nord5, bg = colors.nord3 },
+  },
+  insert = { a = { fg = colors.nord1, bg = colors.nord6, gui = 'bold' } },
+  visual = { a = { fg = colors.nord1, bg = colors.nord7, gui = 'bold' } },
+  replace = { a = { fg = colors.nord1, bg = colors.nord13, gui = 'bold' } },
+  inactive = {
+    a = { fg = colors.nord1, bg = colors.nord8, gui = 'bold' },
+    b = { fg = colors.nord5, bg = colors.nord1 },
+    c = { fg = colors.nord5, bg = colors.nord1 },
+  },
+}
+
 require("lualine").setup({
 
-	options = { theme = "nord" },
-	sections = {
-		lualine_b = { "tabs" },
-		lualine_c = { "buffers" },
+	options = {
+		theme = customized_nord_theme,
+		globalstatus = true,
+		component_separators = "|",
+	},
+	winbar = {
+		lualine_a = { 'mode' },
+		lualine_b = { "buffers" },
 		lualine_y = { "branch", "diff", "diagnostics" },
 	},
-	inactive_sections = {
-		lualine_x = {},
-		lualine_z = {},
-	},
+	sections = {},
+	inactive_sections = {},
 })
 
--- SYMBOLS OUTLINE
+-- SYMBOLS OUTLINE:
 require("symbols-outline").setup({
 	autofold_depth = 1,
 })
