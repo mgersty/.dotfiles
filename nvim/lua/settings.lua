@@ -16,6 +16,12 @@ set.scrolloff = 5
 set.fileencoding = "utf-8"
 set.termguicolors = true
 set.relativenumber = true
+
+
 set.number = true
 set.cursorline = true
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme tokyonight-moon")
+vim.cmd("set foldmethod=manual")
+vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set expandtab")

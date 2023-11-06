@@ -24,7 +24,7 @@ local workspace_dir = WORKSPACE_PATH .. project_name
 
 ----------------------------
 local java_debug_path = "~/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.49.0"
-local vscode_java_test = "~/sandbox/node/vscode-java-test"
+local vscode_java_test = "~/sandbox/jdtls_dependencies/vscode-java-test"
 -- Prepare JAR dependencies
 local bundles = {
 	vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"),
@@ -41,7 +41,6 @@ for _, bundle in ipairs(vim.split(vim.fn.glob(vscode_java_test .. "/server/*.jar
 	end
 end
 
-print(pprint(bundles))
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -96,8 +95,8 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-1.8",
-						-- path = '/usr/lib/jvm/java-8-openjdk-amd64/bin',
-						path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
+						path = '/usr/lib/jvm/java-8-openjdk-amd64/bin',
+						-- path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
 					},
 					{
 						name = "JavaSE-17",

@@ -116,9 +116,9 @@ local sources = {
 	formatting.eslint_d,
 	formatting.prettier,
 	formatting.stylua,
-	formatting.google_java_format,
+	-- formatting.google_java_format,
 	formatting.black,
-	formatting.xmlformat,
+	-- formatting.xmlformat,
 
 	--[[ code actions ]]
 	code_actions.eslint_d,
@@ -206,5 +206,12 @@ require("symbols-outline").setup({
 	autofold_depth = 1,
 })
 
---NOTIFY
--- vim.notify = require("notify")
+-- NOTIFY
+ vim.notify = require("notify")
+
+require("tokyonight").setup({
+    terminal_colors=true,
+    transparent=true
+})
+
+

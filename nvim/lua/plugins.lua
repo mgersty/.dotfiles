@@ -40,7 +40,8 @@ return require("packer").startup(function(use)
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("EdenEast/nightfox.nvim")
+	-- use("EdenEast/nightfox.nvim")
+    use("folke/tokyonight.nvim")
 	use("arcticicestudio/nord-vim")
 	use({
 		"nvim-lualine/lualine.nvim",

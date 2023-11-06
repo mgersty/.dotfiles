@@ -24,7 +24,8 @@ vim.keymap.set("n", "<leader>fg", telescope_builtins.live_grep, {})
 vim.keymap.set("n", "<leader>fb", telescope_builtins.buffers, {})
 vim.keymap.set("n", "<leader>fd", ":Telescope file_browser<CR>", {})
 vim.keymap.set("n", "<leader>fh", telescope_builtins.help_tags, {})
-vim.keymap.set("n", "<leader>fm", ":Telescope notify<CR>", {})
+vim.keymap.set("n", "<leader>fn", ":Telescope notify<CR>", {})
+vim.keymap.set("n", "<leader>fm", telescope_builtins.marks, {})
 
 -- JDTLS
 vim.keymap.set("n", "<A-o>", jdtls.organize_imports, opts)
@@ -33,6 +34,12 @@ vim.keymap.set("n", "<leader>tm", jdtls.test_nearest_method, opts)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts, "Go to declaration")
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts, "Go to definition")
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts, "Go to implementation")
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts, "Go to implementation")
+vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 
 --DAP
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts, "Set breakpoint")
