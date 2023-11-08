@@ -1,0 +1,6 @@
+docker build -t dev_setup:0.1.0 dev_setup/Dockerfile
+docker run \
+-v .:/home \
+--name dev \
+-d -t dev_setup:0.1.0
+docker exec -it dev bash
