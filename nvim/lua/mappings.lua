@@ -5,12 +5,10 @@ local jdtls = require("jdtls")
 vim.g.mapleader = " "
 
 -- GENERAL MAPPINGS
-map("n", "<C-H>", "<C-W>h", opts)
-map("n", "<C-J>", "<C-W>j", opts)
-map("n", "<C-L>", "<C-W>l", opts)
-map("n", "<C-K>", "<C-W>k", opts)
-map("n", "<C-S-i>", ":%!jq .", opts) --format json
-map("n", "<C-S-d>", ":%bd|e#", opts) --format json
+map("n", "gn", ":bprevious<cr>",opts)
+map("n", "gm", ":bnext<cr>",opts)
+-- map("n", "<C-S-i>", ":%!jq .", opts) --format json
+-- map("n", "<C-S-d>", ":%bd|e#", opts) --format json
 
 --NVIM-TREE
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
@@ -43,6 +41,7 @@ vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "<space>em", jdtls.extract_method,opts)
 
 --DAP
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts, "Set breakpoint")
@@ -65,5 +64,14 @@ vim.keymap.set("n", "<leader>d?", function()
 end, opts, "Scopes")
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", opts, "List frames")
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", opts, "List commands")
-vim.keymap.set("n", "<leader>duo", "<cmd>lua require'dapui'.open()<cr>", opts, "Open DAPUI")
+vim.keymap.set("n", "<leader>duo", "<cmd>lua require'dapui'.open()<cr>", opts,"Open DAPUI")
 vim.keymap.set("n", "<leader>duc", "<cmd>lua require'dapui'.close()<cr>", opts, "Close DAPUI")
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    callback = function()
+      local save_cursor = vim.fn.getpos(".")
+      pcall(function() vim.cmd [[%s/\s\+$//e]] end)
+      vim.fn.setpos(".", save_cursor)
+    end,
+})
