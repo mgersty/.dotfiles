@@ -5,12 +5,12 @@
 	helper = !aws codecommit credential-helper $@ --profile default
 	UseHttpPath = true
 [diff]
-	tool = nvimdiff
+	tool = vimdiff
 	renames = true
 [difftool]
 	prompt = false
-[difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "vimdiff"]
+	cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
 [user]
 	name = Matthew Gerstemeier
 	email = mgerstemeier@cas.org
@@ -22,14 +22,14 @@
 	sh = show --pretty="" --name-only
     c = commit -a
     r = reset --hard HEAD
-    d = difftool
+	d = difftool
     db = branch -D
     cb = checkout -b
     sb = checkout
     ps = push
     pl = pull
     f = fetch
-	
+
 [core]
 #	editor = code --wait
 [commit]
@@ -38,12 +38,7 @@
 	editor = vim
 	excludesfile = /home/mpg26/.cas-git-tools/etc/default-excludesfile
 [init]
-	defaultBranch = master 
-[merge]
-	tool = kdiff3
-[mergetool "kdiff3"]
-	keepBackup = false
-	trustExitCode = false
+	defaultBranch = master
 [color]
 	ui = true
 [gerrit]
