@@ -59,26 +59,26 @@ local dap = require("dap")
 require("dap.ext.vscode").load_launchjs()
 
 -- Scala Configurations
-dap.configurations.scala = {
-    {
-        type = "scala",
-        request = "launch",
-        name = "RunOrTest",
-        metals = {
-            runType = "runOrTestFile",
-            --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-        },
-    },
-    {
-        type = "scala",
-        request = "launch",
-        name = "RunOrTest",
-        metals = {
-          runType = "runOrTestFile",
-          --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-       }
-    }
-}
+-- dap.configurations.scala = {
+--     {
+--         type = "scala",
+--         request = "launch",
+--         name = "RunOrTest",
+--         metals = {
+--             runType = "runOrTestFile",
+--             --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+--         },
+--     },
+--     {
+--         type = "scala",
+--         request = "launch",
+--         name = "RunOrTest",
+--         metals = {
+--           runType = "runOrTestFile",
+--           --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+--        }
+--     }
+-- }
 
 -- General DAP Configs
 dap.defaults.fallback.terminal_win_cmd = "tabnew"
@@ -95,11 +95,12 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "vsnip" },
+        { name = "nvim_lua" },
+        { name = "vsnip" }
 	},
+
 	snippet = {
 		expand = function(args)
-			-- Comes from vsnip
 			vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
@@ -127,7 +128,13 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 })
-
+cmp.setup.cmdline({'/','?'}, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' },
+        { name = 'nvim_lsp_document_symbol' },
+    }
+})
 --LUALINE Status Bar
 local colors = {
   nord1  = '#3B4252',

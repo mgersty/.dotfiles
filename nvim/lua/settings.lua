@@ -22,6 +22,6 @@ set.number = true
 set.cursorline = true
 vim.cmd("colorscheme tokyonight-moon")
 vim.cmd("set foldmethod=manual")
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
+-- vim.cmd("set tabstop=4")
+-- vim.cmd("set shiftwidth=4")
+-- vim.cmd("set expandtab")

@@ -5,41 +5,49 @@ return require("packer").startup(function(use)
 		"williamboman/mason.nvim",
 		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	})
-
-    -- Language Sever Dependencies
 	use({
 		"williamboman/mason-lspconfig.nvim",
 	})
+
+    -- Language Sever Dependencies
 	use("neovim/nvim-lspconfig")
+	use("mfussenegger/nvim-jdtls")
 	use("mfussenegger/nvim-dap")
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-	use("mfussenegger/nvim-jdtls")
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
     -- AutoCompletion
-	use("hrsh7th/nvim-cmp")
-    use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/nvim-cmp") -- nvim auto completion
 
-    -- Snippets
-    use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
+    -- Snippets Engine???
+	use("hrsh7th/vim-vsnip") -- VSCodes(LSP)'s snippet feature in vim nvim
 
-	use("simrat39/symbols-outline.nvim")
-	use("christoomey/vim-tmux-navigator")
+    -- Snippet Sources
+    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
+    use("hrsh7th/cmp-vsnip") -- nvim-cmp source for vim-vsnip
+    use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
+    use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
+    use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
+
+
+    -- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.2",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
-	use({
+	use("nvim-telescope/telescope-ui-select.nvim")
+	use("nvim-telescope/telescope-file-browser.nvim")
+
+    -- NVIM Tree
+    use({
 		"nvim-tree/nvim-tree.lua",
 		requires = {
 			"nvim-tree/nvim-web-devicons",
 		},
 	})
-	use("nvim-telescope/telescope-ui-select.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
-	use({
+    -- Tree Sitter
+    use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
@@ -49,6 +57,7 @@ return require("packer").startup(function(use)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 
+    -- Appearence & Style
     use("lukas-reineke/indent-blankline.nvim")
 	use("folke/tokyonight.nvim")
 	use("arcticicestudio/nord-vim")
@@ -58,6 +67,8 @@ return require("packer").startup(function(use)
 	})
 	use("rcarriga/nvim-notify")
 
-    -- NVIM Utils
-	use("nvim-lua/plenary.nvim")
+    -- Utils
+    use("nvim-lua/plenary.nvim")
+	use("simrat39/symbols-outline.nvim")
+	use("christoomey/vim-tmux-navigator")
 end)
