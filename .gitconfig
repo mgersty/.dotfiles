@@ -1,15 +1,22 @@
 [alias]
-	s = status -sb
+    a = add .
+    c = commit
+    ca = commit -a
+    bc = checkout -b
+    bd = branch -D
+    bl = blame
+    bs = checkout
+    f = fetch
+    d = diff
+    dt = difftool
 	ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-	sh = show --pretty="" --name-only
-    c = commit -a
-    r = reset --hard HEAD
-    db = branch -D
-    cb = checkout -b
-    sb = checkout
+    m = merge
+    mt = mergetool
     ps = push
     pl = pull
-    f = fetch
+    r = reset --hard HEAD
+	s = status -sb
+	sh = show --pretty="" --name-only
 
 [color]
 	ui = true
@@ -32,12 +39,12 @@
     side-by-side = true
 
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 	renames = true
     colorMoved = default
 
 [difftool]
-	cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvimdiff \"$LOCAL\" \"$REMOTE\""
     prompt = false
 
 [init]
@@ -47,7 +54,7 @@
     diffFilter = delta --color-only --features=interactive
 
 [merge]
-    tool = vimdiff
+    tool = nvimdiff
 
 [user]
 	name = Matthew Gerstemeier
