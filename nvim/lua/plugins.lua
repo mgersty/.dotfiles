@@ -18,7 +18,6 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
-	use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
 	use("simrat39/symbols-outline.nvim")
 	use("christoomey/vim-tmux-navigator")
 	use({
@@ -41,7 +40,7 @@ return require("packer").startup(function(use)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lukas-reineke/indent-blankline.nvim")
 	-- use("EdenEast/nightfox.nvim")
-    use("folke/tokyonight.nvim")
+	use("folke/tokyonight.nvim")
 	use("arcticicestudio/nord-vim")
 	use({
 		"nvim-lualine/lualine.nvim",
