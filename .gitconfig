@@ -36,7 +36,7 @@
 	renames = true
     colorMoved = default
 
-[difftool "vimdiff"]
+[difftool]
 	cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
     prompt = false
 
@@ -47,7 +47,7 @@
     diffFilter = delta --color-only --features=interactive
 
 [merge]
-    conflictstyle = diff3
+    tool = vimdiff
 
 [user]
 	name = Matthew Gerstemeier
