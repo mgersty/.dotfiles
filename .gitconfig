@@ -1,28 +1,9 @@
-[user]
-	name = Matthew Gerstemeier
-	email = mgerstemeier@cas.org
-[credential]
-	helper = !aws codecommit credential-helper $@ --profile default
-	UseHttpPath = true
-[diff]
-	tool = vimdiff
-	renames = true
-[difftool]
-	prompt = false
-[difftool "vimdiff"]
-	cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
-[user]
-	name = Matthew Gerstemeier
-	email = mgerstemeier@cas.org
 [alias]
 	s = status -sb
-	#lg = log --pretty=format:\"%h%x09%an%x09%ad%x09%s\"
 	ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-	lls = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
 	sh = show --pretty="" --name-only
     c = commit -a
     r = reset --hard HEAD
-	d = difftool
     db = branch -D
     cb = checkout -b
     sb = checkout
@@ -30,20 +11,55 @@
     pl = pull
     f = fetch
 
-[core]
-#	editor = code --wait
+[color]
+	ui = true
+
 [commit]
 	template = ~/.gitmessage
+
 [core]
 	editor = vim
 	excludesfile = /home/mpg26/.cas-git-tools/etc/default-excludesfile
+    pager = delta
+
+[credential]
+	helper = !aws codecommit credential-helper $@ --profile default
+    UseHttpPath = true
+
+[delta]
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+
+[diff]
+	tool = vimdiff
+	renames = true
+    colorMoved = default
+
+[difftool "vimdiff"]
+	cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
+    prompt = false
+
 [init]
 	defaultBranch = master
-[color]
-	ui = true
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[merge]
+    conflictstyle = diff3
+
+[user]
+	name = Matthew Gerstemeier
+	email = mgerstemeier@cas.org
+
+
+
+; CAS SPECIFIC
 [gerrit]
 	createchangeid = true
 [casgittools]
 	gerritAlias = osd
 	sshAlias = gerrit
 	httpServer = osd-review.cas.org
+
