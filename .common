@@ -1,3 +1,7 @@
+
+export DISABLE_AUTO_TITLES=true
+
+
 alias ll='ls -all -h'
 alias grep='grep --exclude-dir=node_modules'
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'

@@ -26,6 +26,9 @@ vim.keymap.set("n", "<leader>fn", ":Telescope notify<CR>", {})
 vim.keymap.set("n", "<leader>fm", telescope_builtins.marks, {})
 vim.keymap.set("n", "<leader>fls", telescope_builtins.lsp_document_symbols, {})
 vim.keymap.set("n", "<leader>flr", telescope_builtins.lsp_references, {})
+vim.keymap.set("n", "<leader>fli", telescope_builtins.lsp_implementations, {})
+vim.keymap.set("n", "<leader>fld", telescope_builtins.lsp_definitions, {})
+vim.keymap.set("n", "<leader>fltd",telescope_builtins.lsp_type_definitions, {})
 
 -- JDTLS
 vim.keymap.set("n", "<A-o>", jdtls.organize_imports, opts)
