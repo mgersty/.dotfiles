@@ -20,10 +20,21 @@ require("telescope").load_extension("notify")
 
 --NVIM-TREE
 require("nvim-tree").setup({
-	auto_reload_on_write = true,
+	sync_root_with_cwd = true,
+	hijack_cursor = true,
 	renderer = {
 		group_empty = true,
 	},
+	view = {
+       float = {
+            enable = true,
+            open_win_config = {
+                width=100,
+                height=100
+            }
+
+        }
+	}
 })
 
 --TREE-SITTER
