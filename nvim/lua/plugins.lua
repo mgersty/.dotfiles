@@ -69,6 +69,5 @@ return require("packer").startup(function(use)
 
     -- Utils
     use("nvim-lua/plenary.nvim")
-	use("simrat39/symbols-outline.nvim")
 	use("christoomey/vim-tmux-navigator")
 end)

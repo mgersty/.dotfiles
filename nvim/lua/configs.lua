@@ -189,11 +189,6 @@ require("lualine").setup({
 	inactive_sections = {},
 })
 
--- SYMBOLS OUTLINE:
-require("symbols-outline").setup({
-	autofold_depth = 1,
-})
-
 -- NOTIFY
  vim.notify = require("notify")
 
