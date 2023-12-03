@@ -45,9 +45,9 @@ require("nvim-treesitter.configs").setup({
 	indent = {
 		enable = true,
 	},
-	context_commentstring = {
-		enable = true,
-	},
+	-- context_commentstring = {
+	-- 	enable = true,
+	-- },
 	refactor = {
 		smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
 	},
