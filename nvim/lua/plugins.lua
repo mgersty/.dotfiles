@@ -70,4 +70,5 @@ return require("packer").startup(function(use)
     -- Utils
     use("nvim-lua/plenary.nvim")
 	use("christoomey/vim-tmux-navigator")
+    use("dusans/vim-hardmode")
 end)

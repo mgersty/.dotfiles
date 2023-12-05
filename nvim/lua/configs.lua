@@ -20,7 +20,10 @@ require("telescope").load_extension("notify")
 
 --NVIM-TREE
 require("nvim-tree").setup({
-	sync_root_with_cwd = true,
+    update_focused_file={
+        enable=true
+    },
+    sync_root_with_cwd = true,
 	hijack_cursor = true,
 	renderer = {
 		group_empty = true,
@@ -196,5 +199,3 @@ require("tokyonight").setup({
     terminal_colors=true,
     transparent=true
 })
-
-
