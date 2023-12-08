@@ -25,3 +25,8 @@ vim.cmd("set foldmethod=manual")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    command = [[%s/\s\+$//e]],
+})

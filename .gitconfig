@@ -39,12 +39,12 @@
     side-by-side = true
 
 [diff]
-	tool = nvimdiff
+	tool = vimdiff
 	renames = true
     colorMoved = default
 
 [difftool]
-    cmd = "nvimdiff \"$LOCAL\" \"$REMOTE\""
+    cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
     prompt = false
 
 [init]
