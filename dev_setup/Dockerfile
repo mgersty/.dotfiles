@@ -1,6 +1,5 @@
 # Use the official Debian base image
-FROM debian:12
-
+FROM ubuntu:bionic
 
 COPY setup.sh /home
 # Define the command to run your application
