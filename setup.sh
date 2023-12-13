@@ -82,7 +82,7 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
     && sudo ./aws/install
 
 wget "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
-sudo dpkg -i git-delta_${DELTA_VERION}_amd64.deb
+sudo dpkg -i git-delta_${DELTA_VERSION}_amd64.deb
 
 
 ########################################
