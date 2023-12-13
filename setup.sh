@@ -4,6 +4,7 @@ set -e
 
 export NEOVIM_VERSION='0.9.4'
 export DELTA_VERSION='0.16.5'
+export NEEDRESTART_MODE='a'
 
 WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
