@@ -1,8 +1,14 @@
 # Use the official Debian base image
 FROM ubuntu:jammy
 
-COPY setup.sh /home
+RUN apt update && apt upgrade -y
 
-RUN bash /home/setup.sh
+RUN apt install -y --no-install-recommends \
+ca-certificates \
+build-essentials \
+wget \
+vim
+
+
 # Define the command to run your application
 # CMD ["./your_app_executable"]
