@@ -76,7 +76,6 @@ sudo apt install -y --no-install-recommends \
 
 echo "Installing oh my zsh shell"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-chsh -s $(which zsh)
 
 echo "Installing aws cli"
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
