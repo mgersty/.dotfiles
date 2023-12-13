@@ -107,7 +107,7 @@ wget "https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim
 sudo tar -xvzf nvim-linux64.tar.gz -C /usr/local
 sudo ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
-git clone https://github.com/mgersty/.dotfiles.git:${HOME}
+git clone https://github.com/mgersty/.dotfiles.git ${HOME}
 DOT_FILES_LOCATION="${HOME}/.dotfiles"
 
 mkdir -p "${HOME}"/.config
