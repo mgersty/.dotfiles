@@ -2,8 +2,8 @@
 
 set -e
 
-NEOVIM_VERSION='0.9.4'
-DELTA_VERSION='0.16.5'
+export NEOVIM_VERSION='0.9.4'
+export DELTA_VERSION='0.16.5'
 
 WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
@@ -90,7 +90,7 @@ sudo dpkg -i git-delta_${DELTA_VERSION}_amd64.deb
 # Installing Docker
 ########################################
 ########################################
-sudo apt install -y --no-intstall-recommends \
+sudo apt install -y --no-install-recommends \
     docker-ce \
     docker-ce-cli \
     containerd.io \
