@@ -5,7 +5,7 @@ RUN apt update && apt upgrade -y
 
 RUN apt install -y --no-install-recommends \
 ca-certificates \
-build-essentials \
+build-essential \
 wget \
 vim
 
