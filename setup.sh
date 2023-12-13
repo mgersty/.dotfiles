@@ -107,13 +107,13 @@ wget "https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim
 sudo tar -xvzf nvim-linux64.tar.gz -C /usr/local
 sudo ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
-git clone https://github.com/mgersty/.dotfiles.git ${HOME}
-DOT_FILES_LOCATION="${HOME}/.dotfiles"
+git clone https://github.com/mgersty/.dotfiles.git ${HOME}/.dotfiles
+export DOT_FILES_LOCATION="${HOME}/.dotfiles"
 
-mkdir -p "${HOME}"/.config
-ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim"
-ln -s "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf"
-ln -s "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
+mkdir -p "${HOME}"/.config \
+&& ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
+&& ln -s "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
+&& ln -s "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
 
 
 
