@@ -3,7 +3,7 @@
 set -e
 
 NEOVIM_VERSION='0.9.4'
-DELTA_VERION='0.16.5'
+DELTA_VERSION='0.16.5'
 
 WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
@@ -81,7 +81,7 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
     && unzip awscliv2.zip \
     && sudo ./aws/install
 
-wget "https://github.com/dandavison/delta/releases/download/0.16.5/git-delta_${DELTA_VERSION}_amd64.deb"
+wget "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
 sudo dpkg -i git-delta_${DELTA_VERION}_amd64.deb
 
 
@@ -107,8 +107,8 @@ wget "https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim
 sudo tar -xvzf nvim-linux64.tar.gz -C /usr/local
 sudo ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
-git clone https://github.com/mgersty/.dotfiles.git && sudo mv .dotfiles "${HOME}"
-DOT_FILES_LOCATION="${PWD}/.dotfiles"
+git clone https://github.com/mgersty/.dotfiles.git:${HOME}
+DOT_FILES_LOCATION="${HOME}/.dotfiles"
 
 mkdir -p "${HOME}"/.config
 ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim"
