@@ -71,7 +71,10 @@ sudo apt install -y --no-install-recommends \
     openjdk-8-jdk \
     scala \
     maven \
-    gh
+    gh \
+    fzf \
+    exa \
+    rg
 
 
 echo "Installing oh my zsh shell"
