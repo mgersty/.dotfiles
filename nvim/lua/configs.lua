@@ -23,18 +23,18 @@ require("nvim-tree").setup({
     update_focused_file={
         enable=true
     },
-    sync_root_with_cwd = true,
-	hijack_cursor = true,
+    -- sync_root_with_cwd = true,
+	-- hijack_cursor = true,
 	renderer = {
 		group_empty = true,
 	},
 	view = {
        float = {
             enable = true,
-            open_win_config = {
-                width=100,
-                height=100
-            }
+            -- open_win_config = {
+            --     width=100,
+            --     height=100
+            -- }
 
         }
 	}
