@@ -74,7 +74,7 @@ sudo apt install -y --no-install-recommends \
     gh \
     fzf \
     exa \
-    rg
+    ripgrep
 
 
 echo "Installing oh my zsh shell"
