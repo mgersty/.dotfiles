@@ -72,9 +72,9 @@ sudo apt install -y --no-install-recommends \
     scala \
     maven \
     gh \
-    fzf \
+    ripgrep \
     exa \
-    ripgrep
+    fzf
 
 
 echo "Installing oh my zsh shell"
