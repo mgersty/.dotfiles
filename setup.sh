@@ -80,6 +80,9 @@ sudo apt install -y --no-install-recommends \
     bat
 
 
+echo "Installing nvm"
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
 echo "Installing oh my zsh shell"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
 
