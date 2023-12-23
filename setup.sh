@@ -86,14 +86,12 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 zshell_home_dir="$HOME/.oh-my-zsh"
 
 if [ -d "$zshell_home_dir" ]; then
-    echo "Uninstalling Oh My Zshell"
-    uninstall_oh_my_zsh
+    echo "Oh My ZShell alreadly installed"
+    # uninstall_oh_my_zsh
+else
+    echo "Installing oh my zsh shell"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
 fi
-
-echo "Installing oh my zsh shell"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-sudo chsh -s $(which zsh) $(whoami)
-
 
 if ! command -v aws &> /dev/null
 then
