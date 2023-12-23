@@ -83,13 +83,25 @@ sudo apt install -y --no-install-recommends \
 echo "Installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
+zshell_home_dir="$HOME/.oh-my-zsh"
+
+if [ -d "$zshell_home_dir" ]; then
+    echo "Uninstalling Oh My Zshell"
+    bash $HOME/.oh-my-zsh/tools/uninstall.sh
+fi
+
 echo "Installing oh my zsh shell"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+chsh -s $(which zsh)
 
-echo "Installing aws cli"
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-    && sudo ./aws/install --update
+
+if ! command -v aws &> /dev/null
+then
+    echo "Installing aws cli"
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+        && unzip awscliv2.zip \
+        && sudo ./aws/install --update
+fi
 
 wget "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
 sudo dpkg -i git-delta_${DELTA_VERSION}_amd64.deb

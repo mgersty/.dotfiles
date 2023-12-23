@@ -1,5 +1,5 @@
 # Use the official Debian base image
-FROM ubuntu:jammy
+FROM ubuntu:bionic
 
 RUN apt update && apt upgrade -y
 
