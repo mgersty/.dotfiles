@@ -87,7 +87,7 @@ zshell_home_dir="$HOME/.oh-my-zsh"
 
 if [ -d "$zshell_home_dir" ]; then
     echo "Uninstalling Oh My Zshell"
-    bash $HOME/.oh-my-zsh/tools/uninstall.sh
+    bash $HOME/.oh-my-zsh/tools/uninstall.sh y
 fi
 
 echo "Installing oh my zsh shell"
