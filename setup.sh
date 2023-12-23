@@ -92,7 +92,7 @@ fi
 
 echo "Installing oh my zsh shell"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh) $(whoami)
 
 
 if ! command -v aws &> /dev/null
