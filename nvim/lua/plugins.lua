@@ -42,15 +42,12 @@ return require("packer").startup(function(use)
     use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
     use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
 
-
     -- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.2",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
-	use("nvim-telescope/telescope-ui-select.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
 
     -- NVIM Tree
     use({

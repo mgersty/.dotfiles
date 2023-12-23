@@ -14,8 +14,6 @@ require("telescope").setup({
 		dynamic_preview_title = true,
 	},
 })
-require("telescope").load_extension("ui-select")
-require("telescope").load_extension("file_browser")
 require("telescope").load_extension("notify")
 
 --NVIM-TREE

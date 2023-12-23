@@ -1,14 +1,12 @@
 --GLOBAL
-local map = map
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local jdtls = require("jdtls")
 vim.g.mapleader = " "
 
 -- GENERAL MAPPINGS
-map("n", "gn", ":bprevious<cr>",opts)
-map("n", "gm", ":bnext<cr>",opts)
--- map("n", "<C-S-i>", ":%!jq .", opts) --format json
--- map("n", "<C-S-d>", ":%bd|e#", opts) --format json
+map("n", "<", ":bprevious<cr>",opts)
+map("n", ">", ":bnext<cr>",opts)
 
 --NVIM-TREE
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
@@ -20,7 +18,6 @@ local telescope_builtins = require("telescope.builtin")
 map("n", "<leader>ff", telescope_builtins.find_files, {})
 map("n", "<leader>fg", telescope_builtins.live_grep, {})
 map("n", "<leader>fb", telescope_builtins.buffers, {})
-map("n", "<leader>fd", ":Telescope file_browser<CR>", {})
 map("n", "<leader>fh", telescope_builtins.help_tags, {})
 map("n", "<leader>fn", ":Telescope notify<CR>", {})
 map("n", "<leader>fm", telescope_builtins.marks, {})
