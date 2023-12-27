@@ -68,6 +68,7 @@ return require("packer").startup(function(use)
 
 
     -- Appearence & Style
+    use("tpope/vim-surround")
     use("lukas-reineke/indent-blankline.nvim")
 	use("folke/tokyonight.nvim")
 	use("arcticicestudio/nord-vim")
