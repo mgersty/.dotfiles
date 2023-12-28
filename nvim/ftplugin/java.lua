@@ -122,13 +122,14 @@ local config = {
 			references = {
 				includeDecompiledSources = true,
 			},
-			format = {
-				enabled = false,
-				-- settings = {
-				--   profile = "asdf"
-				-- }
-			},
-		},
+            format = {
+                enabled = true,
+                settings = {
+                    url = jdtls_dependencies_dir .. "/formatting/intellij.style.xml",
+                    profile = "Default",
+                }
+            }
+		}
 	},
 	signatureHelp = { enabled = true },
 	completion = {

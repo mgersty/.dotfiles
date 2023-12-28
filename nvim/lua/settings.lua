@@ -1,10 +1,4 @@
 local set = vim.opt
-local opts = { noremap = true, silent = true }
-
--- set.expandtab = true
--- set.smarttab = true
--- set.shiftwidth = 4
--- set.tabstop = 4
 
 set.hlsearch = true
 set.ignorecase = true
@@ -22,9 +16,6 @@ set.number = true
 set.cursorline = true
 vim.cmd("colorscheme tokyonight-moon")
 vim.cmd("set foldmethod=manual")
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = {"*"},

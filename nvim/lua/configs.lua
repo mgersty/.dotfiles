@@ -200,3 +200,4 @@ require("tokyonight").setup({
     terminal_colors=true,
     transparent=true
 })
+require("ibl").setup()
