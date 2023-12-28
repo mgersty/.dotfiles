@@ -21,16 +21,15 @@ local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
 
+local jdtls_dependencies_dir = home .. "/.dotfiles/nvim/jdtls_dependencies"
+
 ----------------------------
-local java_debug_path = "~/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.49.0"
-local vscode_java_test = "~/sandbox/jdtls_dependencies/vscode-java-test"
 -- Prepare JAR dependencies
 local bundles = {
-	vim.fn.glob(java_debug_path .. "/com.microsoft.java.debug.plugin-*.jar"),
-}
+	vim.fn.glob(jdtls_dependencies_dir .. "/debug/*.jar"), }
 
 --Testing
-for _, bundle in ipairs(vim.split(vim.fn.glob(vscode_java_test .. "/server/*.jar", 1), "\n")) do
+for _, bundle in ipairs(vim.split(vim.fn.glob(jdtls_dependencies_dir .. "/test/*.jar", 1), "\n")) do
 	--These two jars are not bundles, therefore don't put them in the table
 	if
 		not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
