@@ -6,18 +6,18 @@ export NEOVIM_VERSION='0.9.4'
 export DELTA_VERSION='0.16.5'
 export NEEDRESTART_MODE='a'
 
+#In case the environment this script is running in does not have sudo installed
+if ! command -v sudo &> /dev/null
+then
+    echo "Sudo is not present. Please make sure sudo is installed on this distro before excuting this script"
+    exit 1
+fi
+
 WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
 echo "Switching to ${PWD} as current working directory"
 
-apt update && apt upgrade -y
-
-#In case the environment this script is running in does not have sudo installed
-if ! command -v sudo &> /dev/null
-then
-    echo "Sudo is not present.  Installing now"
-    apt install -y --no-install-recommends sudo
-fi
+sudo apt update && apt upgrade -y --no-install-recommends
 
 ########################################
 ########################################
@@ -25,7 +25,6 @@ fi
 ########################################
 ########################################
 sudo apt install -y --no-install-recommends \
-    sudo \
     ca-certificates \
     build-essential \
     gnupg \
@@ -33,6 +32,7 @@ sudo apt install -y --no-install-recommends \
     curl \
     unzip \
     wget \
+    sssd-tools \
     vim
 
 ########################################
@@ -85,16 +85,6 @@ sudo systemctl restart sssd
 echo "Installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-# zshell_home_dir="$HOME/.oh-my-zsh"
-
-# if [ -d "$zshell_home_dir" ]; then
-#     echo "Oh My ZShell alreadly installed"
-#     # uninstall_oh_my_zsh
-# else
-#     echo "Installing oh my zsh shell"
-#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-# fi
-
 if ! command -v aws &> /dev/null
 then
     echo "Installing aws cli"
@@ -136,3 +126,19 @@ mkdir -p "${HOME}"/.config \
 && ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
 && ln -s "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
 && ln -s "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
+
+
+########################################
+########################################
+# Setting up Oh My ZShell
+########################################
+########################################
+zshell_home_dir="$HOME/.oh-my-zsh"
+
+if [ -d "$zshell_home_dir" ]; then
+     echo "Oh My ZShell alreadly installed"
+     # uninstall_oh_my_zsh
+else
+     echo "Installing oh my zsh shell"
+     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+fi
