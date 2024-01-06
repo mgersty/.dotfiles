@@ -79,19 +79,21 @@ sudo apt install -y --no-install-recommends \
     fzf \
     bat
 
+sudo sss_override user-add ${USER} --shell /bin/zsh
+sudo systemctl restart sssd
 
 echo "Installing nvm"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-zshell_home_dir="$HOME/.oh-my-zsh"
+# zshell_home_dir="$HOME/.oh-my-zsh"
 
-if [ -d "$zshell_home_dir" ]; then
-    echo "Oh My ZShell alreadly installed"
-    # uninstall_oh_my_zsh
-else
-    echo "Installing oh my zsh shell"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-fi
+# if [ -d "$zshell_home_dir" ]; then
+#     echo "Oh My ZShell alreadly installed"
+#     # uninstall_oh_my_zsh
+# else
+#     echo "Installing oh my zsh shell"
+#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+# fi
 
 if ! command -v aws &> /dev/null
 then
@@ -134,6 +136,3 @@ mkdir -p "${HOME}"/.config \
 && ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
 && ln -s "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
 && ln -s "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
-
-
-
