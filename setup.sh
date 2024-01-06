@@ -17,8 +17,6 @@ WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
 echo "Switching to ${PWD} as current working directory"
 
-sudo apt update && apt upgrade -y --no-install-recommends
-
 ########################################
 ########################################
 #Installing essential dev enviroment utils
@@ -27,6 +25,7 @@ sudo apt update && apt upgrade -y --no-install-recommends
 sudo apt install -y --no-install-recommends \
     ca-certificates \
     build-essential \
+    apt-transport-https \
     gnupg \
     gzip \
     curl \
@@ -53,8 +52,6 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 
-sudo apt update
-
 ########################################
 ########################################
 # Installing local developer tools and sdks
@@ -78,6 +75,8 @@ sudo apt install -y --no-install-recommends \
     exa \
     fzf \
     bat
+
+sudo apt update && apt upgrade -y --no-install-recommends
 
 sudo sss_override user-add ${USER} --shell /bin/zsh
 sudo systemctl restart sssd
