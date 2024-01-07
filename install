@@ -41,7 +41,7 @@ sudo apt install -y --no-install-recommends \
 
 
 ########################################################################################################################################################################
-#Setting up external sources for apt
+#Installing external sources for apt
 
 
 # Setup Docker source list entry for apt
@@ -124,7 +124,7 @@ sudo apt install -y --no-install-recommends \
 
 
 
-# Setting up Oh My ZShell
+# Installing Oh My ZShell
 zshell_home_dir="$HOME/.oh-my-zsh"
 if [ -d "$zshell_home_dir" ]; then
      echo "Oh My ZShell alreadly installed.  Lets chuck it"
@@ -141,10 +141,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install 18
 
-# Setting up Neovim
+# Installing Neovim
 wget "https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim-linux64.tar.gz"
 sudo tar -xvzf nvim-linux64.tar.gz -C /usr/local
 sudo ln -sf /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
+
+#Installing Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/mpg26/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+brew install glab
+
 
 
 
@@ -161,7 +169,7 @@ export DOT_FILES_LOCATION="${HOME}/.dotfiles"
 mkdir -p "${HOME}"/.config \
 && ln -sf "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
 && ln -sf "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
-&& ln -sf "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
+&& ln -sf "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig" \
 && ln -sf "${DOT_FILES_LOCATION}"/.gitmessage "${HOME}/.gitmessage"
 
 rm -rf ${HOME}/.tmux/plugins/tpm
