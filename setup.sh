@@ -90,13 +90,13 @@ sudo apt update -y && sudo apt install -y --no-install-recommends \
 
 echo "Determine if user authenticates via ldap or locally"
 if grep -c -q $USER /etc/passwd; then
+   echo "$USER authenticates locally"
+   sudo chsh -s /bin/zsh $USER
+else
    echo "$USER authenticates via ldap"
    sudo apt install sssd-tools -y
    sudo sss_override user-add ${USER} --shell /bin/zsh
    sudo systemctl restart sssd
-else
-   echo "$USER authenticates locally"
-   sudo chsh -s /bin/zsh $USER
 fi
 
 export SHELL=/bin/zsh
