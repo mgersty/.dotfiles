@@ -162,6 +162,7 @@ mkdir -p "${HOME}"/.config \
 && ln -sf "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
 && ln -sf "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
 && ln -sf "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
+&& ln -sf "${DOT_FILES_LOCATION}"/.gitmessage "${HOME}/.gitmessage"
 
 rm -rf ${HOME}/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -169,9 +170,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 sed -i '/source ~\/.dotfiles\/.common/d' ~/.zshrc
 echo "source ~/.dotfiles/.common" >> ~/.zshrc
 
-if [ ! -e "$file_path" ]; then
+mkdir $HOME/.ssh
+if [ ! -e "$HOME/.ssh/id_rsa" ]; then
 email=""
-key_filename="id_rsa"
+key_filename="$HOME/.ssh/id_rsa"
 passphrase=""
 ssh-keygen -t rsa -b 2048 -C "$email" -f "$key_filename" -N "$passphrase"
 

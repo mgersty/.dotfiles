@@ -1,0 +1,21 @@
+#This message template is derived from the conventions documented in https://www.conventionalcommits.org/en/v1.0.0/#specification
+
+#type:          Identifier for commit types e.g. feat:, fix:, build:, chore:, ci:, docs:, style:, refactor:, perf:, test:
+#scope:         Identifier for the area of code this commit is for.  For breaking changes please add an exclamation mark as part of the scope
+#title:         Short title summarizing your changes
+#description:   Provide an overview of your changes with a list of files to take note of.
+
+#<type>[optional scope]: <title>
+#
+#[description]
+
+
+
+#Example:
+#feat(SPOT-xxxx): Making changes to IAP
+
+#Adding changes to handle 403 Authorization scenarios:
+#Files to look at:
+#  xxx.java
+#  Dockerfile
+#  xxx.pom.xml
