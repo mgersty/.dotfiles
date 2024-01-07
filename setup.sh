@@ -2,10 +2,20 @@
 
 set -e
 
+########################################################################################################################################################################
+#Initial setup and updating of exiting base os software
+#Installing essential dev enviroment utils
+
+
 export NEOVIM_VERSION='0.9.4'
 export DELTA_VERSION='0.16.5'
 export NEEDRESTART_MODE='a'
-export OS_NAME='debian'
+export OS_NAME='ubuntu'
+
+if [ -n "$1" ]; then
+    OS_NAME=$1
+fi
+echo "Setting this install for $OS_NAME"
 
 sudo apt-get --allow-releaseinfo-change update
 sudo apt update && sudo apt upgrade -y --no-install-recommends
@@ -14,11 +24,6 @@ WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
 echo "Switching to ${PWD} as current working directory"
 
-########################################
-########################################
-#Installing essential dev enviroment utils
-########################################
-########################################
 sudo apt install -y --no-install-recommends \
     ca-certificates \
     build-essential \
@@ -31,11 +36,13 @@ sudo apt install -y --no-install-recommends \
     man \
     vim
 
-########################################
-########################################
+
+
+
+
+########################################################################################################################################################################
 #Setting up external sources for apt
-########################################
-########################################
+
 
 # Setup Docker source list entry for apt
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -55,12 +62,12 @@ echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_COD
 
 
 
-########################################
-########################################
-# Installing local developer tools and sdks
-########################################
-########################################
 
+########################################################################################################################################################################
+#Installing developer tools and utilities
+
+
+# Installing local developer tools and sdks
 sudo apt update -y && sudo apt install -y --no-install-recommends \
     zsh \
     jq \
@@ -107,11 +114,7 @@ wget "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git
 sudo dpkg -i git-delta_${DELTA_VERSION}_amd64.deb
 
 
-########################################
-########################################
 # Installing Docker
-########################################
-########################################
 sudo apt install -y --no-install-recommends \
     docker-ce \
     docker-ce-cli \
@@ -120,45 +123,62 @@ sudo apt install -y --no-install-recommends \
 && sudo usermod -aG docker "$USER"
 
 
-########################################
-########################################
+
+# Setting up Oh My ZShell
+zshell_home_dir="$HOME/.oh-my-zsh"
+if [ -d "$zshell_home_dir" ]; then
+     echo "Oh My ZShell alreadly installed.  Lets chuck it"
+     bash ~/.oh-my-zsh/tools/uninstall.sh
+fi
+echo "Installing oh my zsh shell"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+sed -i 's/plugins=(git)/plugins=(zsh-autosuggestions)/' ~/.zshrc
+
+# Installing Node
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install 18
+
 # Setting up Neovim
-########################################
-########################################
 wget "https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim-linux64.tar.gz"
 sudo tar -xvzf nvim-linux64.tar.gz -C /usr/local
-sudo ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
+sudo ln -sf /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
+
+
+
+
+########################################################################################################################################################################
+#Configurations for home directory
+
+
+rm -rf ${HOME}/.dotfiles
 git clone https://github.com/mgersty/.dotfiles.git ${HOME}/.dotfiles
 export DOT_FILES_LOCATION="${HOME}/.dotfiles"
 
 mkdir -p "${HOME}"/.config \
-&& ln -s "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
-&& ln -s "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
-&& ln -s "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
+&& ln -sf "${DOT_FILES_LOCATION}"/nvim "${HOME}/.config/nvim" \
+&& ln -sf "${DOT_FILES_LOCATION}"/.tmux.conf "${HOME}/.tmux.conf" \
+&& ln -sf "${DOT_FILES_LOCATION}"/.gitconfig "${HOME}/.gitconfig"
 
+rm -rf ${HOME}/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-########################################
-########################################
-# Setting up Oh My ZShell
-########################################
-########################################
-zshell_home_dir="$HOME/.oh-my-zsh"
+sed -i '/source ~\/.dotfiles\/.common/d' ~/.zshrc
+echo "source ~/.dotfiles/.common" >> ~/.zshrc
 
-if [ -d "$zshell_home_dir" ]; then
-     echo "Oh My ZShell alreadly installed"
-     # uninstall_oh_my_zsh
-else
-     echo "Installing oh my zsh shell"
-     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [ ! -e "$file_path" ]; then
+email=""
+key_filename="id_rsa"
+passphrase=""
+ssh-keygen -t rsa -b 2048 -C "$email" -f "$key_filename" -N "$passphrase"
+
+echo "Key pair generated:"
+echo "Private key: $key_filename"
+echo "Public key: ${key_filename}.pub"
 fi
 
-echo "source ~/.dotfiles/.common" >> ~/.zshrc
-source ~/.zshrc
-
-echo "Installing nvm"
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-cd
-
-sudo reboot
+echo "Setup complete :)"
+echo "Please restart your machine"
