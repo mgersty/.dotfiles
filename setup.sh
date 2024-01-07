@@ -5,13 +5,10 @@ set -e
 export NEOVIM_VERSION='0.9.4'
 export DELTA_VERSION='0.16.5'
 export NEEDRESTART_MODE='a'
+export OS_NAME='debian'
 
-#In case the environment this script is running in does not have sudo installed
-if ! command -v sudo &> /dev/null
-then
-    echo "Sudo is not present. Please make sure sudo is installed on this distro before excuting this script"
-    exit 1
-fi
+sudo apt-get --allow-releaseinfo-change update
+sudo apt update && sudo apt upgrade -y --no-install-recommends
 
 WORK_DIR=$(mktemp -d)
 cd "${WORK_DIR}"
@@ -31,7 +28,7 @@ sudo apt install -y --no-install-recommends \
     curl \
     unzip \
     wget \
-    sssd-tools \
+    man \
     vim
 
 ########################################
@@ -42,9 +39,9 @@ sudo apt install -y --no-install-recommends \
 
 # Setup Docker source list entry for apt
 sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/"$OS_NAME"/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/"$OS_NAME" $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
 sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Setup github cli source list entry
@@ -52,12 +49,19 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 
+# Setup JDK Sources from Adoptium
+wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
+echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+
+
+
 ########################################
 ########################################
 # Installing local developer tools and sdks
 ########################################
 ########################################
-sudo apt install -y --no-install-recommends \
+
+sudo apt update -y && sudo apt install -y --no-install-recommends \
     zsh \
     jq \
     ncdu \
@@ -65,8 +69,8 @@ sudo apt install -y --no-install-recommends \
     tmux \
     tree \
     git \
-    openjdk-8-jdk \
-    openjdk-11-jdk \
+    temurin-8-jdk \
+    temurin-11-jdk \
     openjdk-17-jdk \
     scala \
     maven \
@@ -76,13 +80,20 @@ sudo apt install -y --no-install-recommends \
     fzf \
     bat
 
-sudo apt update && apt upgrade -y --no-install-recommends
 
-sudo sss_override user-add ${USER} --shell /bin/zsh
-sudo systemctl restart sssd
+echo "Determine if user authenticates via ldap or locally"
+if sed -n "/passwd/p" /etc/nsswitch.conf | grep -q "ldap"; then
+   echo "$USER authenticates via ldap"
+   sudo apt install sssd-tools -y
+   sudo sss_override user-add ${USER} --shell /bin/zsh
+   sudo systemctl restart sssd
+else
+   echo "$USER authenticates locally"
+   sudo chsh -s /bin/zsh $USER
+fi
 
-echo "Installing nvm"
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export SHELL=/bin/zsh
+
 
 if ! command -v aws &> /dev/null
 then
@@ -139,5 +150,15 @@ if [ -d "$zshell_home_dir" ]; then
      # uninstall_oh_my_zsh
 else
      echo "Installing oh my zsh shell"
-     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
+
+echo "source ~/.dotfiles/.common" >> ~/.zshrc
+source ~/.zshrc
+
+echo "Installing nvm"
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+cd
+
+sudo reboot
