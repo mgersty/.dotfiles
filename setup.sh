@@ -89,7 +89,7 @@ sudo apt update -y && sudo apt install -y --no-install-recommends \
 
 
 echo "Determine if user authenticates via ldap or locally"
-if sed -n "/passwd/p" /etc/nsswitch.conf | grep -q "ldap"; then
+if grep -c -q $USER /etc/passwd; then
    echo "$USER authenticates via ldap"
    sudo apt install sssd-tools -y
    sudo sss_override user-add ${USER} --shell /bin/zsh
