@@ -28,6 +28,7 @@ sudo apt install -y --no-install-recommends \
     ca-certificates \
     build-essential \
     apt-transport-https \
+    net-tools \
     gnupg \
     gzip \
     curl \
