@@ -39,13 +39,14 @@
     side-by-side = true
 
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 	renames = true
-    colorMoved = default
 
 [difftool]
-    cmd = "vimdiff \"$LOCAL\" \"$REMOTE\""
     prompt = false
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [init]
 	defaultBranch = master
