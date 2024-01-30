@@ -28,7 +28,7 @@ require("nvim-tree").setup({
 	},
 	view = {
        float = {
-            enable = true,
+            enable = false,
             -- open_win_config = {
             --     width=100,
             --     height=100

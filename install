@@ -2,6 +2,12 @@
 
 set -e
 
+# TODO
+	# kubernetes setup
+	# minikube
+	# kubectl
+	# /etc/needrestart/needrestart.conf $nrconf{restart} = 'a';
+
 ########################################################################################################################################################################
 #Initial setup and updating of exiting base os software
 #Installing essential dev enviroment utils
