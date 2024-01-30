@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://config.qmk.fm/
+HostUrl=https://nyc3.digitaloceanspaces.com/qmk-api/cd1dbd44-fd80-405b-8f45-64547ab8d1b2/crkbd_rev1_corne_low_profile_mapping.hex?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=DO00VGKT6U899GTAHTK8%2F20240128%2Fnyc3%2Fs3%2Faws4_request&X-Amz-Date=20240128T004641Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=050bbfb4f0b8c99d060acc4570fc2a9c1755ce45ad71dbcb64ef9da915963d72
