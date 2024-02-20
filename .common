@@ -20,5 +20,6 @@ alias shutdown='sudo shutdown -h now'
 alias mason='cd ~/.local/share/nvim/mason'
 alias k='kubectl'
 alias mk='minikube'
+alias sys='systemctl'
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
