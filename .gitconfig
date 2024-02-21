@@ -1,20 +1,20 @@
 [alias]
-    a = add .
-    c = commit
-    ca = commit -a
-    bc = checkout -b
-    bd = branch -D
-    bl = blame
-    bs = checkout
-    f = fetch
-    d = diff
-    dt = difftool
+	a = add .
+	c = commit
+	ca = commit -a
+	bc = checkout -b
+	bd = branch -D
+	bl = blame
+	bs = checkout
+	f = fetch
+	d = diff
+	dt = difftool
 	ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-    m = merge
-    mt = mergetool
-    ps = push
-    pl = pull
-    r = reset --hard HEAD
+	m = merge
+	mt = mergetool
+	ps = push
+	pl = pull
+	r = reset --hard HEAD
 	s = status -sb
 	sh = show --pretty='' --name-only
 
@@ -27,41 +27,39 @@
 [core]
 	editor = vim
 	excludesfile = /home/mpg26/.cas-git-tools/etc/default-excludesfile
-    pager = delta
+    	pager = delta
 
 [credential]
 	helper = !aws codecommit credential-helper $@ --profile default
-    UseHttpPath = true
+    	UseHttpPath = true
 
 [delta]
-    navigate = true
-    line-numbers = true
-    side-by-side = true
+    	navigate = true
+    	line-numbers = true
+    	side-by-side = true
 
 [diff]
 	tool = nvimdiff
 	renames = true
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+    	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [init]
-	defaultBranch = master
+	defaultBranch = main
 
 [interactive]
-    diffFilter = delta --color-only --features=interactive
+	diffFilter = delta --color-only --features=interactive
 
 [merge]
-    tool = nvimdiff
+    	tool = nvimdiff
 
 [user]
 	name = Matthew Gerstemeier
 	email = mgerstemeier@cas.org
-
-
 
 ; CAS SPECIFIC
 [gerrit]
