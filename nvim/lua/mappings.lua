@@ -8,6 +8,19 @@ vim.g.mapleader = " "
 map("n", "<", ":bprevious<cr>",opts)
 map("n", ">", ":bnext<cr>",opts)
 
+-- DIFF MAPPINGS
+--
+-- Enable diff mode when comparing files
+
+-- Key mappings for diff mode
+local isDiffMode = vim.opt.diff:get()
+
+if isDiffMode then
+  map("n", "<S-n>", "[c", opts)
+  map("n", "n", "]c", opts)
+end
+
+
 --NVIM-TREE
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
