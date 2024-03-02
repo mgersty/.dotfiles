@@ -7,12 +7,11 @@ vim.g.mapleader = " "
 -- GENERAL MAPPINGS
 map("n", "<", ":bprevious<cr>",opts)
 map("n", ">", ":bnext<cr>",opts)
+map("n", "bda",":%bd|e#|bd#<cr>",opts)
+
+
 
 -- DIFF MAPPINGS
---
--- Enable diff mode when comparing files
-
--- Key mappings for diff mode
 local isDiffMode = vim.opt.diff:get()
 
 if isDiffMode then

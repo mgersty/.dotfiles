@@ -16,6 +16,8 @@
 	pl = pull
 	r = reset --hard HEAD
 	s = status -sb
+	st = stash
+	sta = stash apply
 	sh = show --pretty='' --name-only
 
 [color]

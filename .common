@@ -20,6 +20,18 @@ alias shutdown='sudo shutdown -h now'
 alias mason='cd ~/.local/share/nvim/mason'
 alias k='kubectl'
 alias mk='minikube'
-alias sys='systemctl'
+alias sys='sudo systemctl'
+
+#DOCKER
+alias di='docker images'
+alias dc='docker ps'
+alias dr='docker run'
+alias dri='docker rmi'
+alias drc='docker rm -f'
+alias drd='docker rmi $(docker images -f "dangling=true" -q)'
+
+#KUBERNETES
+alias ka='kubectl get all --all-namespaces -o wide'
+
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh

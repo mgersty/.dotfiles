@@ -35,6 +35,9 @@ sudo apt install -y --no-install-recommends \
     build-essential \
     apt-transport-https \
     net-tools \
+    tcpdump \
+    tshark \
+    termshark \
     gnupg \
     gzip \
     curl \
