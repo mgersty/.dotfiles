@@ -108,12 +108,13 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
         { name = "nvim_lua" },
-        { name = "vsnip" }
+        { name = "luasnip" }
 	},
 
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			require('luasnip').lsp_expand(args.body)
+			-- vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -201,3 +202,23 @@ require("tokyonight").setup({
     transparent=true
 })
 require("ibl").setup()
+
+--SNIPPETS
+local ls = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
+
+ls.config.set_config({
+	history=true,
+	updateevents="TextChanged,TextChangedI",
+	enable_autosnippets=true,
+})
+
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})

@@ -27,20 +27,29 @@ return require("packer").startup(function(use)
 	use("mfussenegger/nvim-jdtls")
 	use("mfussenegger/nvim-dap")
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-    use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+        use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
     -- AutoCompletion
 	use("hrsh7th/nvim-cmp") -- nvim auto completion
-
+use "rafamadriz/friendly-snippets"
+	use { 'saadparwaiz1/cmp_luasnip' }
     -- Snippets Engine???
-	use("hrsh7th/vim-vsnip") -- VSCodes(LSP)'s snippet feature in vim nvim
+	-- use("hrsh7th/vim-vsnip") -- VSCodes(LSP)'s snippet feature in vim nvim
+	use({
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		tag = "v2.2.0", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!:).
+		run = "make install_jsregexp"
+	})
+
 
     -- Snippet Sources
-    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
-    use("hrsh7th/cmp-vsnip") -- nvim-cmp source for vim-vsnip
-    use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
-    use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
-    use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
+	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
+	-- use("hrsh7th/cmp-vsnip") -- nvim-cmp source for vim-vsnip
+	use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
+	use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
+	use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
 
     -- Telescope
 	use({
