@@ -10,7 +10,8 @@ set.scrolloff = 5
 set.fileencoding = "utf-8"
 set.termguicolors = true
 set.relativenumber = true
-
+vim.o.timeout=true
+vim.o.timeoutlen=300
 
 set.number = true
 set.cursorline = true

@@ -16,28 +16,6 @@ require("telescope").setup({
 })
 require("telescope").load_extension("notify")
 
---NVIM-TREE
-require("nvim-tree").setup({
-    update_focused_file={
-        enable=true
-    },
-    -- sync_root_with_cwd = true,
-	-- hijack_cursor = true,
-	renderer = {
-		group_empty = true,
-	},
-	view = {
-       float = {
-            enable = false,
-            -- open_win_config = {
-            --     width=100,
-            --     height=100
-            -- }
-
-        }
-	}
-})
-
 --TREE-SITTER
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
@@ -222,3 +200,58 @@ vim.keymap.set({"i", "s"}, "<C-E>", function()
 		ls.change_choice(1)
 	end
 end, {silent = true})
+
+
+-- WHICH KEY
+local wk = require("which-key")
+local telescope_builtins = require("telescope.builtin")
+local jdtls = require("jdtls")
+
+wk.register({
+["<leader>"] ={
+  f = {
+    name = "find", -- optional group name
+    f = { telescope_builtins.find_files, "find file" }, -- create a binding with label
+    g = { telescope_builtins.live_grep, "find text" }, -- create a binding with label
+    b = { telescope_builtins.buffers, "find buffer" }, -- create a binding with label
+  },
+  fl = {
+    name = "find.lsp", -- optional group name
+    s = { telescope_builtins.lsp_document_symbols, "find document symbols" }, -- create a binding with label
+    r = { telescope_builtins.lsp_references, "find references"}, -- create a binding with label:
+    i = { telescope_builtins.lsp_implementations, "find implementations"}, -- create a binding with label
+    d = { telescope_builtins.lsp_definitions, "find definition"}, -- create a binding with label
+    td = { telescope_builtins.lsp_type_definitions, "find type definition"}, -- create a binding with label
+  },
+  t = {
+    name = "java.unit.test", -- optional group name
+    m = { jdtls.test_metthod, "test nearest method" }, -- create a binding with label
+    c = { jdtls.test_class, "test class"}, -- create a binding with label
+  },
+  e = {
+    name = "java.refactor", -- optional group name
+    em = { jdtls.extract_constant, "extract -> constant" }, -- create a binding with label
+    ec = { jdtls.extract_method, "extract -> method"}, -- create a binding with label
+    ev = { jdtls.extract_variable_all, "extract -> variable"}, -- create a binding with label
+  },
+}})
+
+
+
+-- -- JDTLS
+-- map("n", "<A-o>", jdtls.organize_imports, opts)
+-- map("n", "<leader>tc", jdtls.test_class, opts)
+-- map("n", "<leader>tm", jdtls.test_nearest_method, opts)
+-- map("n", "<leader>ec", jdtls.extract_constant, opts)
+-- map("n", "<leader>ev", jdtls.extract_variable_all, opts)
+-- map("n", "<leader>em", jdtls.extract_method, opts)
+-- map("n", "gD", vim.lsp.buf.declaration, opts, "Go to declaration")
+-- map("n", "gd", vim.lsp.buf.definition, opts, "Go to definition")
+-- map("n", "gi", vim.lsp.buf.implementation, opts, "Go to implementation")
+-- map("n", "gI", jdtls.super_implementation, opts, "Go to Super Implementation")
+-- map("n", "<space>ca", vim.lsp.buf.code_action, opts)
+-- map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+-- map("n", "K", vim.lsp.buf.hover, opts)
+-- map("n", "<space>D", vim.lsp.buf.type_definition, opts)
+-- map("n", "<space>rn", vim.lsp.buf.rename, opts)
+-- map("n", "<space>em", jdtls.extract_method,opts)

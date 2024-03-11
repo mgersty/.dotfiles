@@ -12,7 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require("packer").startup(function(use)
-	-- Dependency Management
+    -- Dependency Management
 	use("wbthomason/packer.nvim")
 	use({
 		"williamboman/mason.nvim",
@@ -31,22 +31,16 @@ return require("packer").startup(function(use)
 
     -- AutoCompletion
 	use("hrsh7th/nvim-cmp") -- nvim auto completion
-use "rafamadriz/friendly-snippets"
+	use "rafamadriz/friendly-snippets"
 	use { 'saadparwaiz1/cmp_luasnip' }
-    -- Snippets Engine???
-	-- use("hrsh7th/vim-vsnip") -- VSCodes(LSP)'s snippet feature in vim nvim
 	use({
 		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		tag = "v2.2.0", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!:).
+		tag = "v2.2.0",
 		run = "make install_jsregexp"
 	})
 
-
     -- Snippet Sources
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
-	-- use("hrsh7th/cmp-vsnip") -- nvim-cmp source for vim-vsnip
 	use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
 	use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
 	use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
@@ -59,12 +53,12 @@ use "rafamadriz/friendly-snippets"
 	})
 
     -- NVIM Tree
-    use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	})
+    -- use({
+		-- "nvim-tree/nvim-tree.lua",
+		-- requires = {
+			-- "nvim-tree/nvim-web-devicons",
+		-- },
+	-- })
     -- Tree Sitter
     use({
 		"nvim-treesitter/nvim-treesitter",
@@ -79,26 +73,25 @@ use "rafamadriz/friendly-snippets"
     -- Appearence & Style
     use("tpope/vim-surround")
     use("lukas-reineke/indent-blankline.nvim")
-	use("folke/tokyonight.nvim")
-	use("arcticicestudio/nord-vim")
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
-	})
-	use("rcarriga/nvim-notify")
+    use("folke/tokyonight.nvim")
+    use("arcticicestudio/nord-vim")
+    use({
+	   "nvim-lualine/lualine.nvim",
+	   requires = { "nvim-tree/nvim-web-devicons", opt = true },
+        })
+    use("rcarriga/nvim-notify")
 
     -- Utils
     use("nvim-lua/plenary.nvim")
 	use("christoomey/vim-tmux-navigator")
     use("dusans/vim-hardmode")
     use("simrat39/symbols-outline.nvim")
--- install without yarn or npm
     use({
         "iamcco/markdown-preview.nvim",
          run = function() vim.fn["mkdp#util#install"]() end,
     })
-    -- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
+    use("folke/which-key.nvim")
 
     if packer_bootstrap then
         require('packer').sync()
