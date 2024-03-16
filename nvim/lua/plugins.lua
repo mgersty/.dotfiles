@@ -52,13 +52,9 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
-    -- NVIM Tree
-    -- use({
-		-- "nvim-tree/nvim-tree.lua",
-		-- requires = {
-			-- "nvim-tree/nvim-web-devicons",
-		-- },
-	-- })
+	use("nvim-telescope/telescope-file-browser.nvim")
+	use("nvim-telescope/telescope-packer.nvim")
+	use("benfowler/telescope-luasnip.nvim")
     -- Tree Sitter
     use({
 		"nvim-treesitter/nvim-treesitter",
