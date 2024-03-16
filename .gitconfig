@@ -1,6 +1,6 @@
 [alias]
 	a = add .
-	c = commit
+	c = commit -a
 	ca = commit -a
 	bc = checkout -b
 	bd = branch -D

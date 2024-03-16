@@ -15,7 +15,7 @@ vim.o.timeoutlen=300
 
 set.number = true
 set.cursorline = true
-vim.cmd("colorscheme tokyonight-moon")
+vim.cmd("colorscheme nord")
 vim.cmd("set foldmethod=manual")
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
