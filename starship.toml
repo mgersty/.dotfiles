@@ -1,0 +1,23 @@
+add_newline = false
+format = """$directory$git_status$git_state$git_branch$character"""
+
+[directory]
+truncation_length = 1
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[✗](bold red) '
+
+[git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '[✓](bold green)'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
