@@ -26,7 +26,10 @@ return require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("mfussenegger/nvim-jdtls")
 	use("mfussenegger/nvim-dap")
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use({ "rcarriga/nvim-dap-ui", requires = {
+{'mfussenegger/nvim-dap'},
+{'nvim-neotest/nvim-nio'}
+		}})
         use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
     -- AutoCompletion
