@@ -164,15 +164,15 @@ require("lualine").setup({
 
 	options = {
 		theme = customized_nord_theme,
-		globalstatus = true,
+		globalstatus = false,
 		component_separators = "|",
 	},
-	winbar = {
+	sections = {
 		lualine_a = { 'mode' },
 		lualine_b = { "buffers" },
 		lualine_y = { "branch", "diff", "diagnostics" },
 	},
-	sections = {},
+	winbar = {},
 	inactive_sections = {},
 })
 -- SYMBOL OUTLINE

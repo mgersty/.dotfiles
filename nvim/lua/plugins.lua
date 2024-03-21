@@ -73,6 +73,8 @@ return require("packer").startup(function(use)
     use("tpope/vim-surround")
     use("lukas-reineke/indent-blankline.nvim")
     use("folke/tokyonight.nvim")
+    use("Verf/deepwhite.nvim")
+    use { "catppuccin/nvim", as = "catppuccin" }
     use("arcticicestudio/nord-vim")
     use({
 	   "nvim-lualine/lualine.nvim",
