@@ -212,21 +212,25 @@ end, { silent = true })
 -- WHICH KEY
 local wk = require("which-key")
 local telescope_builtins = require("telescope.builtin")
+
+
+
 local jdtls = require("jdtls")
 
 wk.register({
 	["<leader>"] = {
 		f = {
-			name = "find",                             -- optional group name
+			name = "function",                        -- optional group name
 			f = { telescope_builtins.find_files, "find file" }, -- create a binding with label
 			g = { telescope_builtins.live_grep, "find text" }, -- create a binding with label
 			b = { telescope_builtins.buffers, "find buffer" }, -- create a binding with label
 			d = { ":Telescope file_browser<CR>", "find file in browser" }, -- create a binding with label
 			p = { ":Telescope packer<CR>", "find plugin" }, -- create a binding with label
-			c = { telescope_builtins.git_commits, "find git commits" }
+			c = { telescope_builtins.git_commits, "find git commits" },
+			m = { vim.lsp.buf.format, "format text" }
 		},
-		fl = {
-			name = "find.lsp",                                    -- optional group name
+		l = {
+			name = "function.lsp",                               -- optional group name
 			s = { telescope_builtins.lsp_document_symbols, "find document symbols" }, -- create a binding with label
 			r = { telescope_builtins.lsp_references, "find references" }, -- create a binding with label:
 			i = { telescope_builtins.lsp_implementations, "find implementations" }, -- create a binding with label
@@ -234,7 +238,7 @@ wk.register({
 			td = { telescope_builtins.lsp_type_definitions, "find type definition" }, -- create a binding with label
 		},
 		t = {
-			name = "java.unit.test",       -- optional group name
+			name = "java.unit.test",      -- optional group name
 			m = { jdtls.test_metthod, "test nearest method" }, -- create a binding with label
 			c = { jdtls.test_class, "test class" }, -- create a binding with label
 		},
