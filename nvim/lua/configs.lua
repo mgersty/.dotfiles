@@ -167,12 +167,12 @@ require("lualine").setup({
 		globalstatus = false,
 		component_separators = "|",
 	},
-	sections = {
+	tabline = {
 		lualine_a = { 'mode' },
 		lualine_b = { "buffers" },
 		lualine_y = { "branch", "diff", "diagnostics" },
 	},
-	winbar = {},
+	sections = {},
 	inactive_sections = {},
 })
 -- SYMBOL OUTLINE
