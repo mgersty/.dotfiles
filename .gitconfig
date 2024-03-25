@@ -21,6 +21,7 @@
 	stl = stash list
 	sts = stash push
 	stp = stash pop
+	stc = stash clear
 	sh = show --pretty='' --name-only
 
 [color]
