@@ -18,6 +18,9 @@
 	s = status -sb
 	st = stash
 	sta = stash apply
+	stl = stash list
+	sts = stash push
+	stp = stash pop
 	sh = show --pretty='' --name-only
 
 [color]
