@@ -26,6 +26,18 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("luasnip")
 require("telescope").load_extension("packer")
 
+--NVIM-TREE
+require("nvim-tree").setup({
+    update_focused_file = {
+        enable = true,
+    },
+    -- sync_root_with_cwd = true,
+    -- hijack_cursor = true,
+    renderer = {
+        group_empty = true,
+    },
+})
+
 --TREE-SITTER
 require("nvim-treesitter.configs").setup({
     ensure_installed = {

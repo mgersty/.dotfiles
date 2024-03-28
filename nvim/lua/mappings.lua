@@ -9,6 +9,9 @@ map("n", ">", ":bnext<cr>", opts)
 map("n", "bda", ":%bd|e#|bd#<cr>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
 
+map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+map("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
+
 -- DIFF MAPPINGS
 local isDiffMode = vim.opt.diff:get()
 

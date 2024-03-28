@@ -1,9 +1,9 @@
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
+        fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+        vim.cmd([[packadd packer.nvim]])
         return true
     end
     return false
@@ -29,30 +29,27 @@ return require("packer").startup(function(use)
     use({
         "rcarriga/nvim-dap-ui",
         requires = {
-            { 'mfussenegger/nvim-dap' },
-            { 'nvim-neotest/nvim-nio' }
-        }
+            { "mfussenegger/nvim-dap" },
+            { "nvim-neotest/nvim-nio" },
+        },
     })
-    use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
-
+    use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
 
     -- AUTOCOMPLETION
     use("hrsh7th/nvim-cmp") -- nvim auto completion
-    use "rafamadriz/friendly-snippets"
-    use { 'saadparwaiz1/cmp_luasnip' }
+    use("rafamadriz/friendly-snippets")
+    use({ "saadparwaiz1/cmp_luasnip" })
     use({
         "L3MON4D3/LuaSnip",
         tag = "v2.2.0",
-        run = "make install_jsregexp"
+        run = "make install_jsregexp",
     })
 
-
     -- SNIPPET SOURCES
-    use("hrsh7th/cmp-nvim-lsp")                 -- nvim-cmp source for neovim's built-in languagage-server
+    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
     use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
-    use("hrsh7th/cmp-nvim-lsp-signature-help")  -- nvim-cmp source for showing details about the specific method you are looking at.
-    use("hrsh7th/cmp-nvim-lua")                 -- nvim-cmp source for Neovim's Lua API
-
+    use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
+    use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
 
     -- TELESCOPE
     use({
@@ -64,6 +61,13 @@ return require("packer").startup(function(use)
     use("nvim-telescope/telescope-packer.nvim")
     use("benfowler/telescope-luasnip.nvim")
 
+    -- NVIM Tree
+    use({
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            "nvim-tree/nvim-web-devicons",
+        },
+    })
 
     -- TREE SITTER
     use({
@@ -75,24 +79,21 @@ return require("packer").startup(function(use)
     use("tpope/vim-commentary")
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
-
     -- FORMATTING
     use("stevearc/conform.nvim")
     use("lukas-reineke/indent-blankline.nvim")
     use("tpope/vim-surround")
 
-
     -- APPEARENCE & STYLE
     use("folke/tokyonight.nvim")
     use("Verf/deepwhite.nvim")
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use({ "catppuccin/nvim", as = "catppuccin" })
     use("arcticicestudio/nord-vim")
     use({
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons", opt = true },
     })
     use("rcarriga/nvim-notify")
-
 
     -- UTILS
     use("nvim-lua/plenary.nvim")
@@ -101,12 +102,14 @@ return require("packer").startup(function(use)
     use("simrat39/symbols-outline.nvim")
     use({
         "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
+        run = function()
+            vim.fn["mkdp#util#install"]()
+        end,
     })
 
     use("folke/which-key.nvim")
 
     if packer_bootstrap then
-        require('packer').sync()
+        require("packer").sync()
     end
 end)
