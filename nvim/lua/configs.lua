@@ -198,6 +198,7 @@ require("lualine").setup({
         theme = customized_nord_theme,
         globalstatus = false,
         component_separators = "|",
+        section_separators={left=" ", right=""}
     },
     tabline = {
         lualine_a = { "mode" },
@@ -257,20 +258,20 @@ local telescope_dap = require("telescope").load_extension("dap")
 wk.register({
     ["<leader>"] = {
         f = {
-            name = "Find", -- optional group name
-            f = { telescope_builtins.find_files, "find file" }, -- create a binding with label
-            g = { telescope_builtins.live_grep, "find text" }, -- create a binding with label
-            b = { telescope_builtins.buffers, "find buffer" }, -- create a binding with label
+            name = "Find",                                                 -- optional group name
+            f = { telescope_builtins.find_files, "find file" },            -- create a binding with label
+            g = { telescope_builtins.live_grep, "find text" },             -- create a binding with label
+            b = { telescope_builtins.buffers, "find buffer" },             -- create a binding with label
             d = { ":Telescope file_browser<CR>", "find file in browser" }, -- create a binding with label
-            p = { ":Telescope packer<CR>", "find plugin" }, -- create a binding with label
+            p = { ":Telescope packer<CR>", "find plugin" },                -- create a binding with label
             c = { telescope_builtins.git_commits, "find git commits" },
         },
         l = {
-            name = "Language Server", -- optional group name
+            name = "Language Server",                                                 -- optional group name
             s = { telescope_builtins.lsp_document_symbols, "find document symbols" }, -- create a binding with label
-            r = { telescope_builtins.lsp_references, "find references" }, -- create a binding with label:
-            i = { telescope_builtins.lsp_implementations, "find implementations" }, -- create a binding with label
-            d = { telescope_builtins.lsp_definitions, "find definition" }, -- create a binding with label
+            r = { telescope_builtins.lsp_references, "find references" },             -- create a binding with label:
+            i = { telescope_builtins.lsp_implementations, "find implementations" },   -- create a binding with label
+            d = { telescope_builtins.lsp_definitions, "find definition" },            -- create a binding with label
             td = { telescope_builtins.lsp_type_definitions, "find type definition" }, -- create a binding with label
             n = { vim.lsp.buf.rename, "refactor -> rename" },
         },
@@ -288,12 +289,12 @@ wk.register({
             r = { dap.repl.toggle, "toggle repl" },
         },
         j = {
-            name = "Java Language Server", -- optional group name
+            name = "Java Language Server",                              -- optional group name
             o = { jdtls.organize_imports, "organize imports" },
-            tm = { jdtls.test_metthod, "test nearest method" }, -- create a binding with label
-            tc = { jdtls.test_class, "test class" }, -- create a binding with label
-            em = { jdtls.extract_constant, "extract -> constant" }, -- create a binding with label
-            ec = { jdtls.extract_method, "extract -> method" }, -- create a binding with label
+            tm = { jdtls.test_metthod, "test nearest method" },         -- create a binding with label
+            tc = { jdtls.test_class, "test class" },                    -- create a binding with label
+            em = { jdtls.extract_constant, "extract -> constant" },     -- create a binding with label
+            ec = { jdtls.extract_method, "extract -> method" },         -- create a binding with label
             ev = { jdtls.extract_variable_all, "extract -> variable" }, -- create a binding with label
         },
     },

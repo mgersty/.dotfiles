@@ -10,8 +10,8 @@ set.scrolloff = 5
 set.fileencoding = "utf-8"
 set.termguicolors = true
 set.relativenumber = true
-vim.o.timeout=true
-vim.o.timeoutlen=300
+vim.o.timeout = true
+vim.o.timeoutlen = 300
 
 set.number = true
 set.cursorline = true
@@ -19,6 +19,6 @@ vim.cmd.colorscheme "catppuccin"
 vim.cmd("set foldmethod=manual")
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = {"*"},
+    pattern = { "*" },
     command = [[%s/\s\+$//e]],
 })
