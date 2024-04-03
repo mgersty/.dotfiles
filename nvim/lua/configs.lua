@@ -20,11 +20,20 @@ require("telescope").setup({
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
     },
+    extensions = {
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+        },
+        ["luasnip"] = {
+            require("telescope.themes").get_dropdown({}),
+        },
+    },
 })
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("luasnip")
 require("telescope").load_extension("packer")
+require("telescope").load_extension("ui-select")
 
 --NVIM-TREE
 require("nvim-tree").setup({
@@ -198,7 +207,7 @@ require("lualine").setup({
         theme = customized_nord_theme,
         globalstatus = false,
         component_separators = "|",
-        section_separators={left=" ", right=""}
+        section_separators = { left = " ", right = "" },
     },
     tabline = {
         lualine_a = { "mode" },
@@ -231,22 +240,6 @@ ls.config.set_config({
     enable_autosnippets = true,
 })
 
-vim.keymap.set({ "i" }, "<C-K>", function()
-    ls.expand()
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-L>", function()
-    ls.jump(1)
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-J>", function()
-    ls.jump(-1)
-end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<C-E>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
-end, { silent = true })
-
 -- WHICH KEY
 local wk = require("which-key")
 local telescope_builtins = require("telescope.builtin")
@@ -258,20 +251,22 @@ local telescope_dap = require("telescope").load_extension("dap")
 wk.register({
     ["<leader>"] = {
         f = {
-            name = "Find",                                                 -- optional group name
-            f = { telescope_builtins.find_files, "find file" },            -- create a binding with label
-            g = { telescope_builtins.live_grep, "find text" },             -- create a binding with label
-            b = { telescope_builtins.buffers, "find buffer" },             -- create a binding with label
+            name = "Find", -- optional group name
+            f = { telescope_builtins.find_files, "find file" }, -- create a binding with label
+            g = { telescope_builtins.live_grep, "find text" }, -- create a binding with label
+            b = { telescope_builtins.buffers, "find buffer" }, -- create a binding with label
             d = { ":Telescope file_browser<CR>", "find file in browser" }, -- create a binding with label
-            p = { ":Telescope packer<CR>", "find plugin" },                -- create a binding with label
+            p = { ":Telescope packer<CR>", "find plugin" }, -- create a binding with label
+            s = { ":Telescope luasnip<CR>", "find snippets" }, -- create a binding with label
             c = { telescope_builtins.git_commits, "find git commits" },
         },
         l = {
-            name = "Language Server",                                                 -- optional group name
+            name = "Language Server", -- optional group name
+            a = { vim.lsp.buf.code_action, "show available code actions" }, -- create a binding with label
             s = { telescope_builtins.lsp_document_symbols, "find document symbols" }, -- create a binding with label
-            r = { telescope_builtins.lsp_references, "find references" },             -- create a binding with label:
-            i = { telescope_builtins.lsp_implementations, "find implementations" },   -- create a binding with label
-            d = { telescope_builtins.lsp_definitions, "find definition" },            -- create a binding with label
+            r = { telescope_builtins.lsp_references, "find references" }, -- create a binding with label:
+            i = { telescope_builtins.lsp_implementations, "find implementations" }, -- create a binding with label
+            d = { telescope_builtins.lsp_definitions, "find definition" }, -- create a binding with label
             td = { telescope_builtins.lsp_type_definitions, "find type definition" }, -- create a binding with label
             n = { vim.lsp.buf.rename, "refactor -> rename" },
         },
@@ -289,12 +284,12 @@ wk.register({
             r = { dap.repl.toggle, "toggle repl" },
         },
         j = {
-            name = "Java Language Server",                              -- optional group name
+            name = "Java Language Server", -- optional group name
             o = { jdtls.organize_imports, "organize imports" },
-            tm = { jdtls.test_metthod, "test nearest method" },         -- create a binding with label
-            tc = { jdtls.test_class, "test class" },                    -- create a binding with label
-            em = { jdtls.extract_constant, "extract -> constant" },     -- create a binding with label
-            ec = { jdtls.extract_method, "extract -> method" },         -- create a binding with label
+            tm = { jdtls.test_nearest_method, "test nearest method" }, -- create a binding with label
+            tc = { jdtls.test_class, "test class" }, -- create a binding with label
+            em = { jdtls.extract_constant, "extract -> constant" }, -- create a binding with label
+            ec = { jdtls.extract_method, "extract -> method" }, -- create a binding with label
             ev = { jdtls.extract_variable_all, "extract -> variable" }, -- create a binding with label
         },
     },
