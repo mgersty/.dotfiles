@@ -251,6 +251,7 @@ wk.register({
             p = { ":Telescope packer<CR>", "find plugin" }, -- create a binding with label
             s = { ":Telescope luasnip<CR>", "find snippets" }, -- create a binding with label
             c = { telescope_builtins.git_commits, "find git commits" },
+            m = { ":Telescope metals commands<CR>", "find metals commands" },
         },
         l = {
             name = "Language Server", -- optional group name
