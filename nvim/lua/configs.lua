@@ -78,30 +78,28 @@ require("nvim-treesitter.configs").setup({
 local dap = require("dap")
 
 -- Java Configurations
-require("dap.ext.vscode").load_launchjs()
+-- require("dap.ext.vscode").load_launchjs()
 
 -- Scala Configurations
--- dap.configurations.scala = {
---     {
---         type = "scala",
---         request = "launch",
---         name = "RunOrTest",
---         metals = {
---             runType = "runOrTestFile",
---             --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
---         },
---     },
---     {
---         type = "scala",
---         request = "launch",
---         name = "RunOrTest",
---         metals = {
---           runType = "runOrTestFile",
---           --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
---        }
---     }
--- }
-
+dap.configurations.scala = {
+    {
+        type = "scala",
+        request = "launch",
+        name = "RunOrTest",
+        metals = {
+            runType = "runOrTestFile",
+            --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+        },
+    },
+    {
+        type = "scala",
+        request = "launch",
+        name = "Test Target",
+        metals = {
+            runType = "testTarget",
+        },
+    },
+}
 -- General DAP Configs
 dap.defaults.fallback.terminal_win_cmd = "tabnew"
 vim.fn.sign_define("DapBreakpoint", { text = "󰱯", texthl = "Search", linehl = "", numhl = "" })
