@@ -6,9 +6,9 @@ fi
 ARTIFACT_ID="${1}"
 echo "Creating Java Project: org.gersty.${ARTIFACT_ID}"
 mvn archetype:generate -B \
-    -DarchetypeGroupId=org.apache.maven.archetypes \
-    -DarchetypeArtifactId=maven-archetype-quickstart \
-    -DarchetypeVersion=1.1 \
+    -DarchetypeGroupId=org.gersty \
+    -DarchetypeArtifactId=java11-template \
+    -DarchetypeVersion=1.0.0 \
     -DgroupId=org.gersty \
     -DartifactId="${ARTIFACT_ID}" \
     -Dversion=0.1.0-SNAPSHOT \
