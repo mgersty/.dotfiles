@@ -12,11 +12,10 @@ set.termguicolors = true
 set.relativenumber = true
 vim.o.timeout = true
 vim.o.timeoutlen = 300
-
 set.number = true
 set.cursorline = true
 -- vim.o.shortmess = vim.o.shortmess:gsub("F", "")
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("deep-space")
 vim.cmd("set foldmethod=manual")
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {

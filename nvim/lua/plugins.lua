@@ -46,10 +46,10 @@ return require("packer").startup(function(use)
     })
 
     -- SNIPPET SOURCES
-    use("hrsh7th/cmp-nvim-lsp")                 -- nvim-cmp source for neovim's built-in languagage-server
+    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in languagage-server
     use("hrsh7th/cmp-nvim-lsp-document-symbol") -- nvim-cmp source for autosuggesting the nearest symbol i.e. function, variable etc..
-    use("hrsh7th/cmp-nvim-lsp-signature-help")  -- nvim-cmp source for showing details about the specific method you are looking at.
-    use("hrsh7th/cmp-nvim-lua")                 -- nvim-cmp source for Neovim's Lua API
+    use("hrsh7th/cmp-nvim-lsp-signature-help") -- nvim-cmp source for showing details about the specific method you are looking at.
+    use("hrsh7th/cmp-nvim-lua") -- nvim-cmp source for Neovim's Lua API
 
     -- TELESCOPE
     use({
@@ -92,6 +92,12 @@ return require("packer").startup(function(use)
     use("arcticicestudio/nord-vim")
     use("whatyouhide/vim-gotham")
     use("EdenEast/nightfox.nvim")
+    use("nightsense/stellarized")
+    use("gregsexton/Atom")
+    use("cocopon/iceberg.vim")
+    use("tyrannicaltoucan/vim-deep-space")
+    use("w0ng/vim-hybrid")
+    use("Badacadabra/vim-archery")
     use({
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons", opt = true },
