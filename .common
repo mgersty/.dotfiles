@@ -2,7 +2,7 @@
 export DISABLE_AUTO_TITLES=true
 
 alias ll='exa --icons -lma'
-alias lt='ll --tree --level=3 --ignore-glob=".git"'
+alias lt='ll --tree --ignore-glob=".git"'
 alias rgrep='rg'
 alias bcat='batcat'
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
