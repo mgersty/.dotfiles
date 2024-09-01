@@ -141,29 +141,29 @@ cmp.setup({
         end, { "i", "s" }),
     }),
 })
--- cmp.setup.cmdline({ "/", "?" }, {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = {
---         { name = "buffer" },
---         { name = "nvim_lsp_document_symbol" },
---     },
--- })
+cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = "buffer" },
+        { name = "nvim_lsp_document_symbol" },
+    },
+})
 
 -- FORMATTING
--- require("conform").setup({
---     formatters_by_ft = {
---         lua = { "stylua" },
---         yaml = { { "prettierd", "prettier" } },
---         json = { { "prettierd", "prettier" } },
---         typescript = { { "prettierd", "prettier" } },
---         xml = { "xmlformat" }
---     },
---     format_on_save = {
---         -- I recommend these options. See :help conform.format for details.
---         lsp_fallback = true,
---         timeout_ms = 250,
---     },
--- })
+require("conform").setup({
+    formatters_by_ft = {
+        lua = { "stylua" },
+        yaml = { { "prettierd", "prettier" } },
+        json = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+        xml = { "xmlformat" }
+    },
+    format_on_save = {
+        -- I recommend these options. See :help conform.format for details.
+        lsp_fallback = true,
+        timeout_ms = 250,
+    },
+})
 
 -- LUALINE Status Bar
 local colors = {
@@ -219,7 +219,7 @@ require("tokyonight").setup({
     terminal_colors = true,
     transparent = true,
 })
--- require("ibl").setup()
+require("ibl").setup()
 
 --SNIPPETS
 local ls = require("luasnip")
