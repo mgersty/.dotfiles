@@ -155,6 +155,7 @@ require("conform").setup({
         lua = { "stylua" },
         yaml = { { "prettierd", "prettier" } },
         json = { { "prettierd", "prettier" } },
+        jsonc = { { "prettierd", "prettier" } },
         typescript = { { "prettierd", "prettier" } },
         xml = { "xmlformat" }
     },

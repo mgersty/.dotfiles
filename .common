@@ -33,5 +33,5 @@ alias drd='docker rmi $(docker images -f "dangling=true" -q)'
 #KUBERNETES
 alias ka='kubectl get all --all-namespaces -o wide'
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+#source /usr/share/doc/fzf/examples/key-bindings.zsh
+#source /usr/share/doc/fzf/examples/completion.zsh
