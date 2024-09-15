@@ -17,7 +17,6 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300
 set.number = true
 set.cursorline = true
-set.rnu = true
 -- vim.o.shortmess = vim.o.shortmess:gsub("F", "")
 vim.cmd.colorscheme("catppuccin")
 vim.cmd("set foldmethod=manual")

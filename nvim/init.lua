@@ -1,5 +1,2 @@
-require("plugins")
-require("configs")
-require("lsp")
+require("lazy.lazy")
 require("settings")
-require("mappings")
