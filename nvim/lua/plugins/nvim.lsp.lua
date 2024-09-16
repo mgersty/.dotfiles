@@ -12,7 +12,7 @@ return {
             -- This is the default in Nvim 0.7+
             debounce_text_changes = 150,
         }
-        -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         local lspconfig = require("lspconfig")
 
@@ -31,10 +31,9 @@ return {
                 },
                 on_attach = on_attach,
                 flags = lsp_flags,
-                -- capabilities = capabilities,
+                capabilities = capabilities,
             })
         end
-
     end
 
 }

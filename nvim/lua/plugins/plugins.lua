@@ -1,3 +1,4 @@
+-- General Plugins
 return {
     {
         "williamboman/mason.nvim",
@@ -7,65 +8,6 @@ return {
         config = function()
             require("mason").setup()
             require("mason-lspconfig").setup()
-        end,
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("telescope").setup({
-                defaults = {
-                    path_display = {
-                        shorten = {
-                            len = 3,
-                            exclude = { 1, -1 },
-                        },
-                        truncate = true,
-                    },
-                    dynamic_preview_title = true,
-                },
-                pickers = {
-                    find_files = {
-                        theme = "dropdown",
-                        hidden = true,
-                        find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-                    },
-                },
-            })
-        end,
-    },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPre", "BufNewFile" },
-        build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "java",
-                    "bash",
-                    "lua",
-                    "vim",
-                    "typescript",
-                    "javascript",
-                    "python",
-                    "yaml",
-                },
-                sync_install = false,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-                indent = {
-                    enable = true,
-                },
-                -- context_commentstring = {
-                --         enable = true,
-                -- },
-                refactor = {
-                    smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
-                },
-            })
         end,
     },
     {
