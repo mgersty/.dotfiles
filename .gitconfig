@@ -3,6 +3,8 @@
 	c = commit -a
 	ca = commit -a
 	bc = checkout -b
+    b = branch
+    ba = branch -a
 	bd = branch -D
 	bl = blame
 	bs = checkout

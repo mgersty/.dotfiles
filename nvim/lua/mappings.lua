@@ -41,6 +41,7 @@ map("n", "<leader>lr", telescope_builtins.lsp_references, opts)
 map("n", "<leader>li", telescope_builtins.lsp_implementations, opts)
 map("n", "<leader>ld", telescope_builtins.lsp_definitions, opts)
 map("n", "<leader>ltd", telescope_builtins.lsp_type_definitions, opts)
+map("n", "<leader>ln", vim.lsp.buf.rename, opts)
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },

@@ -12,6 +12,7 @@ return {
     },
     {
         "stevearc/conform.nvim",
+        enable = false,
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
@@ -32,7 +33,6 @@ return {
     },
 
     {
-        "christoomey/vim-tmux-navigator"
-    }
-
+        "christoomey/vim-tmux-navigator",
+    },
 }
