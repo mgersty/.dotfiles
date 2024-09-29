@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 if [[ -z "${1}" ]]; then
     echo "Please provide an artifact id"
     exit 1;
