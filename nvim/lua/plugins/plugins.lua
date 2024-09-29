@@ -35,4 +35,7 @@ return {
     {
         "christoomey/vim-tmux-navigator",
     },
+    { 'wikitopian/hardmode' }
+
+
 }
