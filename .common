@@ -33,5 +33,11 @@ alias drd='docker rmi $(docker images -f "dangling=true" -q)'
 #KUBERNETES
 alias ka='kubectl get all --all-namespaces -o wide'
 
+#AWS
+#alias aws_list_stacks='aws cloudformation describe-stacks | jq '"'".Stacks[].StackName'"'
+alias aws_list_stacks="aws cloudformation describe-stacks | jq '.Stacks[].StackName'"
+
+
+
 #source /usr/share/doc/fzf/examples/key-bindings.zsh
 #source /usr/share/doc/fzf/examples/completion.zsh
