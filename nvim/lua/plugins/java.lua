@@ -43,7 +43,7 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        local extendedClientCapabilities = require('jdtls').extendedClientCapabilities
+        local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
         extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
         local on_attach = function(client, bufnr)
@@ -54,7 +54,7 @@ return {
         end
         local config = {
             cmd = {
-                "/usr/lib/jvm/java-17-openjdk/bin/java",
+                "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
                 "-Declipse.application=org.eclipse.jdt.ls.core.id1",
                 "-Dosgi.bundles.defaultStartLevel=4",
                 "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -68,7 +68,9 @@ return {
                 "--add-opens",
                 "java.base/java.lang=ALL-UNNAMED",
                 "-jar",
-                vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+                vim.fn.glob(
+                    home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
+                ),
                 "-configuration",
                 home .. "/.local/share/nvim/mason/packages/jdtls/config_linux",
                 "-data",
@@ -93,14 +95,14 @@ return {
                             {
                                 name = "JavaSE-1.8",
                                 -- path = "/usr/lib/jvm/temurin-8-jdk-amd64/bin",
-                                path = "/usr/lib/jvm/java-8-openjdk",
-                                -- path = '/usr/lib/jvm/java-8-openjdk-amd64/bin',
+                                -- path = "/usr/lib/jvm/java-8-openjdk",
+                                path = "/usr/lib/jvm/java-8-openjdk-amd64/bin",
                                 -- path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
                             },
                             {
                                 name = "JavaSE-17",
-                                -- path = "/usr/lib/jvm/java-17-openjdk-amd64",
-                                path = "/usr/lib/jvm/java-17-openjdk",
+                                path = "/usr/lib/jvm/java-17-openjdk-amd64",
+                                -- path = "/usr/lib/jvm/java-17-openjdk",
                             },
                             -- {
                             --  name = "JavaSE-11",
@@ -186,6 +188,5 @@ return {
         -- This starts a new client & server,
         -- or attaches to an existing client & server depending on the `root_dir`.
         require("jdtls").start_or_attach(config)
-    end
-
+    end,
 }
