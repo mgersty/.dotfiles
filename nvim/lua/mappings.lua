@@ -35,6 +35,7 @@ map("n", "<leader>ff", telescope_builtins.find_files, opts)
 map("n", "<leader>fg", telescope_builtins.live_grep, opts)
 map("n", "<leader>fb", telescope_builtins.buffers, opts)
 
+local jdtls = require("jdtls")
 --Language Servers
 map("n", "<leader>la", vim.lsp.buf.code_action, opts)
 map("n", "<leader>lr", telescope_builtins.lsp_references, opts)
@@ -42,6 +43,7 @@ map("n", "<leader>li", telescope_builtins.lsp_implementations, opts)
 map("n", "<leader>ld", telescope_builtins.lsp_definitions, opts)
 map("n", "<leader>ltd", telescope_builtins.lsp_type_definitions, opts)
 map("n", "<leader>ln", vim.lsp.buf.rename, opts)
+map("n", "<leader>lo", jdtls.organize_imports, opts)
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },

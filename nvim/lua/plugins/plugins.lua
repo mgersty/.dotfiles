@@ -31,11 +31,10 @@ return {
         "catppuccin/nvim",
         name = "catppuccin",
     },
+    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
 
     {
         "christoomey/vim-tmux-navigator",
     },
-    { 'wikitopian/hardmode' }
-
-
+    { "wikitopian/hardmode" },
 }
