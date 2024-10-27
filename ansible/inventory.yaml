@@ -1,0 +1,8 @@
+master:
+  hosts:
+    pie2:
+workers:
+  hosts:
+    pie1:
+    pie3:
+    pie4:
