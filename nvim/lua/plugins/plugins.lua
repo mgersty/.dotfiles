@@ -11,30 +11,35 @@ return {
         end,
     },
     {
-        "stevearc/conform.nvim",
-        enable = false,
+    "stevearc/conform.nvim",
+    enable = false,
+    config = function()
+        require("conform").setup({
+            formatters_by_ft = {
+                lua = { "stylua" },
+                python = { "black" },
+            },
+            format_on_save = {
+                lsp_fallback = true,
+                timeout_ms = 250,
+            },
+        })
+    end,
+    },
+    { "tpope/vim-commentary" },
+    { "catppuccin/nvim", name = "catppuccin" },
+    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
+    { "christoomey/vim-tmux-navigator" },
+    {
+        "stevearc/aerial.nvim",
+        opts = {},
+        -- Optional dependencies
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
         config = function()
-            require("conform").setup({
-                formatters_by_ft = {
-                    lua = { "stylua" },
-                },
-                format_on_save = {
-                    lsp_fallback = true,
-                    timeout_ms = 250,
-                },
-            })
+            require("aerial").setup()
         end,
     },
-
-    { "tpope/vim-commentary" },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-    },
-    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
-
-    {
-        "christoomey/vim-tmux-navigator",
-    },
-    { "wikitopian/hardmode" },
 }

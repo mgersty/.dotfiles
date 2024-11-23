@@ -30,10 +30,12 @@ end, { desc = "Format file or range (in visual mode)" })
 
 --TELESCOPE
 telescope_builtins = require("telescope.builtin")
+telescope = require("telescope")
 
 map("n", "<leader>ff", telescope_builtins.find_files, opts)
 map("n", "<leader>fg", telescope_builtins.live_grep, opts)
 map("n", "<leader>fb", telescope_builtins.buffers, opts)
+map("n", "<leader>fd", ":Telescope file_browser<CR>")
 
 local jdtls = require("jdtls")
 --Language Servers
@@ -44,6 +46,7 @@ map("n", "<leader>ld", telescope_builtins.lsp_definitions, opts)
 map("n", "<leader>ltd", telescope_builtins.lsp_type_definitions, opts)
 map("n", "<leader>ln", vim.lsp.buf.rename, opts)
 map("n", "<leader>lo", jdtls.organize_imports, opts)
+map("n", "<leader>la", vim.lsp.buf.code_action, opts)
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
