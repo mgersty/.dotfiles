@@ -13,6 +13,7 @@ return {
                 "javascript",
                 "python",
                 "yaml",
+                "go",
             },
             sync_install = false,
             highlight = {
