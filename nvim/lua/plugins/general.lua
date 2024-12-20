@@ -7,7 +7,17 @@ return {
         },
         config = function()
             require("mason").setup()
-            require("mason-lspconfig").setup()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "gopls",
+                    "pyright",
+                    "ruff",
+                    "ts_ls",
+                    "lua-ls",
+                    "stylua",
+                    "jdtls",
+                },
+            })
         end,
     },
     {
@@ -17,6 +27,7 @@ return {
             require("conform").setup({
                 formatters_by_ft = {
                     lua = { "stylua" },
+                    python = { "ruff" },
                     go = { "gofmt" },
                 },
                 format_on_save = {

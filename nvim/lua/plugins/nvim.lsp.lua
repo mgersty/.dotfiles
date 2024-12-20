@@ -15,45 +15,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 return {
     "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" },
 
-    config = function()
-        local on_attach = function(client, bufnr)
-            if client.name == "yamlls" then
-                client.server_capabilities.documentFormattingProvider = true
-            end
-        end
-
-        local lsp_flags = {
-            -- This is the default in Nvim 0.7+
-            debounce_text_changes = 150,
-        }
-        -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
-        local lspconfig = require("lspconfig")
-
-        local servers = { "lua_ls", "ts_ls", "bashls", "lemminx", "yamlls", "pyright", "gopls", "ruff" }
-
-        for _, lsp in ipairs(servers) do
-            lspconfig[lsp].setup({
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            -- Get the language server to recognize the `vim` global
-                            globals = { "vim" },
-                            disable = { "lowercase-global" },
-                        },
-                    },
+    dependencies = {
+        "saghen/blink.cmp",
+        {
+            "folke/lazydev.nvim",
+            opts = {
+                library = {
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
                 },
-                on_attach = on_attach,
-                flags = lsp_flags,
-                capabilities = capabilities,
-            })
-        end
+            },
+        },
+    },
 
-        lspconfig.pyright.setup({
-            settings = {
-                pyright = {
+    opts = {
+        servers = {
+            gopls = {},
+            bashls = {},
+            ts_ls = {},
+            ruff = {},
+            lua_ls = {},
+            pyright = {
+                {
                     -- Using Ruff's import organizer
                     disableOrganizeImports = true,
                 },
@@ -64,6 +47,13 @@ return {
                     },
                 },
             },
-        })
+        },
+    },
+    config = function(_, opts)
+        local lspconfig = require("lspconfig")
+        for server, config in pairs(opts.servers) do
+            config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+            lspconfig[server].setup(config)
+        end
     end,
 }
