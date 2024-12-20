@@ -6,6 +6,10 @@ return {
             if client.name == "yamlls" then
                 client.server_capabilities.documentFormattingProvider = true
             end
+            if client.name == "ruff_lsp" then
+                --Disable hover in favor of Pyright
+                client.server_capabilities.hoverProvider = false
+            end
         end
 
         local lsp_flags = {
@@ -16,7 +20,7 @@ return {
 
         local lspconfig = require("lspconfig")
 
-        local servers = { "lua_ls", "ts_ls", "bashls", "lemminx", "yamlls", "pyright", "gopls"}
+        local servers = { "lua_ls", "ts_ls", "bashls", "lemminx", "yamlls", "pyright", "gopls", "ruff" }
 
         for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup({
@@ -34,6 +38,20 @@ return {
                 capabilities = capabilities,
             })
         end
-    end
 
+        lspconfig.pyright.setup({
+            settings = {
+                pyright = {
+                    -- Using Ruff's import organizer
+                    disableOrganizeImports = true,
+                },
+                python = {
+                    analysis = {
+                        -- Ignore all files for analysis to exclusively use Ruff for linting
+                        ignore = { "*" },
+                    },
+                },
+            },
+        })
+    end,
 }
