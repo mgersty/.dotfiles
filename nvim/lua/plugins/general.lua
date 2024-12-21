@@ -13,8 +13,6 @@ return {
                     "pyright",
                     "ruff",
                     "ts_ls",
-                    "lua-ls",
-                    "stylua",
                     "jdtls",
                 },
             })
@@ -35,17 +33,6 @@ return {
                     timeout_ms = 250,
                 },
             })
-        end,
-    },
-    {
-        "stevearc/oil.nvim",
-        ---@module 'oil'
-        ---@type oil.SetupOpts
-        opts = {},
-        -- Optional dependencies
-        dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-        config = function()
-            require("oil").setup()
         end,
     },
     {
