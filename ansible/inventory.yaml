@@ -1,8 +1,8 @@
 master:
   hosts:
-    pie2:
+    10.1.1.102:
 workers:
   hosts:
-    pie1:
-    pie3:
-    pie4:
+    10.1.1.101:
+    10.1.1.103:
+    10.1.1.104:
