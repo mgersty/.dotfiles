@@ -96,15 +96,15 @@ local config = {
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = "/usr/lib/jvm/temurin-8-jdk-amd64/bin",
-                        -- path = "/usr/lib/jvm/java-8-openjdk",
+                        -- path = "/usr/lib/jvm/temurin-8-jdk-amd64/bin",
+                        path = "/usr/lib/jvm/java-8-openjdk",
                         -- path = "/usr/lib/jvm/java-8-openjdk-amd64",
                         -- path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
                     },
                     {
                         name = "JavaSE-17",
-                        path = "/usr/lib/jvm/java-17-openjdk-amd64",
-                        -- path = "/usr/lib/jvm/java-17-openjdk",
+                        -- path = "/usr/lib/jvm/java-17-openjdk-amd64",
+                        path = "/usr/lib/jvm/java-17-openjdk",
                     },
                     -- {
                     --  name = "JavaSE-11",
@@ -190,3 +190,9 @@ local config = {
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
+
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+keymap("n", "<leader>tc", jdtls.test_class, opts)
+keymap("n", "<leader>tm", jdtls.test_nearest_method, opts)

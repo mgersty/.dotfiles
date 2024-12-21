@@ -18,23 +18,23 @@ return {
             })
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        enable = false,
-        config = function()
-            require("conform").setup({
-                formatters_by_ft = {
-                    lua = { "stylua" },
-                    python = { "ruff" },
-                    go = { "gofmt" },
-                },
-                format_on_save = {
-                    lsp_fallback = true,
-                    timeout_ms = 250,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "stevearc/conform.nvim",
+    --     enable = false,
+    --     config = function()
+    --         require("conform").setup({
+    --             formatters_by_ft = {
+    --                 lua = { "stylua" },
+    --                 python = { "ruff" },
+    --                 go = { "gofmt" },
+    --             },
+    --             format_on_save = {
+    --                 lsp_fallback = true,
+    --                 timeout_ms = 250,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "stevearc/aerial.nvim",
         opts = {},
@@ -55,7 +55,7 @@ return {
         opts = {},
     },
     { "tpope/vim-commentary" },
-    { "catppuccin/nvim", name = "catppuccin" },
-    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
+    { "catppuccin/nvim",               name = "catppuccin" },
+    { "mfussenegger/nvim-jdtls",       dependencies = "mfussenegger/nvim-dap" },
     { "christoomey/vim-tmux-navigator" },
 }
