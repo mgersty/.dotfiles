@@ -38,6 +38,7 @@ map("n", "<leader>fb", telescope_builtins.buffers, opts)
 map("n", "<leader>fd", ":Telescope file_browser<CR>")
 
 local jdtls = require("jdtls")
+local neotest = require("neotest")
 --Language Servers
 map("n", "<leader>la", vim.lsp.buf.code_action, opts)
 map("n", "<leader>lr", telescope_builtins.lsp_references, opts)
@@ -47,6 +48,7 @@ map("n", "<leader>ltd", telescope_builtins.lsp_type_definitions, opts)
 map("n", "<leader>ln", vim.lsp.buf.rename, opts)
 map("n", "<leader>lo", jdtls.organize_imports, opts)
 map("n", "<leader>la", vim.lsp.buf.code_action, opts)
+map("n", "<leader>tm", neotest.run.run, opts)
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
