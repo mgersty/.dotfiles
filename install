@@ -13,7 +13,7 @@ set -e
 #Installing essential dev enviroment utils
 
 
-export NEOVIM_VERSION='0.9.4'
+export NEOVIM_VERSION='0.10.2'
 export DELTA_VERSION='0.16.5'
 export NEEDRESTART_MODE='a'
 export OS_NAME='ubuntu'
