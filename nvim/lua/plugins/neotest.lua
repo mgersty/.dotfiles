@@ -18,6 +18,9 @@ return {
                     require("neotest-go"),
                     require("neotest-vitest"),
                 },
+                output={
+                    enabled=true
+                }
             })
         end,
     },
