@@ -21,9 +21,8 @@ alias mason='cd ~/.local/share/nvim/mason'
 alias k='kubectl'
 alias mk='minikube'
 alias sys='sudo systemctl'
-
-
-
+alias cp='cp -r'
+alias rm='rm -rf'
 
 #NEOVIM CONFIG
 alias vim_show_mapping='cat ~/.dotfiles/nvim/lua/mappings.lua'
