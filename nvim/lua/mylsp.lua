@@ -1,7 +1,7 @@
 ---@diagnostic disable-next-line: missing-fields
 local client = vim.lsp.start_client {
     name = "educationalsp",
-    cmd = { "/home/gersty/sandbox/go.projects/go_lsp/lsp" },
+    cmd = { "/home/gersty/sandbox/go.projects/go_lsp/build/lsp" },
 }
 
 if not client then

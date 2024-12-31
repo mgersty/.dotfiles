@@ -1,4 +1,5 @@
 nvim/plugin/
+nvim/lazy-lock.json
 **/packer_compiled.lua
 target
 .settings
