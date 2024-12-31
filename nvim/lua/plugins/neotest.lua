@@ -10,6 +10,7 @@ return {
             "nvim-neotest/neotest-python",
             "nvim-neotest/neotest-go",
             "marilari88/neotest-vitest",
+            "nvim-contrib/nvim-ginkgo",
         },
         config = function()
             require("neotest").setup({
@@ -17,7 +18,11 @@ return {
                     require("neotest-python"),
                     require("neotest-go"),
                     require("neotest-vitest"),
+                    require("nvim-ginkgo"),
                 },
+                output={
+                    enabled=true
+                }
             })
         end,
     },

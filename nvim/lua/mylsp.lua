@@ -1,7 +1,7 @@
 ---@diagnostic disable-next-line: missing-fields
 local client = vim.lsp.start_client {
     name = "educationalsp",
-    cmd = { "/home/gersty/sandbox/go.projects/go_lsp/lsp" },
+    cmd = { "/home/gersty/sandbox/go.projects/go_lsp/build/lsp" },
 }
 
 if not client then
@@ -11,6 +11,6 @@ end
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
-        vim.lsp.buf_attach_client(1, client)
+        vim.lsp.buf_attach_client(0, client)
     end
 })

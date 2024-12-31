@@ -14,6 +14,7 @@ return {
                     "ruff",
                     "ts_ls",
                     "jdtls",
+                    "rust-analyzer",
                 },
             })
         end,

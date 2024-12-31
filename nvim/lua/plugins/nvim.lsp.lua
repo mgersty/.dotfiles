@@ -35,6 +35,7 @@ return {
             ts_ls = {},
             ruff = {},
             lua_ls = {},
+            rust_analyzer = {},
             pyright = {
                 {
                     -- Using Ruff's import organizer

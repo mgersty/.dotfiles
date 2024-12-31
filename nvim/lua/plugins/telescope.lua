@@ -2,7 +2,10 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
+        },
         config = function()
             require("telescope").setup({
                 defaults = {
@@ -13,7 +16,7 @@ return {
                         },
                         truncate = true,
                     },
-                    dynamic_preview_title = true,
+                    dynamic_preview_title = false,
                 },
                 pickers = {
                     find_files = {
@@ -23,10 +26,7 @@ return {
                     },
                 },
             })
+            require("telescope").load_extension("file_browser")
         end,
-    },
-    {
-        "nvim-telescope/telescope-file-browser.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     },
 }
