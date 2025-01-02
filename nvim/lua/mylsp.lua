@@ -1,7 +1,8 @@
+local HOME_DIR = os.getenv("HOME")
 ---@diagnostic disable-next-line: missing-fields
 local client = vim.lsp.start_client {
     name = "educationalsp",
-    cmd = { "/home/gersty/sandbox/go.projects/go_lsp/build/lsp" },
+    cmd = { HOME_DIR .. "/sandbox/lsp.projects/rust_lsp/target/release/rust_lsp" },
 }
 
 if not client then
