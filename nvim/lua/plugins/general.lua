@@ -19,23 +19,56 @@ return {
             })
         end,
     },
-    -- {
-    --     "stevearc/conform.nvim",
-    --     enable = false,
-    --     config = function()
-    --         require("conform").setup({
-    --             formatters_by_ft = {
-    --                 lua = { "stylua" },
-    --                 python = { "ruff" },
-    --                 go = { "gofmt" },
-    --             },
-    --             format_on_save = {
-    --                 lsp_fallback = true,
-    --                 timeout_ms = 250,
-    --             },
-    --         })
-    --     end,
-    -- },
+    {
+        "hedyhli/outline.nvim",
+        lazy = true,
+        cmd = { "Outline", "OutlineOpen" },
+        keys = { -- Example mapping to toggle outline
+            { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+        },
+        config = function()
+            require("outline").setup({
+                outline_window = {
+                    position = "left",
+                    show_relative_numbers = true,
+                    width = 15,
+                },
+                -- outline_items = {
+                -- },
+                -- preview_window={
+                --     auto_preview=true
+                -- },
+                symbols = {
+                    icon_fetcher = function()
+                        return ""
+                    end,
+                    -- icons={
+                    --     Enum ={icon='󰫲', hl='Type'},
+                    --     Struct = {icon ='', hl='Structure'},
+                    --     Object = {icon='󰫶', hl='Type'}
+                    -- }
+                },
+            })
+        end,
+    },
+    {
+        "stevearc/conform.nvim",
+        enable = false,
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "ruff" },
+                    go = { "gofmt" },
+                    rust = { "rustfmt" },
+                },
+                format_on_save = {
+                    lsp_fallback = true,
+                    timeout_ms = 250,
+                },
+            })
+        end,
+    },
     {
         "stevearc/aerial.nvim",
         opts = {},
@@ -56,7 +89,25 @@ return {
         opts = {},
     },
     { "tpope/vim-commentary" },
-    { "catppuccin/nvim",               name = "catppuccin" },
-    { "mfussenegger/nvim-jdtls",       dependencies = "mfussenegger/nvim-dap" },
+    { "catppuccin/nvim", name = "catppuccin" },
+    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
     { "christoomey/vim-tmux-navigator" },
+    { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
+    { "shaunsingh/nord.nvim" },
+    { "olivercederborg/poimandres.nvim" },
+    { "Mofiqul/adwaita.nvim" },
+    { "kyazdani42/blue-moon" },
+    { "kvrohit/substrata.nvim" },
+    { "FrenzyExists/aquarium-vim" },
+    { "Verf/deepwhite.nvim" },
+    { "marko-cerovac/material.nvim" },
+    { "rose-pine/neovim" },
+    {
+        "askfiy/visual_studio_code",
+        config = function()
+            require("visual_studio_code").setup({
+                mode = "light",
+            })
+        end,
+    },
 }
