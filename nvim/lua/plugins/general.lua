@@ -33,20 +33,21 @@ return {
                     show_relative_numbers = true,
                     width = 15,
                 },
-                -- outline_items = {
-                -- },
+                outline_items = {
+                    show_symbol_details = true,
+                },
                 -- preview_window={
                 --     auto_preview=true
                 -- },
                 symbols = {
-                    icon_fetcher = function()
-                        return ""
-                    end,
-                    -- icons={
-                    --     Enum ={icon='󰫲', hl='Type'},
-                    --     Struct = {icon ='', hl='Structure'},
-                    --     Object = {icon='󰫶', hl='Type'}
-                    -- }
+                    -- icon_fetcher = function()
+                    --     return ""
+                    -- end,
+                    icons = {
+                        Enum = { icon = "󰫲", hl = "Type" },
+                        Struct = { icon = "", hl = "Structure" },
+                        Object = { icon = "󰫶", hl = "Type" },
+                    },
                 },
             })
         end,
@@ -92,8 +93,10 @@ return {
     { "catppuccin/nvim", name = "catppuccin" },
     { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
     { "christoomey/vim-tmux-navigator" },
-    { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
-    { "shaunsingh/nord.nvim" },
+    -- { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
+    -- { "shaunsingh/nord.nvim" },
+    { "arcticicestudio/nord-vim" },
+    { "cocopon/iceberg.vim" },
     { "olivercederborg/poimandres.nvim" },
     { "Mofiqul/adwaita.nvim" },
     { "kyazdani42/blue-moon" },
@@ -101,6 +104,9 @@ return {
     { "FrenzyExists/aquarium-vim" },
     { "Verf/deepwhite.nvim" },
     { "marko-cerovac/material.nvim" },
+    { "nyoom-engineering/oxocarbon.nvim" },
+    { "gregsexton/Atom" },
+    { "tyrannicaltoucan/vim-deep-space" },
     { "rose-pine/neovim" },
     {
         "askfiy/visual_studio_code",
@@ -110,4 +116,5 @@ return {
             })
         end,
     },
+    { "rakr/vim-one" },
 }
