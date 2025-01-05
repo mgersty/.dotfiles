@@ -88,14 +88,14 @@ return {
         ---@type render.md.UserConfig
         opts = {},
     },
-    {
-        "m4xshen/hardtime.nvim",
-        dependencies = { "MunifTanjim/nui.nvim" },
-        opts = {},
-        config = function()
-            require("hardtime").setup()
-        end,
-    },
+    -- {
+    --     "m4xshen/hardtime.nvim",
+    --     dependencies = { "MunifTanjim/nui.nvim" },
+    --     opts = {},
+    --     config = function()
+    --         require("hardtime").setup()
+    --     end,
+    -- },
     { "tpope/vim-commentary" },
     { "catppuccin/nvim", name = "catppuccin" },
     { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },

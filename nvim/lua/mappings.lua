@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 map("n", "<", ":bprevious<cr>", opts)
 map("n", ">", ":bnext<cr>", opts)
 map("n", "bda", ":%bd|e#|bd#<cr>", opts)
-map("n", "WW", ":w<cr>", opts)
+map("n", "FF", ":w<cr>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
 
 --TELESCOPE

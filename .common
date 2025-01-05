@@ -11,6 +11,7 @@ alias src="source ~/.zshrc"
 alias vim="nvim"
 alias rm='rm -rf'
 alias dotfiles='cd ~/.dotfiles'
+alias vimd='cd ~/.dotfiles && vim ~/.dotfiles'
 alias clear_vim_swp='find ~/.local/state/nvim -type f -name "*.sw[klmnop]" -delete'
 alias lookup_path="echo $PATH | tr ':' '\n'"
 alias sandbox='cd ~/sandbox'
