@@ -71,15 +71,14 @@ return {
         end,
     },
     {
-        "stevearc/aerial.nvim",
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
         opts = {},
-        -- Optional dependencies
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
         config = function()
-            require("aerial").setup()
+            require("ibl").setup({ indent = { char = "" } })
+            -- require("ibl").setup()
         end,
     },
     {
@@ -88,6 +87,14 @@ return {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
+    },
+    {
+        "m4xshen/hardtime.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        opts = {},
+        config = function()
+            require("hardtime").setup()
+        end,
     },
     { "tpope/vim-commentary" },
     { "catppuccin/nvim", name = "catppuccin" },

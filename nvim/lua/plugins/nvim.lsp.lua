@@ -35,7 +35,22 @@ return {
             ts_ls = {},
             ruff = {},
             lua_ls = {},
-            rust_analyzer = {},
+            rust_analyzer = {
+                imports = {
+                    granularity = {
+                        group = "module",
+                    },
+                    prefix = "self",
+                },
+                cargo = {
+                    buildScripts = {
+                        enable = false,
+                    },
+                },
+                procMacro = {
+                    enable = false,
+                },
+            },
             pyright = {
                 {
                     -- Using Ruff's import organizer
