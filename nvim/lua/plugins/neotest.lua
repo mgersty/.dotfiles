@@ -15,14 +15,16 @@ return {
         config = function()
             require("neotest").setup({
                 adapters = {
-                    require("neotest-python"),
+                    require("neotest-python")({
+                        args = { "-s" },
+                    }),
                     require("neotest-go"),
                     require("neotest-vitest"),
                     require("nvim-ginkgo"),
                 },
-                output={
-                    enabled=true
-                }
+                output = {
+                    enabled = true,
+                },
             })
         end,
     },

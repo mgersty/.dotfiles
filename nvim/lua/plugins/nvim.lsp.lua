@@ -15,7 +15,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 return {
     "neovim/nvim-lspconfig",
-
     dependencies = {
         "saghen/blink.cmp",
         {
@@ -35,6 +34,7 @@ return {
             ts_ls = {},
             ruff = {},
             lua_ls = {},
+            zls = {},
             rust_analyzer = {
                 imports = {
                     granularity = {
