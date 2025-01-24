@@ -116,6 +116,12 @@ return {
     { "tyrannicaltoucan/vim-deep-space" },
     { "rose-pine/neovim" },
     {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    {
         "askfiy/visual_studio_code",
         config = function()
             require("visual_studio_code").setup({
