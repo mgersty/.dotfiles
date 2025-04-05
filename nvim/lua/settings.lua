@@ -31,3 +31,11 @@ vim.cmd([[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]])
+
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+set.foldcolumn = "0"
+set.foldtext = ""
+set.foldlevel = 99
+set.foldlevelstart = 1
+set.foldnestmax = 4
