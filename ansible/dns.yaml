@@ -1,0 +1,86 @@
+- hosts: "master"
+  remote_user: gersty
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: Install BIND
+      apt:
+        pkg:
+          - bind9
+          - bind9utils
+          - bind9-doc
+
+    - name: Set IPv4 for DNS
+      lineinfile:
+        path: /etc/default/bind9
+        line: OPTIONS="-u bind -4"
+        create: yes
+
+    - name: Create named.conf.options
+      blockinfile:
+        path: /etc/bind/named.conf.options
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          options {
+                  directory "/var/cache/bind";
+                  forwarders {
+                          8.8.8.8;
+                          8.8.4.4;
+                  };
+          };
+        create: yes
+
+    - name: Create named.conf.local
+      blockinfile:
+        path: /etc/bind/named.conf.local
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          zone "gerstyco.org" {
+            type master;
+            file "/etc/bind/zones/db.gerstyco.org";
+          };
+        create: yes
+
+    - name: Create zones directory
+      file:
+        path: /etc/bind/zones
+        state: directory
+        mode: "0755"
+
+    - name: Create zonefile
+      blockinfile:
+        path: /etc/bind/zones/db.gerstyco.org
+        marker: ";# {mark} ANSIBLE MANAGED BLOCK"
+        block: |
+          ;
+          ; BIND data file for local loopback interface
+          ;
+          $TTL    604800
+          @       IN      SOA     pie2.gerstyco.org. admin.gerstyco.org. (
+                                        3         ; Serial
+                                   604800         ; Refresh
+                                    86400         ; Retry
+                                  2419200         ; Expire
+                                   604800 )       ; Negative Cache TTL
+          ;
+          ; name servers - NS records
+               IN      NS      pie2.gerstyco.org.
+
+          ; name servers - A records
+          pie2.gerstyco.org.         IN      A       10.1.1.102
+
+          ; 10.1.1.0/24 - A records
+          pie1.gerstyco.org.       IN      A      10.1.1.101
+          pie3.gerstyco.org.       IN      A      10.1.1.103
+          pie4.gerstyco.org.       IN      A      10.1.1.104
+        create: yes
+
+    - name: Restart BIND9
+      systemd:
+        name: bind9
+        state: restarted
+        enabled: yes

@@ -35,6 +35,10 @@ return {
             ruff = {},
             lua_ls = {},
             zls = {},
+            jsonls = {},
+            clangd = {},
+            xmlformatter = {},
+            yamlls = {},
             rust_analyzer = {
                 imports = {
                     granularity = {

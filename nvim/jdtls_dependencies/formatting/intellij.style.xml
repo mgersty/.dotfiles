@@ -35,7 +35,7 @@
 		<setting id="org.eclipse.jdt.core.formatter.brace_position_for_block_in_case" value="end_of_line"/>
 		<setting id="org.eclipse.jdt.core.formatter.brace_position_for_switch" value="end_of_line"/>
 		<setting id="org.eclipse.jdt.core.formatter.brace_position_for_array_initializer" value="end_of_line"/>
-		<setting id="org.eclipse.jdt.core.formatter.keep_empty_array_initializer_on_one_line" value="true"/>
+		<setting id="org.eclipse.jdt.core.formatter.keep_empty_array_initializer_on_one_line" value="false"/>
 		<setting id="org.eclipse.jdt.core.formatter.brace_position_for_lambda_body" value="end_of_line"/>
 		<setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_method_delcaration" value="preserve_positions"/>
 		<setting id="org.eclipse.jdt.core.formatter.parentheses_positions_in_method_invocation" value="preserve_positions"/>

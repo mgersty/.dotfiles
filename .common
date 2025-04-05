@@ -37,6 +37,7 @@ alias drc='docker rm -f'
 alias drd='docker rmi $(docker images -f "dangling=true" -q)'
 
 #KUBERNETES
+alias k='kubectl'
 alias ka='kubectl get all --all-namespaces -o wide'
 alias crika='for line in $(crictl ps 2>/dev/null |grep -v CONTAINER|awk '{print $1}') ; do crictl stop $line; done'
 
