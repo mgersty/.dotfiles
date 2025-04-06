@@ -81,13 +81,6 @@ return {
             -- require("ibl").setup()
         end,
     },
-    {
-        "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-        ---@module 'render-markdown'
-        ---@type render.md.UserConfig
-        opts = {},
-    },
     -- {
     --     "m4xshen/hardtime.nvim",
     --     dependencies = { "MunifTanjim/nui.nvim" },
@@ -100,8 +93,6 @@ return {
     { "catppuccin/nvim", name = "catppuccin" },
     { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
     { "christoomey/vim-tmux-navigator" },
-    -- { "fcancelinha/nordern.nvim", branch = "master", priority = 1000 },
-    -- { "shaunsingh/nord.nvim" },
     { "arcticicestudio/nord-vim" },
     { "cocopon/iceberg.vim" },
     { "olivercederborg/poimandres.nvim" },
