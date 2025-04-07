@@ -19,7 +19,6 @@ set.number = true
 set.cursorline = true
 set.rnu = true
 vim.cmd.colorscheme("atom")
-vim.cmd("set foldmethod=manual")
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
@@ -32,10 +31,10 @@ vim.cmd([[
   highlight NonText ctermbg=none
 ]])
 
-set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldcolumn = "0"
-set.foldtext = ""
-set.foldlevel = 99
-set.foldlevelstart = 1
-set.foldnestmax = 4
+-- set.foldmethod = "indent"
+-- set.foldexpr = "nvim_treesitter#foldexpr()"
+-- set.foldcolumn = "0"
+-- set.foldtext = ""
+-- set.foldlevel = 99
+-- set.foldlevelstart = 1
+-- set.foldnestmax = 4
