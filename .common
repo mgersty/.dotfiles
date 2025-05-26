@@ -20,10 +20,14 @@ alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -h now'
 alias mason='cd ~/.local/share/nvim/mason'
 alias k='kubectl'
-alias mk='minikube'
-alias sys='sudo systemctl'
 alias cp='cp -r'
 alias rm='rm -rf'
+
+#TMUX CONFIG
+alias tn='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias ta='tmux attach-session -t'
+alias tk='tmux kill-session -t'
 
 #NEOVIM CONFIG
 alias vim_show_mapping='cat ~/.dotfiles/nvim/lua/mappings.lua'
@@ -34,7 +38,9 @@ alias dc='docker ps'
 alias dr='docker run'
 alias dri='docker rmi'
 alias drc='docker rm -f'
+alias drac='docker rm -f $(docker ps -q)'
 alias drd='docker rmi $(docker images -f "dangling=true" -q)'
+alias drai='docker rmi $(docker images -q)'
 
 #KUBERNETES
 alias k='kubectl'
@@ -45,8 +51,4 @@ alias crika='for line in $(crictl ps 2>/dev/null |grep -v CONTAINER|awk '{print 
 #AWS
 alias aws_list_stacks="aws cloudformation describe-stacks | jq '.Stacks[].StackName'"
 alias aws_whoami='aws sts get-caller-identity | jq .'
-
-
-
-#source /usr/share/doc/fzf/examples/key-bindings.zsh
-#source /usr/share/doc/fzf/examples/completion.zsh
+alias list_ec2="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | (.InstanceId+\" -> \"+.PrivateDnsName+\" -> \"+.State.Name)'"

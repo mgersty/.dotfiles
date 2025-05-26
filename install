@@ -130,7 +130,6 @@ sudo apt install -y --no-install-recommends \
 && sudo usermod -aG docker "$USER"
 
 
-
 # Installing Oh My ZShell
 zshell_home_dir="$HOME/.oh-my-zsh"
 if [ -d "$zshell_home_dir" ]; then

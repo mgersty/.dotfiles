@@ -30,6 +30,9 @@ return {
     opts = {
         servers = {
             gopls = {},
+            groovyls = {
+                cmd = { "groovy-language-server" },
+            },
             bashls = {},
             ts_ls = {},
             ruff = {},
@@ -37,8 +40,15 @@ return {
             zls = {},
             jsonls = {},
             clangd = {},
-            xmlformatter = {},
             yamlls = {},
+            -- lemminx = {
+            --     settings = {
+            --         format = {
+            --             insertSpaces = true,
+            --             tabSize = 4,
+            --         },
+            --     },
+            -- },
             rust_analyzer = {
                 imports = {
                     granularity = {

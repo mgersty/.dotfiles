@@ -58,6 +58,7 @@ return {
         config = function()
             require("conform").setup({
                 formatters_by_ft = {
+                    typescripte = { "prettier" },
                     lua = { "stylua" },
                     python = { "ruff" },
                     go = { "gofmt" },

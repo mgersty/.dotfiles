@@ -97,14 +97,14 @@ local config = {
                     {
                         name = "JavaSE-1.8",
                         -- path = "/usr/lib/jvm/temurin-8-jdk-amd64/bin",
-                        path = "/usr/lib/jvm/java-8-openjdk",
-                        -- path = "/usr/lib/jvm/java-8-openjdk-amd64",
+                        -- path = "/usr/lib/jvm/java-8-openjdk",
+                        path = "/usr/lib/jvm/java-8-openjdk-amd64",
                         -- path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
                     },
                     {
                         name = "JavaSE-17",
-                        -- path = "/usr/lib/jvm/java-17-openjdk-amd64",
-                        path = "/usr/lib/jvm/java-17-openjdk",
+                        path = "/usr/lib/jvm/java-17-openjdk-amd64",
+                        -- path = "/usr/lib/jvm/java-17-openjdk",
                     },
                     -- {
                     --  name = "JavaSE-11",
@@ -129,11 +129,7 @@ local config = {
                 includeDecompiledSources = true,
             },
             format = {
-                enabled = true,
-                settings = {
-                    url = jdtls_dependencies_dir .. "/formatting/intellij.style.xml",
-                    profile = "Default",
-                },
+                enabled = false,
             },
         },
     },

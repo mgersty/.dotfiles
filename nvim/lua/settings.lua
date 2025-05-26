@@ -18,20 +18,20 @@ vim.o.timeoutlen = 300
 set.number = true
 set.cursorline = true
 set.rnu = true
-vim.cmd.colorscheme("atom")
+vim.cmd.colorscheme("nord")
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
 })
 
 vim.cmd([[
-  highlight Normal guibg=none
-  highlight NonText guibg=none
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
 ]])
 
--- set.foldmethod = "indent"
+-- -- set.foldmethod = "expr"
 -- set.foldexpr = "nvim_treesitter#foldexpr()"
 -- set.foldcolumn = "0"
 -- set.foldtext = ""

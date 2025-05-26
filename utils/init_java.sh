@@ -7,7 +7,7 @@ ARTIFACT_ID="${1}"
 echo "Creating Java Project: org.gersty.${ARTIFACT_ID}"
 mvn archetype:generate -B \
     -DarchetypeGroupId=org.gersty \
-    -DarchetypeArtifactId=java11-template \
+    -DarchetypeArtifactId=java17-template \
     -DarchetypeVersion=1.0.0 \
     -DgroupId=org.gersty \
     -DartifactId="${ARTIFACT_ID}" \

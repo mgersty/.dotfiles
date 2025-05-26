@@ -42,6 +42,7 @@
     	UseHttpPath = true
 
 [delta]
+        light=true
     	navigate = true
     	line-numbers = true
     	side-by-side = true
@@ -67,7 +68,7 @@
 
 [user]
 	name = Matthew Gerstemeier
-	email = mgerstem@gmail.com
+	email = mgerstemeier@cas.org
 
 ; CAS SPECIFIC
 [gerrit]
