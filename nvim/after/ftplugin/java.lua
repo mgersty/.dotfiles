@@ -95,15 +95,8 @@ local config = {
                 updateBuildConfiguration = "interactive",
                 runtimes = {
                     {
-                        name = "JavaSE-1.8",
-                        -- path = "/usr/lib/jvm/temurin-8-jdk-amd64/bin",
-                        -- path = "/usr/lib/jvm/java-8-openjdk",
-                        path = "/usr/lib/jvm/java-8-openjdk-amd64",
-                        -- path = "/home/linuxbrew/.linuxbrew/opt/openjdk@8/bin",
-                    },
-                    {
-                        name = "JavaSE-17",
-                        path = "/usr/lib/jvm/java-17-openjdk-amd64",
+                        name = "JavaSE-21",
+                        path = "/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
                         -- path = "/usr/lib/jvm/java-17-openjdk",
                     },
                     -- {
