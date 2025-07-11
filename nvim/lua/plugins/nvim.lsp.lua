@@ -36,7 +36,13 @@ return {
             bashls = {},
             ts_ls = {},
             ruff = {},
-            lua_ls = {},
+            lua_ls = {
+                settings = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                },
+            },
             zls = {},
             jsonls = {},
             clangd = {},

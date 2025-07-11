@@ -23,16 +23,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     command = [[%s/\s\+$//e]],
 })
-vim.diagnostic.config({ virtual_text = true })
-vim.g.netrw_liststyle = 3
-
-vim.cmd([[
-highlight Normal guibg=none
-highlight NonText guibg=none
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-]])
-
 -- -- set.foldmethod = "expr"
 -- set.foldexpr = "nvim_treesitter#foldexpr()"
 -- set.foldcolumn = "0"
