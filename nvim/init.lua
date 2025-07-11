@@ -82,7 +82,7 @@ vim.keymap.set("n", "bda", ":%bd|e#|bd#<cr>", opts)
 vim.keymap.set("n", "FF", ":w<cr>", opts)
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 
--- NORMAL MODE MAPPINGS
+-- Normal Mode Mappings
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- Center screen when jumping
