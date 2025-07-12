@@ -187,6 +187,44 @@ local config = {
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
 
+local function format_code()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local filetype = vim.bo[bufnr].filetype
+
+    -- Save cursor position
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+    if filetype == "java" or filename:match("%.java$") then
+        if filename == "" then
+            print("Save the file first before formatting Python")
+            return
+        end
+        local idea_location = ""
+        local idea_cmd = idea_location .. " -allowDefaults " .. vim.fn.shellescape(filename)
+        local idea_result = vim.fn.system(idea_cmd)
+
+        if vim.v.shell_error == 0 then
+            vim.cmd("checktime")
+            vim.api.nvim_win_set_cursor(0, cursor_pos)
+            print("Formatted with intellij")
+            return
+        else
+            print(vim.inspect(idea_result))
+            print("No Python formatter available (install black)")
+            return
+        end
+    end
+
+    print("No formatter available for " .. filetype)
+end
+
+vim.api.nvim_create_user_command("JdtlsFormat", format_code, {
+    desc = "Format current file",
+})
+
+vim.keymap.set("n", "<leader>fm", format_code, { desc = "Format file" })
+
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
