@@ -326,7 +326,7 @@ local function file_type()
     local ft = vim.bo.filetype
     local icons = {
         lua = "󰢱",
-        python = "",
+        python = "",
         json = "󰘦",
         markdown = "",
         vim = "",
@@ -334,6 +334,8 @@ local function file_type()
         bash = "",
         java = "󰅶",
         go = "",
+        tsx = "󰛦",
+        ts = "󰛦",
     }
 
     if ft == "" then
@@ -433,3 +435,5 @@ local function setup_dynamic_statusline()
 end
 
 setup_dynamic_statusline()
+vim.api.nvim_set_hl(0, "StatusLine", { fg = "#164801", bg = "#44DB07" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#164801", bg = "#44DB07" })

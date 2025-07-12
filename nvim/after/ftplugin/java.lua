@@ -47,12 +47,6 @@ if test_jars ~= "" then
     end
 end
 
--- Debug: print the bundles being loaded
-print("Loading bundles:")
-for i, bundle in ipairs(bundles) do
-    -- print(i .. ": " .. bundle)
-end
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -92,14 +86,9 @@ local config = {
         "-data",
         workspace_dir,
     },
-    -- 💀
-    -- This is the default if not provided, you can remove it. Or adjust as needed.
-    -- One dedicated LSP server & client will be started per unique root_dir
+
     root_dir = root_dir,
 
-    -- Here you can configure eclipse.jdt.ls specific settings
-    -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-    -- for a list of options
     settings = {
         java = {
             eclipse = {
@@ -113,14 +102,6 @@ local config = {
                         path = "/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
                         -- path = "/usr/lib/jvm/java-17-openjdk",
                     },
-                    -- {
-                    --  name = "JavaSE-11",
-                    --  path = "/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home",
-                    -- },
-                    -- {
-                    --  name = "JavaSE-19",
-                    --  path = "/opt/homebrew/Cellar/openjdk/19.0.2/libexec/openjdk.jdk/Contents/Home",
-                    -- },
                 },
             },
             maven = {
@@ -169,13 +150,7 @@ local config = {
     flags = {
         allow_incremental_sync = true,
     },
-    -- Language server `initializationOptions`
-    -- You need to extend the `bundles` with paths to jar files
-    -- if you want to use additional eclipse.jdt.ls plugins.
-    --
-    -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-    --
-    -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
+
     init_options = {
         bundles = bundles,
         extendedClientCapabilities = extendedClientCapabilities,
@@ -183,8 +158,6 @@ local config = {
     on_attach = on_attach,
     capabilities = capabilities,
 }
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
 
 local function format_code()
@@ -200,30 +173,26 @@ local function format_code()
             print("Save the file first before formatting Python")
             return
         end
-        local idea_location = ""
-        local idea_cmd = idea_location .. " -allowDefaults " .. vim.fn.shellescape(filename)
+        local idea_cmd = "idea format -allowDefaults " .. vim.fn.shellescape(filename)
         local idea_result = vim.fn.system(idea_cmd)
 
         if vim.v.shell_error == 0 then
-            vim.cmd("checktime")
             vim.api.nvim_win_set_cursor(0, cursor_pos)
             print("Formatted with intellij")
+            print(vim.inspect(idea_result))
             return
         else
             print(vim.inspect(idea_result))
-            print("No Python formatter available (install black)")
+            print("intellij formatter not installed")
             return
         end
     end
-
     print("No formatter available for " .. filetype)
 end
 
-vim.api.nvim_create_user_command("JdtlsFormat", format_code, {
+vim.api.nvim_create_user_command("JdtFormat", format_code, {
     desc = "Format current file",
 })
-
-vim.keymap.set("n", "<leader>fm", format_code, { desc = "Format file" })
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }

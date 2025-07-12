@@ -4,7 +4,6 @@ export DISABLE_AUTO_TITLES=true
 alias ll='exa --icons -lma'
 alias lt='ll --tree --ignore-glob=".git"'
 alias rgrep='rg'
-alias bcat='batcat'
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
 alias profile="vim ~/.zshrc"
 alias src="source ~/.zshrc"
@@ -19,6 +18,7 @@ alias awscreds='vim ~/.aws/credentials'
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown -h now'
 alias mason='cd ~/.local/share/nvim/mason'
+alias lsplogs='tail -f ~/.local/state/nvim/lsp.log'
 alias k='kubectl'
 alias cp='cp -r'
 alias rm='rm -rf'

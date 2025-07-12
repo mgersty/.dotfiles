@@ -42,7 +42,6 @@
     	UseHttpPath = true
 
 [delta]
-        light=true
     	navigate = true
     	line-numbers = true
     	side-by-side = true
