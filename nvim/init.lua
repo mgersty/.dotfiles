@@ -1,7 +1,7 @@
 require("lazy.lazy")
 
 -- SETTINGS --
-vim.cmd.colorscheme("desert")
+vim.cmd.colorscheme("habamax")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
@@ -332,7 +332,8 @@ local function file_type()
         vim = "",
         sh = "",
         bash = "",
-        ava = "",
+        java = "󰅶",
+        go = "",
     }
 
     if ft == "" then
@@ -351,7 +352,7 @@ local function lsp_status()
             table.insert(names, client.name)
         end
         local client_list = table.concat(names, ", ")
-        return "  Language Servers: " .. client_list
+        return "LSP: " .. client_list
     end
     return ""
 end

@@ -4,15 +4,7 @@ if not status then
 end
 
 local home = os.getenv("HOME")
---if vim.fn.has("mac") == 1 then
---    WORKSPACE_PATH = home .. "/.cache/jdtls/workspace/"
---    CONFIG = "mac"
---elseif vim.fn.has("unix") == 1 then
 WORKSPACE_PATH = home .. "/.cache/jdtls/workspace/"
---    CONFIG = "linux"
---else
---    print("Unsupported system")
---end
 
 ---- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -26,19 +18,39 @@ local jdtls_dependencies_dir = home .. "/.dotfiles/nvim/jdtls_dependencies"
 
 ------------------------------
 ---- Prepare JAR dependencies
-local bundles = {
-    vim.fn.glob(jdtls_dependencies_dir .. "/debug/*.jar"),
-}
+local bundles = {}
 
---Testing
-for _, bundle in ipairs(vim.split(vim.fn.glob(jdtls_dependencies_dir .. "/test/*.jar", 1), "\n")) do
-    --These two jars are not bundles, therefore don't put them in the table
-    if
-        not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
-        and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
-    then
-        table.insert(bundles, bundle)
+-- Add debug jars
+local debug_jars = vim.fn.glob(jdtls_dependencies_dir .. "/debug/*.jar", true)
+if debug_jars ~= "" then
+    for _, jar in ipairs(vim.split(debug_jars, "\n")) do
+        if jar ~= "" and vim.fn.filereadable(jar) == 1 then
+            table.insert(bundles, jar)
+        end
     end
+end
+
+-- Add test jars (fixed the boolean parameter and added validation)
+local test_jars = vim.fn.glob(jdtls_dependencies_dir .. "/test/*.jar", true)
+if test_jars ~= "" then
+    for _, bundle in ipairs(vim.split(test_jars, "\n")) do
+        -- Skip empty strings and validate file exists
+        if bundle ~= "" and vim.fn.filereadable(bundle) == 1 then
+            -- These two jars are not bundles, therefore don't put them in the table
+            if
+                not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
+                and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
+            then
+                table.insert(bundles, bundle)
+            end
+        end
+    end
+end
+
+-- Debug: print the bundles being loaded
+print("Loading bundles:")
+for i, bundle in ipairs(bundles) do
+    -- print(i .. ": " .. bundle)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -53,6 +65,10 @@ local on_attach = function(client, bufnr)
         require("jdtls.dap").setup_dap_main_class_configs()
     end
 end
+
+local launcher_jar = home
+    .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar"
+
 local config = {
     cmd = {
         "java",
@@ -70,9 +86,7 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-        -- jdtls_dependencies_dir .. "/jdtls_*.jar",
-        -- vim.fn.glob(jdtls_dependencies_dir .. "/jdtls_*.jar"),
+        launcher_jar,
         "-configuration",
         home .. "/.local/share/nvim/mason/packages/jdtls/config_linux",
         "-data",
@@ -155,13 +169,6 @@ local config = {
     flags = {
         allow_incremental_sync = true,
     },
-    -- Language server `initializationOptions`
-    -- You need to extend the `bundles` with paths to jar files
-    -- if you want to use additional eclipse.jdt.ls plugins.
-    --
-    -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-    --
-    -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
     -- Language server `initializationOptions`
     -- You need to extend the `bundles` with paths to jar files
     -- if you want to use additional eclipse.jdt.ls plugins.
