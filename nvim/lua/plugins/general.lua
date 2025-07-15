@@ -1,24 +1,24 @@
 -- General Plugins
 return {
-    {
-        "williamboman/mason.nvim",
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-        },
-        config = function()
-            require("mason").setup()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "gopls",
-                    "pyright",
-                    "ruff",
-                    "ts_ls",
-                    "jdtls",
-                    "rust_analyzer",
-                },
-            })
-        end,
-    },
+    -- {
+    --     "williamboman/mason.nvim",
+    --     dependencies = {
+    --         "williamboman/mason-lspconfig.nvim",
+    --     },
+    --     config = function()
+    --         require("mason").setup()
+    --         require("mason-lspconfig").setup({
+    --             ensure_installed = {
+    --                 "gopls",
+    --                 "pyright",
+    --                 "ruff",
+    --                 "ts_ls",
+    --                 "jdtls",
+    --                 "rust_analyzer",
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "hedyhli/outline.nvim",
         lazy = true,
