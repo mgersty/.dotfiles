@@ -20,13 +20,12 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        theme = "dropdown",
+                        theme = "ivy",
                         hidden = true,
                         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
                     },
                 },
             })
-            require("telescope").load_extension("file_browser")
         end,
     },
 }
