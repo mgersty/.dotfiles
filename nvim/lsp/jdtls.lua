@@ -3,6 +3,47 @@ if not status then
     return
 end
 
+local function format_code()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local filetype = vim.bo[bufnr].filetype
+
+    -- Save cursor position
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+    if filetype == "java" or filename:match("%.java$") then
+        if filename == "" then
+            print("Save the file first before formatting Python")
+            return
+        end
+        local idea_cmd = "idea format -allowDefaults " .. vim.fn.shellescape(filename)
+        local idea_result = vim.fn.system(idea_cmd)
+
+        if vim.v.shell_error == 0 then
+            vim.api.nvim_win_set_cursor(0, cursor_pos)
+            print("Formatted with intellij")
+            print(vim.inspect(idea_result))
+            return
+        else
+            print(vim.inspect(idea_result))
+            print("intellij formatter not installed")
+            return
+        end
+    end
+    print("No formatter available for " .. filetype)
+end
+
+vim.api.nvim_create_user_command("JdtFormat", format_code, {
+    desc = "Format current file",
+})
+
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+keymap("n", "<leader>tc", jdtls.test_class, opts)
+keymap("n", "<leader>tm", jdtls.test_nearest_method, opts)
+
+
 local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 
@@ -125,5 +166,4 @@ return {
             require("jdtls.dap").setup_dap_main_class_configs()
         end
     end
-
 }

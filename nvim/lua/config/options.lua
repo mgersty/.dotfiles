@@ -1,3 +1,4 @@
+require('config.helpers')
 -- SETTINGS --
 vim.cmd.colorscheme("material-deep-ocean")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
