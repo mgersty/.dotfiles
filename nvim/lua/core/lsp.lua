@@ -17,4 +17,5 @@ vim.lsp.enable({
     "lua-ls",
     "pyright",
     "ruff",
+    "jdtls",
 })
