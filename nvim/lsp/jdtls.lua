@@ -50,7 +50,7 @@ local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
     local jdtls_dependencies_dir = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
-    local dep_jars = vim.fn.glob(jdtls_dependencies_dir .. "test/*.jar", true)
+    local dep_jars = vim.fn.glob(jdtls_dependencies_dir .. "/test/*.jar", true)
     if dep_jars ~= "" then
         for _, jar in ipairs(vim.split(dep_jars, "\n")) do
             if jar ~= "" and vim.fn.filereadable(jar) == 1 then
@@ -59,7 +59,6 @@ local function retrieve_supplementary_dependecies()
         end
     end
 
-    print(vim.inspect(dependency_bundle))
     return dependency_bundle
 end
 
@@ -91,10 +90,11 @@ return {
         "-configuration",
         HOME .. "/.local/share/nvim/mason/packages/jdtls/config_linux",
         "-data",
-        HOME .. "/.cache/jdtls/workspace" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
+        HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
 
     },
     root_dir = ROOT_DIR,
+    filetypes = { 'java' },
     settings = {
         java = {
             eclipse = {
@@ -104,8 +104,12 @@ return {
                 updateBuildConfiguration = "interactive",
                 runtimes = {
                     {
+                        name = "JavaSE-8",
+                        path = "/usr/lib/jvm/java-8-openjdk-amd64/jre",
+                    },
+                    {
                         name = "JavaSE-21",
-                        path = "/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
+                        path = "/usr/lib/jvm/java-21-amazon-corretto",
                     }
                 }
             },
