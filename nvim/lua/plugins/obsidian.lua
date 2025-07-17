@@ -20,13 +20,17 @@ return {
     opts = {
         workspaces = {
             {
-                name = "personal",
-                path = "~/vaults/personal",
+                name = "home",
+                path = "~/obsidian.vaults/",
             },
-            {
-                name = "work",
-                path = "~/vaults/work",
-            },
+        },
+
+        templates = {
+            folder = "~/obsidian.vaults/Templates",
+            date_format = "%Y-%m-%d",
+            time_format = "%H:%M",
+            -- A map for custom variables, the key should be the variable and the value a function
+            substitutions = {},
         },
 
         -- see below for full list of options 👇
