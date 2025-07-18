@@ -33,25 +33,25 @@ return {
             })
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        enable = true,
-        config = function()
-            require("conform").setup({
-                formatters_by_ft = {
-                    typescripte = { "prettier" },
-                    lua = { "stylua" },
-                    python = { "ruff" },
-                    go = { "gofmt" },
-                    rust = { "rustfmt" },
-                },
-                format_on_save = {
-                    lsp_fallback = true,
-                    timeout_ms = 250,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "stevearc/conform.nvim",
+    --     enable = true,
+    --     config = function()
+    --         require("conform").setup({
+    --             formatters_by_ft = {
+    --                 typescripte = { "prettier" },
+    --                 lua = { "stylua" },
+    --                 python = { "ruff" },
+    --                 go = { "gofmt" },
+    --                 rust = { "rustfmt" },
+    --             },
+    --             format_on_save = {
+    --                 lsp_fallback = true,
+    --                 timeout_ms = 250,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",

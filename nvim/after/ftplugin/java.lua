@@ -58,6 +58,7 @@ local function retrieve_supplementary_dependecies()
             end
         end
     end
+    print(vim.inspect(dependency_bundle))
 
     return dependency_bundle
 end
@@ -69,10 +70,10 @@ local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 
-return {
+local config = {
     cmd = {
         "java",
-        --        "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+        -- "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -86,9 +87,9 @@ return {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        HOME .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar",
+        HOME .. "/.local/share/language.servers/jdtls/jdtls.jar",
         "-configuration",
-        HOME .. "/.local/share/nvim/mason/packages/jdtls/config_linux",
+        HOME .. "/.local/share/language.servers/jdtls/config_linux",
         "-data",
         HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
 
@@ -103,10 +104,10 @@ return {
             configuration = {
                 updateBuildConfiguration = "interactive",
                 runtimes = {
-                    {
-                        name = "JavaSE-8",
-                        path = "/usr/lib/jvm/java-8-openjdk-amd64/jre",
-                    },
+                    -- {
+                    --     name = "javaSE-1.8",
+                    --     path = "/usr/lib/jvm/java-8-openjdk-amd64/jre",
+                    -- },
                     {
                         name = "JavaSE-21",
                         path = "/usr/lib/jvm/java-21-amazon-corretto",
@@ -114,7 +115,7 @@ return {
                 }
             },
             maven = {
-                downloadSources = false,
+                downloadSources = true,
             },
             implementationCodeLens = {
                 enabled = false,
@@ -171,3 +172,4 @@ return {
         end
     end
 }
+require('jdtls').start_or_attach(config)
