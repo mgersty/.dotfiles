@@ -58,8 +58,6 @@ local function retrieve_supplementary_dependecies()
             end
         end
     end
-    print(vim.inspect(dependency_bundle))
-
     return dependency_bundle
 end
 
