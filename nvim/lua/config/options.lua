@@ -368,8 +368,8 @@ local function setup_dynamic_statusline()
 end
 
 setup_dynamic_statusline()
-vim.api.nvim_set_hl(0, "StatusLine", { fg = "#164801", bg = "#44DB07" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#164801", bg = "#44DB07" })
+vim.api.nvim_set_hl(0, "StatusLine", { fg = "#000000", bg = "#44DB07" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#000000", bg = "#44DB07" })
 
 
 local vault_path = vim.fn.expand("~/obsidian.vaults/fleeting.notes/") -- Update this

@@ -2,8 +2,12 @@
 
 
 
-sudo pacman -S hyprland \
+sudo pacman -Syu hyprland \
     waybar \
+    github-cli \
+    tmux \
+    openssh \
+    ripgrep \
     rofi-wayland \
     kitty \
     dunst \
@@ -23,5 +27,5 @@ sudo pacman -S hyprland \
     gtk4 \
     libadwaita \
     jq \
-    python-gobject
+    python-gobject \
     --noconfirm
