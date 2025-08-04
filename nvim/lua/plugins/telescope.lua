@@ -1,7 +1,9 @@
 return {
     {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        commit = 'b4da76be54691e854d3e0e02c36b0245f945c2c7',
+    -- tag = "0.1.8",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",

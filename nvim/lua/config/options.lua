@@ -10,7 +10,11 @@ vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 10        -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
 
-vim.diagnostic.config({ virtual_text = true })
+
+-- vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+  virtual_text = { current_line = true }
+})
 
 -- INDENT SETTINGS --
 vim.opt.tabstop = 2        -- Tab width
@@ -29,7 +33,7 @@ vim.opt.incsearch = true  -- Show matches as you type
 -- VISUAL SETTINGS --
 vim.opt.termguicolors = true                      -- Enable 24-bit colors
 vim.opt.signcolumn = "yes"                        -- Always show sign column
-vim.opt.colorcolumn = "150"                       -- Show column at 100 characters
+-- vim.opt.colorcolumn = "150"                       -- Show column at 100 characters
 vim.opt.showmatch = true                          -- Highlight matching brackets
 vim.opt.matchtime = 2                             -- How long to show matching bracket
 vim.opt.cmdheight = 1                             -- Command line height

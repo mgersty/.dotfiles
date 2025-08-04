@@ -15,7 +15,7 @@ local function set_python_path(path)
 end
 
 return {
-    cmd = { 'pyright-langserver', '--stdio' },
+    cmd = {'pyright-langserver','--stdio'},
     filetypes = { 'python', '*.py' },
     root_markers = {
         'pyproject.toml',
