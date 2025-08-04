@@ -1,25 +1,6 @@
 -- General Plugins
 return {
     {
-        "williamboman/mason.nvim",
-        dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-        },
-        config = function()
-            require("mason").setup()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "gopls",
-                    "pyright",
-                    "ruff",
-                    "ts_ls",
-                    "jdtls",
-                    "rust_analyzer",
-                },
-            })
-        end,
-    },
-    {
         "hedyhli/outline.nvim",
         lazy = true,
         cmd = { "Outline", "OutlineOpen" },
@@ -52,25 +33,25 @@ return {
             })
         end,
     },
-    {
-        "stevearc/conform.nvim",
-        enable = true,
-        config = function()
-            require("conform").setup({
-                formatters_by_ft = {
-                    typescripte = { "prettier" },
-                    lua = { "stylua" },
-                    python = { "ruff" },
-                    go = { "gofmt" },
-                    rust = { "rustfmt" },
-                },
-                format_on_save = {
-                    lsp_fallback = true,
-                    timeout_ms = 250,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "stevearc/conform.nvim",
+    --     enable = true,
+    --     config = function()
+    --         require("conform").setup({
+    --             formatters_by_ft = {
+    --                 typescripte = { "prettier" },
+    --                 lua = { "stylua" },
+    --                 python = { "ruff" },
+    --                 go = { "gofmt" },
+    --                 rust = { "rustfmt" },
+    --             },
+    --             format_on_save = {
+    --                 lsp_fallback = true,
+    --                 timeout_ms = 250,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -82,8 +63,8 @@ return {
         end,
     },
     { "tpope/vim-commentary" },
-    { "catppuccin/nvim", name = "catppuccin" },
-    { "mfussenegger/nvim-jdtls", dependencies = "mfussenegger/nvim-dap" },
+    { "catppuccin/nvim",                 name = "catppuccin" },
+    { "mfussenegger/nvim-jdtls",         dependencies = "mfussenegger/nvim-dap" },
     { "christoomey/vim-tmux-navigator" },
     { "arcticicestudio/nord-vim" },
     { "cocopon/iceberg.vim" },
