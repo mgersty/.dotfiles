@@ -1,6 +1,17 @@
 -- General Plugins
 return {
     {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy", -- Or `LspAttach`
+        priority = 1000,    -- needs to be loaded in first
+        config = function()
+            require('tiny-inline-diagnostic').setup({
+                preset = "ghost"
+            })
+            vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
+        end
+    },
+    {
         "hedyhli/outline.nvim",
         lazy = true,
         cmd = { "Outline", "OutlineOpen" },
@@ -33,25 +44,6 @@ return {
             })
         end,
     },
-    -- {
-    --     "stevearc/conform.nvim",
-    --     enable = true,
-    --     config = function()
-    --         require("conform").setup({
-    --             formatters_by_ft = {
-    --                 typescripte = { "prettier" },
-    --                 lua = { "stylua" },
-    --                 python = { "ruff" },
-    --                 go = { "gofmt" },
-    --                 rust = { "rustfmt" },
-    --             },
-    --             format_on_save = {
-    --                 lsp_fallback = true,
-    --                 timeout_ms = 250,
-    --             },
-    --         })
-    --     end,
-    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",

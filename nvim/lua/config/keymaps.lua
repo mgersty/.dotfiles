@@ -25,6 +25,11 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>', {desc="shout out"})
+vim.keymap.set('n', '<leader>w', ':write<CR>')
+vim.keymap.set('n', '<leader>q', ':quit!<CR>')
+vim.keymap.set('n', '<leader>x', ':x!<CR>')
+
 -- Telescope
 local telescope_builtins = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", telescope_builtins.find_files, opts)

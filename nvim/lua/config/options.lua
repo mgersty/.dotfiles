@@ -9,12 +9,12 @@ vim.opt.cursorline = true     -- Highlight current line
 vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 10        -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
-
-
--- vim.diagnostic.config({ virtual_text = true })
-vim.diagnostic.config({
-  virtual_text = { current_line = true }
-})
+vim.opt.signcolumn="yes"
+vim.opt.winborder="rounded"
+vim.diagnostic.config({ virtual_text = false })
+-- vim.diagnostic.config({
+--   virtual_text = { current_line = true }
+-- })
 
 -- INDENT SETTINGS --
 vim.opt.tabstop = 2        -- Tab width
@@ -372,77 +372,6 @@ local function setup_dynamic_statusline()
 end
 
 setup_dynamic_statusline()
-vim.api.nvim_set_hl(0, "StatusLine", { fg = "#000000", bg = "#44DB07" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#000000", bg = "#44DB07" })
-
-
-local vault_path = vim.fn.expand("~/obsidian.vaults/fleeting.notes/") -- Update this
-
--- Slugify function: turns title into safe filename
-local function slugify(str)
-    return str
-        :gsub("[^%w%s-]", "") -- Remove punctuation
-        :gsub("%s+", "-")   -- Spaces to hyphens
-        :gsub("%-+", "-")   -- Collapse multiple hyphens
-        :lower()
-end
-
-vim.api.nvim_create_user_command("ObsidianFloat", function(opts)
-    local title = opts.args ~= "" and opts.args or os.date("%Y-%m-%d-%H%M%S")
-    local slug = slugify(title)
-    local filename = slug .. ".md"
-    local full_path = vault_path .. "/" .. filename
-
-    -- Create vault directory if it doesn't exist
-    if vim.fn.isdirectory(vault_path) == 0 then
-        vim.fn.mkdir(vault_path, "p")
-    end
-
-    -- UI setup
-    local ui = vim.api.nvim_list_uis()[1]
-    local width = math.floor(ui.width * 0.8)
-    local height = math.floor(ui.height * 0.8)
-    local row = math.floor((ui.height - height) / 2)
-    local col = math.floor((ui.width - width) / 2)
-
-    -- Create writable buffer
-    local buf = vim.api.nvim_create_buf(true, false)
-    vim.api.nvim_buf_set_name(buf, full_path)
-    vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-    vim.api.nvim_buf_set_option(buf, "buftype", "")
-    vim.api.nvim_buf_set_option(buf, "bufhidden", "hide")
-
-    -- Open floating window
-    local win = vim.api.nvim_open_win(buf, true, {
-        relative = "editor",
-        width = width,
-        height = height,
-        row = row,
-        col = col,
-        style = "minimal",
-        border = "rounded",
-    })
-
-    -- Insert template with title as ID and heading
-    local timestamp = os.date("%Y-%m-%d %H:%M")
-    vim.api.nvim_buf_set_lines(buf, 0, 0, false, {
-        "---",
-        "id: " .. slug,
-        "created: " .. timestamp,
-        "tags: []",
-        "source: ",
-        "---",
-        "",
-        "# " .. title,
-        "",
-        "#####",
-        "",
-        "##### 🔗 Links",
-    })
-
-    -- Move cursor to heading
-    vim.api.nvim_win_set_cursor(win, { 9, #title + 2 })
-end, {
-    nargs = "*",
-    desc = "Open a floating Obsidian note window with optional title",
-})
+vim.cmd(":hi statusline guibg=NONE")
+-- vim.api.nvim_set_hl(0, "StatusLine", { fg = "#000000", bg = "#44DB07" })
+-- vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#000000", bg = "#44DB07" })
