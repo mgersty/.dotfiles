@@ -64,15 +64,20 @@ vim.opt.autowrite = true               -- Auto save
 vim.opt.hidden = true                  -- Allow hidden buffers
 vim.opt.errorbells = false             -- No error bells
 vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
--- vim.opt.autochdir = true               -- Don't auto change directory
 vim.opt.iskeyword:append("-")          -- Treat dash as part of word
 vim.opt.path:append("**")              -- include subdirectories in search
 vim.opt.selection = "exclusive"        -- Selection behavior
 vim.opt.modifiable = true              -- Allow buffer modifications
 vim.opt.encoding = "UTF-8"             -- Set encoding
 
+
+--DEBUG SETTINGS
+vim.fn.sign_define("DapBreakpoint", { text = "󰱯", texthl = "Search", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "󰱯", texthl = "", linehl = "", numhl = "" })
+
 --- HELPFUL FUNCTIONS ---
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
 -- Set filetype-specific settings
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup,

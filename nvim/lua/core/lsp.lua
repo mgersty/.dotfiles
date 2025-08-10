@@ -1,3 +1,5 @@
+-- require("dap.ext.vscode").load_launchjs()
+
 vim.lsp.enable({
     "lua-ls",
     "pyright",
