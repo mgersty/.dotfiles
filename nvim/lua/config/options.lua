@@ -9,8 +9,8 @@ vim.opt.cursorline = true     -- Highlight current line
 vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 10        -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
-vim.opt.signcolumn="yes"
-vim.opt.winborder="rounded"
+vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 vim.diagnostic.config({ virtual_text = false })
 -- vim.diagnostic.config({
 --   virtual_text = { current_line = true }
@@ -363,7 +363,7 @@ local function setup_dynamic_statusline()
                 "%{v:lua.git_branch()}",
                 "  ",
                 "%{v:lua.lsp_status()}",
-                "%=", -- Right-align everything after this
+                "%=",         -- Right-align everything after this
                 "%l:%c  %P ", -- Line:Column and Percentage
             })
         end,
