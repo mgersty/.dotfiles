@@ -54,6 +54,7 @@ vim.opt.swapfile = false                          -- Don't create swap files
 vim.opt.undofile = true                           -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
 vim.g.netrw_liststyle = 3
+vim.g.netrw_bufsettings = 'noma nomod rnu nobl nowrap ro'
 
 -- BEHAVIOR SETTINGS
 vim.opt.updatetime = 300               -- Faster completion
