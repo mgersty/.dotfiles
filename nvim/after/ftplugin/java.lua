@@ -37,13 +37,6 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
     desc = "Format current file",
 })
 
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
-keymap("n", "<leader>tc", jdtls.test_class, opts)
-keymap("n", "<leader>tm", jdtls.test_nearest_method, opts)
-
-
 local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 
@@ -159,7 +152,7 @@ local config = {
     },
 
     init_options = {
-        bundles = retrieve_supplementary_dependecies(),
+        -- bundles = retrieve_supplementary_dependecies(),
         extendedClientCapabilities = extendedClientCapabilities
     },
     capabilities = capabilities,

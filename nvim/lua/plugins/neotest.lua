@@ -1,5 +1,14 @@
 return {
-
+    {
+        "rcasia/neotest-java",
+        ft = "java",
+        dependencies = {
+            "mfussenegger/nvim-jdtls",
+            "mfussenegger/nvim-dap",     -- for the debugger
+            "rcarriga/nvim-dap-ui",      -- recommended
+            "theHamsta/nvim-dap-virtual-text", -- recommended
+        },
+    },
     {
         "nvim-neotest/neotest",
         dependencies = {
@@ -11,6 +20,7 @@ return {
             "nvim-neotest/neotest-go",
             "marilari88/neotest-vitest",
             "nvim-contrib/nvim-ginkgo",
+            'rcasia/neotest-java',
         },
         config = function()
             require("neotest").setup({
@@ -21,6 +31,7 @@ return {
                     require("neotest-go"),
                     require("neotest-vitest"),
                     require("nvim-ginkgo"),
+                    require("neotest-java")
                 },
                 output = {
                     enabled = true,
