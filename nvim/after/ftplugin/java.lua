@@ -3,6 +3,23 @@ if not status then
     return
 end
 
+function get_os()
+    local handle = io.popen("uname -s 2>/dev/null")
+    if handle then
+        local os_name = handle:read("*a"):lower():gsub("\n", "")
+        handle:close()
+
+        if os_name:find("linux") then
+            return "linux"
+        elseif os_name:find("darwin") then
+            return "macos"
+        end
+    end
+    return "unknown"
+end
+
+print("Operating System:", get_os())
+
 local function format_code()
     local bufnr = vim.api.nvim_get_current_buf()
     local filename = vim.api.nvim_buf_get_name(bufnr)
@@ -39,6 +56,8 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 
 local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
+local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
+local DEFAULT_JDK_PATH = get_os() == "linux" and  "/usr/lib/jvm/java-21-amazon-corretto" or "/usr/local/opt/openjdk@21"
 
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
@@ -78,9 +97,9 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        HOME .. "/.local/share/language.servers/jdtls/jdtls.jar",
+        HOME .. "/.local/share/language.servers/jdtls/plugins/jdtls.jar",
         "-configuration",
-        HOME .. "/.local/share/language.servers/jdtls/config_linux",
+        HOME .. "/.local/share/language.servers/jdtls/" .. CONFIG_DIR,
         "-data",
         HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
 
@@ -101,7 +120,7 @@ local config = {
                     -- },
                     {
                         name = "JavaSE-21",
-                        path = "/usr/lib/jvm/java-21-amazon-corretto",
+                        path = DEFAULT_JDK_PATH,
                     }
                 }
             },
@@ -152,7 +171,7 @@ local config = {
     },
 
     init_options = {
-        -- bundles = retrieve_supplementary_dependecies(),
+        bundles = retrieve_supplementary_dependecies(),
         extendedClientCapabilities = extendedClientCapabilities
     },
     capabilities = capabilities,

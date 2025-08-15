@@ -21,7 +21,6 @@ alias mason='cd ~/.local/share/nvim/mason'
 alias lsplogs='tail -f ~/.local/state/nvim/lsp.log'
 alias clear_lsplogs='echo "" > ~/.local/state/nvim/lsp.log'
 alias clear_jdtls_workspace='rm ~/.cache/jdtls/workspace/*'
-alias k='kubectl'
 alias cp='cp -r'
 alias rm='rm -rf'
 
@@ -33,6 +32,7 @@ alias tk='tmux kill-session -t'
 
 #NEOVIM CONFIG
 alias vim_show_mapping='cat ~/.dotfiles/nvim/lua/mappings.lua'
+alias langservers='cd ~/.local/share/language.servers'
 
 #DOCKER
 alias di='docker images'
