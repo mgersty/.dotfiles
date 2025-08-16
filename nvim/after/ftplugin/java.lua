@@ -73,7 +73,7 @@ local function retrieve_supplementary_dependecies()
     return dependency_bundle
 end
 
-local completion_capabilities = require('blink.cmp').get_lsp_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
@@ -172,7 +172,7 @@ local config = {
         bundles = retrieve_supplementary_dependecies(),
         extendedClientCapabilities = extendedClientCapabilities
     },
-    capabilities = completion_capabilities,
+    capabilities = capabilities,
     on_attach = function(client, bufnr)
         if client.name == "jdtls" then
             require("jdtls").setup_dap({ hotcodereplace = "auto" })
