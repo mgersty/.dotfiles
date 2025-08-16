@@ -5,7 +5,6 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        keymap = { preset = "super-tab" },
         snippets = { preset = "luasnip" },
         signature = { enabled = true },
     },
