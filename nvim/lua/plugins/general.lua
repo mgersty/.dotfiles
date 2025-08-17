@@ -1,5 +1,6 @@
 -- General Plugins
 return {
+    { "echasnovski/mini.icons" },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy", -- Or `LspAttach`

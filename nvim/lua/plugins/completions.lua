@@ -7,6 +7,33 @@ return {
         ---@type blink.cmp.Config
         opts = {
             signature = { enabled = true },
+            completion = {
+                menu = {
+                    draw = {
+                        padding = {0,1},
+                        components = {
+                            kind_icon = {
+                                text = function(ctx)
+                                    local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                                    return kind_icon
+                                end,
+                                -- (optional) use highlights from mini.icons
+                                highlight = function(ctx)
+                                    local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                                    return hl
+                                end,
+                            },
+                            kind = {
+                                -- (optional) use highlights from mini.icons
+                                highlight = function(ctx)
+                                    local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                                    return hl
+                                end,
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 }
