@@ -7,10 +7,10 @@ return {
         end,
     },
     {
-        "rcarriga/nvim-dap-ui",
-        config = function()
-            require("dapui").setup({})
-        end,
-        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+        "igorlfs/nvim-dap-view",
+        ---@module 'dap-view'
+        ---@type dapview.Config
+        opts = {},
     },
+
 }

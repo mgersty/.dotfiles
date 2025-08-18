@@ -57,12 +57,12 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and  "/usr/lib/jvm/java-21-amazon-corretto" or "/usr/local/opt/openjdk@21"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-amazon-corretto" or "/usr/local/opt/openjdk@21"
 
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
     local jdtls_dependencies_dir = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
-    local dep_jars = vim.fn.glob(jdtls_dependencies_dir .. "/test/*.jar", true)
+    local dep_jars = vim.fn.glob(jdtls_dependencies_dir .. "/bundles/*.jar", true)
     if dep_jars ~= "" then
         for _, jar in ipairs(vim.split(dep_jars, "\n")) do
             if jar ~= "" and vim.fn.filereadable(jar) == 1 then
@@ -95,9 +95,9 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        HOME .. "/.local/share/language.servers/jdtls/plugins/jdtls.jar",
+        HOME .. "/.local/share/language.servers/java/jdtls/plugins/jdtls.jar",
         "-configuration",
-        HOME .. "/.local/share/language.servers/jdtls/" .. CONFIG_DIR,
+        HOME .. "/.local/share/language.servers/java/jdtls/" .. CONFIG_DIR,
         "-data",
         HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
 
@@ -180,4 +180,23 @@ local config = {
         end
     end
 }
+vim.keymap.set("n", "<leader>dc", jdtls.test_class)
+vim.keymap.set("n", "<leader>dm", jdtls.test_nearest_method)
+
 require('jdtls').start_or_attach(config)
+
+
+local dap = require('dap')
+dap.configurations.java = {
+    {
+        javaExec = "/usr/local/opt/openjdk@21/bin/java",
+        mainClass = "com.example.helloworld.DemoApplication",
+
+        -- If using the JDK9+ module system, this needs to be extended
+        -- `nvim-jdtls` would automatically populate this property
+        modulePaths = {},
+        name = "Launch Test",
+        request = "launch",
+        type = "java"
+    },
+}
