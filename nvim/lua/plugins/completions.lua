@@ -6,11 +6,12 @@ return {
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
+            keymap = { preset = "super-tab" },
             signature = { enabled = true },
             completion = {
                 menu = {
                     draw = {
-                        padding = {0,1},
+                        padding = { 0, 1 },
                         components = {
                             kind_icon = {
                                 text = function(ctx)
