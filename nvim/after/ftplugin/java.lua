@@ -18,7 +18,6 @@ function get_os()
     return "unknown"
 end
 
-print("Operating System:", get_os())
 
 local function format_code()
     local bufnr = vim.api.nvim_get_current_buf()

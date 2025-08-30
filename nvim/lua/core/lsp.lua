@@ -1,6 +1,7 @@
 -- require("dap.ext.vscode").load_launchjs()
 
 vim.lsp.enable({
+    "lemminx",
     "lua-ls",
     "pyright",
     -- "ruff",
