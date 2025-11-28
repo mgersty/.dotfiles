@@ -14,6 +14,8 @@ return {
                 "python",
                 "yaml",
                 "go",
+                "c",
+                "cpp",
             },
             sync_install = false,
             highlight = {

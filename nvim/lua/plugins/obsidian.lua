@@ -11,7 +11,8 @@ return {
         workspaces = {
             {
                 name = "home",
-                path = HOME .. "/obsidian.vaults/",
+                path = HOME .. '/google.drive/personal.vault'
+,
             },
         },
         completion = { nvim_cmp = false, blink = true, create_new=false},
