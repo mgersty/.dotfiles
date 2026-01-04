@@ -38,7 +38,6 @@
     pager = delta
 
 [credential]
-	helper = !aws codecommit credential-helper $@ --profile default
     	UseHttpPath = true
 
 [delta]
@@ -76,4 +75,3 @@
 	gerritAlias = osd
 	sshAlias = gerrit
 	httpServer = osd-review.cas.org
-

@@ -53,3 +53,5 @@ alias crika='for line in $(crictl ps 2>/dev/null |grep -v CONTAINER|awk '{print 
 alias aws_list_stacks="aws cloudformation describe-stacks | jq '.Stacks[].StackName'"
 alias aws_whoami='aws sts get-caller-identity | jq .'
 alias list_ec2="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | (.InstanceId+\" -> \"+.PrivateDnsName+\" -> \"+.State.Name)'"
+PROMPT='%n@%m '$PROMPT
+
