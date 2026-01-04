@@ -4,6 +4,7 @@ vim.lsp.enable({
     "clangd",
     "lemminx",
     "lua-ls",
+    "bashls",
     "pylsp"
 })
 

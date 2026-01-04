@@ -11,7 +11,7 @@ return {
         workspaces = {
             {
                 name = "home",
-                path = HOME .. '/google.drive/personal.vault'
+                path = HOME .. '/personal.notes'
 ,
             },
         },
