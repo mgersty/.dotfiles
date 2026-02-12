@@ -1,4 +1,5 @@
 -- SETTINGS --
+-- vim.cmd.colorscheme("material-lighter")
 vim.cmd.colorscheme("material-deep-ocean")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -47,7 +48,7 @@ vim.opt.concealcursor = ""                        -- Don't hide cursor line mark
 vim.opt.lazyredraw = true                         -- Don't redraw during macros
 vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
 
--- FILE HANDLING SETTINGS --
+-- FILE HANDLING SETTINGS -
 vim.opt.backup = false                            -- Don't create backup files
 vim.opt.writebackup = false                       -- Don't create backup before writing
 vim.opt.swapfile = false                          -- Don't create swap files

@@ -5,7 +5,8 @@ vim.lsp.enable({
     "lemminx",
     "lua-ls",
     "bashls",
-    "pylsp"
+    "pylsp",
+    "jsonls"
 })
 
 

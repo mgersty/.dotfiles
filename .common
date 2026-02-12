@@ -22,6 +22,7 @@ alias clear_lsplogs='echo "" > ~/.local/state/nvim/lsp.log'
 alias clear_jdtls_workspace='rm ~/.cache/jdtls/workspace/*'
 alias cp='cp -r'
 alias rm='rm -rf'
+alias open='dolphin'
 
 #TMUX CONFIG
 alias tn='tmux new-session -s'

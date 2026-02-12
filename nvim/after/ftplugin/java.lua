@@ -56,7 +56,7 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-amazon-corretto" or "/usr/local/opt/openjdk@21"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/usr/local/opt/openjdk@21"
 
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
@@ -86,7 +86,7 @@ local config = {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-javaagent:" .. HOME .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+        "-javaagent:/usr/share/java/jdtls/lib/lombok.jar",
         "-Xms1g",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
@@ -94,9 +94,10 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        HOME .. "/.local/share/language.servers/java/jdtls/plugins/jdtls.jar",
+        "/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar",
         "-configuration",
-        HOME .. "/.local/share/language.servers/java/jdtls/" .. CONFIG_DIR,
+        HOME .. "/.local/share/language.servers/jdtls/" .. CONFIG_DIR,
+
         "-data",
         HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
 
@@ -150,7 +151,7 @@ local config = {
         }
     },
     contentProvider = { preferred = "fernflower" },
-    extendendClientCapabilities = extendedClientCapabilities,
+    extendedClientCapabilities = extendedClientCapabilities,
     sources = {
         organizeImports = {
             starThreshold = 9999,

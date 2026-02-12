@@ -1,2 +1,6 @@
-theme=Monokai
-font-family=Monaco
+theme = Material Dark
+# theme = Builtin Tango Light
+font-family=UbuntuMono Nerd Font
+background-opacity=1
+background-blur=false
+font-size=14

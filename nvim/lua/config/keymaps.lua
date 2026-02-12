@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>lo", jdtls.organize_imports, opts)
 vim.keymap.set("n", "<leader>tm", neotest.run.run, opts)
 vim.keymap.set("n", "<leader>tc", neotest.run.run, opts)
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
 -- Debug Adapter Protocol
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

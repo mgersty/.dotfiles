@@ -1,5 +1,10 @@
 -- General Plugins
 return {
+    {
+  "esmuellert/codediff.nvim",
+  dependencies = { "MunifTanjim/nui.nvim" },
+  cmd = "CodeDiff",
+},
     { "echasnovski/mini.icons" },
     {
         "rachartier/tiny-inline-diagnostic.nvim",

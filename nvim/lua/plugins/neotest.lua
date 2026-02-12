@@ -20,7 +20,6 @@ return {
             "nvim-neotest/neotest-go",
             "marilari88/neotest-vitest",
             "nvim-contrib/nvim-ginkgo",
-            'rcasia/neotest-java',
         },
         config = function()
             require("neotest").setup({
@@ -31,7 +30,6 @@ return {
                     require("neotest-go"),
                     require("neotest-vitest"),
                     require("nvim-ginkgo"),
-                    require("neotest-java")
                 },
                 output = {
                     enabled = true,
