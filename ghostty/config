@@ -1,6 +1,7 @@
 theme = Material Dark
 # theme = Builtin Tango Light
 font-family=UbuntuMono Nerd Font
-background-opacity=1
+background-opacity=.76
 background-blur=false
 font-size=14
+working-directory=~
