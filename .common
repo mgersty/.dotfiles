@@ -1,7 +1,7 @@
 
 export DISABLE_AUTO_TITLES=true
 
-alias ll='ls -all'
+alias ll='ls -allh'
 alias rgrep='rg'
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
 alias profile="vim ~/.zshrc"
