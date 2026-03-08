@@ -24,7 +24,7 @@
 	sts = stash push
 	stp = stash pop
 	stc = stash clear
-	sh = show --pretty='' --name-only
+	sh = show --name-status
 
 [color]
 	ui = true

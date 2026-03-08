@@ -57,11 +57,12 @@ local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
 local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/usr/local/opt/openjdk@21"
-
+local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
+local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar",true, false)
+local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
-    local jdtls_dependencies_dir = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
-    local dep_jars = vim.fn.glob(jdtls_dependencies_dir .. "/bundles/*.jar", true)
+    local dep_jars = vim.fn.glob(JDTLS_DEPENDENCIES_DIR .. "/bundles/*.jar", true)
     if dep_jars ~= "" then
         for _, jar in ipairs(vim.split(dep_jars, "\n")) do
             if jar ~= "" and vim.fn.filereadable(jar) == 1 then
@@ -80,13 +81,12 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local config = {
     cmd = {
         "java",
-        -- "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-javaagent:/usr/share/java/jdtls/lib/lombok.jar",
+        -- "-javaagent:" .. JDTLS_DEPENDENCIES_DIR .. "/lombok.jar",
         "-Xms1g",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
@@ -94,9 +94,9 @@ local config = {
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-jar",
-        "/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar",
+        JDTLS_LAUNCHER_PATH,
         "-configuration",
-        HOME .. "/.local/share/language.servers/jdtls/" .. CONFIG_DIR,
+        JDTLS_PATH .. "/" .. CONFIG_DIR,
 
         "-data",
         HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
@@ -112,10 +112,6 @@ local config = {
             configuration = {
                 updateBuildConfiguration = "interactive",
                 runtimes = {
-                    -- {
-                    --     name = "javaSE-1.8",
-                    --     path = "/usr/lib/jvm/java-8-openjdk-amd64/jre",
-                    -- },
                     {
                         name = "JavaSE-21",
                         path = DEFAULT_JDK_PATH,

@@ -1,4 +1,4 @@
-local HOME = os.getenv("HOME")
+local PERSONAL_NOTES_HOME=os.getenv("PERSONAL_NOTES_HOME")
 
 return {
     "obsidian-nvim/obsidian.nvim",
@@ -11,7 +11,7 @@ return {
         workspaces = {
             {
                 name = "home",
-                path = HOME .. '/personal.notes'
+                path = PERSONAL_NOTES_HOME
 ,
             },
         },
