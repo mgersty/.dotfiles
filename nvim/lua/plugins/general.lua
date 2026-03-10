@@ -6,7 +6,8 @@ return {
         opts = {},
     },
 
-    { "nickjvandyke/opencode.nvim",
+    {
+        "nickjvandyke/opencode.nvim",
         version = "*", -- Latest stable release
         dependencies = {
             {
@@ -16,7 +17,7 @@ return {
                 optional = true,
                 opts = {
                     input = {}, -- Enhances `ask()`
-                    picker = { -- Enhances `select()`
+                    picker = {  -- Enhances `select()`
                         actions = {
                             opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
                         },
@@ -99,9 +100,20 @@ return {
                     --     return ""
                     -- end,
                     icons = {
-                        Enum = { icon = "󰫲", hl = "Type" },
-                        Struct = { icon = "", hl = "Structure" },
-                        Object = { icon = "󰫶", hl = "Type" },
+                        File = { icon = '󰈔', hl = 'Identifier' },
+                        Module = { icon = '󰆧', hl = 'Include' },
+                        Namespace = { icon = '󰅪', hl = 'Include' },
+                        Package = { icon = '󰏗', hl = 'Include' },
+                        Class = { icon = '', hl = 'Type' },
+                        Method = { icon = '󰅩', hl = 'Function' },
+                        Property = { icon = '', hl = 'Identifier' },
+                        Field = { icon = '󰆨', hl = 'Identifier' },
+                        Constructor = { icon = '', hl = 'Special' },
+                        Enum = { icon = '󰫲', hl = 'Type' },
+                        Interface = { icon = '󰜰', hl = 'Type' },
+                        Function = { icon = '󰅩', hl = 'Function' },
+                        Variable = { icon = '', hl = 'Constant' },
+                        constant = { icon = '󰆨', hl = 'Identifier' },
                     },
                 },
             })
