@@ -1,6 +1,7 @@
 -- SETTINGS --
+vim.cmd.colorscheme("visual_studio_code")
 -- vim.cmd.colorscheme("material-lighter")
-vim.cmd.colorscheme("material-deep-ocean")
+-- vim.cmd.colorscheme("material-deep-ocean")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })

@@ -1,15 +1,23 @@
--- require("dap.ext.vscode").load_launchjs()
 
-vim.lsp.enable({
-    "angularls",
-    "clangd",
-    "lemminx",
-    "lua-ls",
-    "bashls",
-    "pylsp",
-    "jsonls"
-})
+local servers = {
+  -- "angularls",
+  "bashls",
+  "clangd",
+  "jsonls",
+  "lemminx",
+  "lua-ls",
+  "pylsp",
+  "ruff",
+}
 
+for _, server in ipairs(servers) do
+  local ok, config = pcall(require, "lsp." .. server)
+  if ok then
+    vim.lsp.config(server, config)
+  end
+end
+
+vim.lsp.enable(servers)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
@@ -20,4 +28,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.cmd("set completeopt+=noselect")
+vim.opt.completeopt:append("noselect")
