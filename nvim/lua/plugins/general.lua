@@ -143,7 +143,10 @@ return {
         ---@type ibl.config
         opts = {},
         config = function()
-            require("ibl").setup({ indent = { char = "." } })
+            require("ibl").setup({
+                indent = { char = "." },
+                scope = { enabled = false},
+            })
         end,
     },
     { "tpope/vim-commentary" },
