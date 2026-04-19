@@ -1,10 +1,49 @@
 # theme = Material Dark
 theme = Cobalt2
 # theme = GitHub Light Default
-font-family=Inconsolata Nerd Font
-# font-family=UbuntuMono Nerd Font
+# font-family=Inconsolata Nerd Font
+font-family=Monaco
 background-opacity=1
 background-blur=false
 font-size=14
-working-directory=~
 mouse-scroll-multiplier=0.5
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+macos-option-as-alt = true
+window-padding-x=10
+window-padding-y=10
+window-padding-balance=true
+# run zsh
+command = zsh -l
+
+# terminal type
+env = TERM=xterm-256color
+
+# scrollback
+scrollback-limit = 10000
+
+# splits
+# keybind = ctrl+s>v=new_split:right
+# keybind = ctrl+s>b=new_split:down
+
+# # tabs
+# keybind = ctrl+s>c=new_tab
+# keybind = alt+left=previous_tab
+# keybind = alt+right=next_tab
+
+# # # split navigation
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+l=goto_split:right
+# keybind = ctrl+k=goto_split:up
+# keybind = ctrl+j=goto_split:down
+
+# # resize splits
+# keybind = ctrl+s>left=resize_split:left,10
+# keybind = ctrl+s>right=resize_split:right,10
+# keybind = ctrl+s>up=resize_split:up,10
+# keybind = ctrl+s>down=resize_split:down,10
+
+
+# # clipboard
+# keybind = ctrl+shift+c=copy_to_clipboard
+# keybind = ctrl+shift+v=paste_from_clipboard

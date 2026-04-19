@@ -38,14 +38,14 @@ vim.keymap.set("n", "<leader>fd", ":Telescope file_browser<CR>")
 
 -- Language Servers
 local jdtls = require("jdtls")
-local neotest = require("neotest")
+-- local neotest = require("neotest")
 vim.keymap.set("n", "grr", telescope_builtins.lsp_references, opts)
 vim.keymap.set("n", "gri", telescope_builtins.lsp_implementations, opts)
 vim.keymap.set("n", "grd", telescope_builtins.lsp_definitions, opts)
 vim.keymap.set("n", "<leader>lo", jdtls.organize_imports, opts)
 vim.keymap.set("n", "<leader>ca", '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-vim.keymap.set("n", "<leader>tm", neotest.run.run, opts)
-vim.keymap.set("n", "<leader>tc", neotest.run.run, opts)
+-- vim.keymap.set("n", "<leader>tm", neotest.run.run, opts)
+-- vim.keymap.set("n", "<leader>tc", neotest.run.run, opts)
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 

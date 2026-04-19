@@ -54,9 +54,10 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 })
 
 local HOME = os.getenv("HOME")
-local ROOT_DIR = require("jdtls.setup").find_root({ 'pom.xml' })
+local ROOT_DIR = require("jdtls.setup").find_root({ 'settings.gradle' }) or
+                 require("jdtls.setup").find_root({ '.git' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/usr/local/opt/openjdk@21"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home"
 local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
 local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar",true, false)
 local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
@@ -88,6 +89,7 @@ local config = {
         "-Dlog.level=ALL",
         -- "-javaagent:" .. JDTLS_DEPENDENCIES_DIR .. "/lombok.jar",
         "-Xms1g",
+        "-Xmx4g",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
         "java.base/java.util=ALL-UNNAMED",
@@ -99,7 +101,7 @@ local config = {
         JDTLS_PATH .. "/" .. CONFIG_DIR,
 
         "-data",
-        HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":p:h:t")
+        HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":t")
 
     },
     root_dir = ROOT_DIR,
@@ -114,12 +116,19 @@ local config = {
                 runtimes = {
                     {
                         name = "JavaSE-21",
-                        path = DEFAULT_JDK_PATH,
+                        path = DEFAULT_JDK_PATH
                     }
                 }
             },
             maven = {
                 downloadSources = true,
+            },
+            import = {
+                gradle = {
+                    enabled = true,
+                    wrapper = { enabled = true },
+                    version = "9.1.0",
+                },
             },
             implementationCodeLens = {
                 enabled = false,

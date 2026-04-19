@@ -22,7 +22,8 @@ alias clear_lsplogs='echo "" > ~/.local/state/nvim/lsp.log'
 alias clear_jdtls_workspace='rm ~/.cache/jdtls/workspace/*'
 alias cp='cp -r'
 alias rm='rm -rf'
-alias open='dolphin'
+alias notes='cd $PERSONAL_NOTES_HOME/fleeting.notes && vim notes.md'
+alias scratch='vim $PERSONAL_NOTES_HOME/fleeting.notes/scratch.txt'
 
 #TMUX CONFIG
 alias tn='tmux new-session -s'
@@ -48,7 +49,6 @@ alias drai='docker rmi $(docker images -q)'
 alias k='kubectl'
 alias ka='kubectl get all --all-namespaces -o wide'
 alias crika='for line in $(crictl ps 2>/dev/null |grep -v CONTAINER|awk '{print $1}') ; do crictl stop $line; done'
-
 
 #AWS
 alias aws_list_stacks="aws cloudformation describe-stacks | jq '.Stacks[].StackName'"

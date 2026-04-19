@@ -3,8 +3,8 @@
 	c = commit -a
 	ca = commit -a
 	bc = checkout -b
-    b = branch
-    ba = branch -a
+  b = branch
+  ba = branch -a
 	bd = branch -D
 	bl = blame
 	bs = checkout
@@ -17,6 +17,7 @@
 	ps = push
 	pl = pull
 	r = reset --hard HEAD
+  rl= reflog --format='%C(auto)%h %C(blue)%ci%C(reset) %gd %s'
 	s = status -sb
 	st = stash
 	sta = stash apply
@@ -66,12 +67,5 @@
 
 [user]
 	name = Matthew Gerstemeier
-	email = mgerstemeier@cas.org
+	email = mgerstemeier@jumpmind.com
 
-; CAS SPECIFIC
-[gerrit]
-	createchangeid = true
-[casgittools]
-	gerritAlias = osd
-	sshAlias = gerrit
-	httpServer = osd-review.cas.org
