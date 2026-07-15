@@ -6,7 +6,7 @@ local servers = {
   "jsonls",
   "lemminx",
   "lua-ls",
-  "pylsp",
+  "pyright",
   "ruff",
   "yamlls",
 }

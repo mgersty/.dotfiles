@@ -35,8 +35,7 @@
 
 [core]
 	editor = vim
-	excludesfile = /home/mpg26/.cas-git-tools/etc/default-excludesfile
-    pager = delta
+  pager = hunk pager
 
 [credential]
     	UseHttpPath = true

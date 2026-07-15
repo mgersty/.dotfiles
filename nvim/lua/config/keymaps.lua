@@ -59,3 +59,11 @@ vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", opts)
 vim.keymap.set("n", "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", opts)
 vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+
+--Pi Coding Agent
+-- Ask pi with the current buffer as context
+vim.keymap.set("n", "<leader>ai", ":PiAsk<CR>", { desc = "Ask pi" })
+
+-- Ask pi with visual selection as context
+vim.keymap.set("v", "<leader>ai", ":PiAskSelection<CR>", { desc = "Ask pi (selection)" })
+

@@ -18,7 +18,6 @@ function get_os()
     return "unknown"
 end
 
-
 local function format_code()
     local bufnr = vim.api.nvim_get_current_buf()
     local filename = vim.api.nvim_buf_get_name(bufnr)
@@ -59,7 +58,7 @@ local ROOT_DIR = require("jdtls.setup").find_root({ 'settings.gradle' }) or
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
 local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home"
 local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
-local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar",true, false)
+local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, false)
 local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
@@ -87,7 +86,7 @@ local config = {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        -- "-javaagent:" .. JDTLS_DEPENDENCIES_DIR .. "/lombok.jar",
+        "-javaagent:" .. JDTLS_DEPENDENCIES_DIR .. "/lombok.jar",
         "-Xms1g",
         "-Xmx4g",
         "--add-modules=ALL-SYSTEM",
