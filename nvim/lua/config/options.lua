@@ -1,9 +1,12 @@
 -- SETTINGS --
 -- vim.cmd.colorscheme("rose-pine-main")
+vim.cmd.colorscheme("rose-pine-dawn")
+-- vim.cmd.colorscheme("nord")
 -- vim.cmd.colorscheme("visual_studio_code")
-vim.cmd.colorscheme("atom")
+--vim.cmd.colorscheme("atom")
 -- vim.cmd.colorscheme("material-deep-ocean")
 -- vim.cmd.colorscheme("material-darker")
+-- vim.cmd.colorscheme("iceberg")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
@@ -37,6 +40,9 @@ vim.opt.incsearch = true  -- Show matches as you type
 -- VISUAL SETTINGS --
 vim.opt.termguicolors = true                      -- Enable 24-bit colors
 vim.opt.signcolumn = "yes"                        -- Always show sign column
+-- Cursor Options
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,i:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+
 -- vim.opt.colorcolumn = "150"                       -- Show column at 100 characters
 vim.opt.showmatch = true                          -- Highlight matching brackets
 vim.opt.matchtime = 2                             -- How long to show matching bracket
@@ -383,6 +389,6 @@ end
 
 setup_dynamic_statusline()
 vim.cmd(":hi statusline guibg=NONE")
-vim.cmd(":hi statusline guifg=white")
+vim.cmd(":hi statusline guifg=black")
 -- vim.api.nvim_set_hl(0, "StatusLine", { fg = "#000000", bg = "#44DB07" })
 -- vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#000000", bg = "#44DB07" })

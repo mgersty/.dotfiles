@@ -9,6 +9,8 @@ local servers = {
   "pyright",
   "ruff",
   "yamlls",
+  "typescriptls",
+  "zls",
 }
 
 for _, server in ipairs(servers) do

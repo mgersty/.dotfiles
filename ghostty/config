@@ -9,7 +9,7 @@
 # font-family=Inconsolata Nerd Font
 font-family=Monaco
 background-opacity=1
-background-blur=false
+background-blur=true
 font-size=14
 mouse-scroll-multiplier=0.5
 keybind = alt+left=unbind
@@ -18,6 +18,8 @@ macos-option-as-alt = true
 window-padding-x=10
 window-padding-y=10
 window-padding-balance=true
+cursor-style=block_hollow
+
 # run zsh
 command = zsh -l
 

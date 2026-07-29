@@ -53,10 +53,10 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 })
 
 local HOME = os.getenv("HOME")
-local ROOT_DIR = require("jdtls.setup").find_root({ 'settings.gradle' }) or
-                 require("jdtls.setup").find_root({ '.git' })
+local ROOT_DIR = require("jdtls.setup").find_root({ '.git' }) or
+                 require("jdtls.setup").find_root({ 'settings.gradle' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
 local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, false)
 local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
@@ -78,9 +78,11 @@ local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 
+local JDTLS_JAVA_PATH = DEFAULT_JDK_PATH .. "/bin/java"
+
 local config = {
     cmd = {
-        "java",
+        JDTLS_JAVA_PATH,
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -127,6 +129,9 @@ local config = {
                     enabled = true,
                     wrapper = { enabled = true },
                     version = "9.1.0",
+                    java = {
+                        home = DEFAULT_JDK_PATH,
+                    },
                 },
             },
             implementationCodeLens = {

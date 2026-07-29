@@ -1,0 +1,6 @@
+theme = "ocean"
+
+[themes.ocean]
+base = "nord"
+label = "Ocean"
+accent = "#7fd1ff"

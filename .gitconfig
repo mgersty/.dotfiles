@@ -1,70 +1,72 @@
 [alias]
-	a = add .
-	c = commit -a
-	ca = commit -a
-	bc = checkout -b
-  b = branch
-  ba = branch -a
-	bd = branch -D
-	bl = blame
-	bs = checkout
-	f = fetch
-	d = diff
-	dt = difftool
-	ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-	m = merge
-	mt = mergetool
-	ps = push
-	pl = pull
-	r = reset --hard HEAD
-  rl= reflog --format='%C(auto)%h %C(blue)%ci%C(reset) %gd %s'
-	s = status -sb
-	st = stash
-	sta = stash apply
-	stl = stash list
-	sts = stash push
-	stp = stash pop
-	stc = stash clear
-	sh = show --name-status
+a = add .
+c = commit -a
+ca = commit -a
+bc = checkout -b
+b = branch
+ba = branch -a
+bd = branch -D
+bl = blame
+bs = checkout
+f = fetch
+d = diff
+dt = difftool
+ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+m = merge
+mt = mergetool
+ps = push
+pl = pull
+r = reset --hard HEAD
+rl= reflog --format='%C(auto)%h %C(blue)%ci%C(reset) %gd %s'
+s = status -sb
+st = stash
+sta = stash apply
+stl = stash list
+sts = stash push
+stp = stash pop
+stc = stash clear
+sh = show --name-status
+pr = !gitpr
 
 [color]
-	ui = true
+ui = true
 
 [commit]
-	template = ~/.gitmessage
+template = ~/.gitmessage
 
 [core]
-	editor = vim
-  pager = hunk pager
+editor = vim
+pager = hunk pager
 
 [credential]
-    	UseHttpPath = true
+UseHttpPath = true
 
-[delta]
-    	navigate = true
-    	line-numbers = true
-    	side-by-side = true
 
 [diff]
-	tool = nvimdiff
-	renames = true
+tool = nvimdiff
+renames = true
 
 [difftool]
-	prompt = false
+prompt = false
 
 [difftool "nvimdiff"]
-    	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [init]
-	defaultBranch = main
+defaultBranch = main
 
 [interactive]
-	diffFilter = delta --color-only --features=interactive
+diffFilter = delta --color-only --features=interactive
 
 [merge]
-    	tool = nvimdiff
+tool = nvimdiff
 
 [user]
-	name = Matthew Gerstemeier
-	email = mgerstemeier@jumpmind.com
-
+name = Matthew Gerstemeier
+email = mgerstemeier@jumpmind.com
+[credential "https://github.com"]
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
