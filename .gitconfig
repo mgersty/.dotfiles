@@ -41,7 +41,6 @@ pager = hunk pager
 [credential]
 UseHttpPath = true
 
-
 [diff]
 tool = nvimdiff
 renames = true
@@ -63,7 +62,7 @@ tool = nvimdiff
 
 [user]
 name = Matthew Gerstemeier
-email = mgerstemeier@jumpmind.com
+email = mgerstem@gmail.com
 [credential "https://github.com"]
 helper =
 helper = !/opt/homebrew/bin/gh auth git-credential
