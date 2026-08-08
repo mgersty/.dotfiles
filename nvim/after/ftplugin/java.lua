@@ -56,16 +56,35 @@ local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ '.git' }) or
                  require("jdtls.setup").find_root({ 'settings.gradle' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home"
+-- Helidon 27.x builds at <version.java>26</version.java>. Without a matching
+-- JavaSE-26 runtime registered, m2e can't configure those modules.
+local JDK26_PATH = get_os() == "linux" and "/usr/lib/jvm/java-26-openjdk" or "/opt/homebrew/opt/openjdk@26"
+
+local function java_runtimes()
+    local runtimes = {}
+    for _, rt in ipairs({ { "JavaSE-21", DEFAULT_JDK_PATH }, { "JavaSE-26", JDK26_PATH } }) do
+        if vim.fn.isdirectory(rt[2]) == 1 then
+            table.insert(runtimes, { name = rt[1], path = rt[2] })
+        end
+    end
+    return runtimes
+end
+
 local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
 local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, false)
 local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
+
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
     local dep_jars = vim.fn.glob(JDTLS_DEPENDENCIES_DIR .. "/bundles/*.jar", true)
     if dep_jars ~= "" then
         for _, jar in ipairs(vim.split(dep_jars, "\n")) do
-            if jar ~= "" and vim.fn.filereadable(jar) == 1 then
+            -- The test *runner* jar is a plain fat jar, not an OSGi bundle;
+            -- passing it here makes jdtls log "Failed to load extension
+            -- bundles" on every start.
+            if jar ~= "" and vim.fn.filereadable(jar) == 1
+                and not jar:match("test%.runner%-jar%-with%-dependencies") then
                 table.insert(dependency_bundle, jar)
             end
         end
@@ -87,7 +106,12 @@ local config = {
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
-        "-Dlog.level=ALL",
+        -- Do NOT set -Dlog.level here. No jdtls bundle reads this property, but
+        -- Helidon's Maven build extensions do, via
+        -- io.helidon.build.common.logging.LogLevel, whose only constants are
+        -- DEBUG/VERBOSE/INFO/WARN/ERROR. "ALL" makes its static initializer
+        -- throw, which kills every m2e lifecycle participant, so no module ever
+        -- gets a Java nature or a .classpath.
         "-javaagent:" .. JDTLS_DEPENDENCIES_DIR .. "/lombok.jar",
         "-Xms1g",
         "-Xmx4g",
@@ -114,17 +138,17 @@ local config = {
             },
             configuration = {
                 updateBuildConfiguration = "interactive",
-                runtimes = {
-                    {
-                        name = "JavaSE-21",
-                        path = DEFAULT_JDK_PATH
-                    }
-                }
+                runtimes = java_runtimes()
             },
             maven = {
                 downloadSources = true,
             },
             import = {
+                -- Keep .project/.classpath/.settings/bin out of the source tree.
+                -- Prevents the jaxrs-api (packaging=bundle) module from being copied
+                -- into jaxrs-api/bin/ and re-imported as a duplicate project, which
+                -- breaks "jakarta.ws.rs-api" resolution for examples/tck.
+                generatesMetadataFilesAtProjectRoot = false,
                 gradle = {
                     enabled = true,
                     wrapper = { enabled = true },
@@ -191,6 +215,13 @@ local config = {
 }
 vim.keymap.set("n", "<leader>dc", jdtls.test_class)
 vim.keymap.set("n", "<leader>dm", jdtls.test_nearest_method)
+
+-- jdtls applies java.import.* while running the initial project import, which
+-- finishes before workspace/didChangeConfiguration ever arrives. nvim-jdtls
+-- doesn't forward config.settings into initializationOptions, so pass them
+-- through explicitly -- otherwise generatesMetadataFilesAtProjectRoot and the
+-- configured runtimes are ignored on the import that actually matters.
+config.init_options.settings = config.settings
 
 require('jdtls').start_or_attach(config)
 

@@ -8,6 +8,7 @@ local servers = {
   "lua-ls",
   "pyright",
   "ruff",
+  "rustls",
   "yamlls",
   "typescriptls",
   "zls",
