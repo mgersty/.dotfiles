@@ -1,0 +1,5 @@
+require("components.lsp")
+require("components.statusline")
+require("components.fileexplorer")
+require("components.find")
+require("components.autocmds")
