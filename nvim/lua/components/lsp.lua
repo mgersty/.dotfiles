@@ -1,7 +1,9 @@
 -- LSP Setup
 local servers = {
     "luals",
-    "jls"
+    "jls",
+    "rustls",
+    -- "intellij"
 }
 
 vim.lsp.enable(servers)
