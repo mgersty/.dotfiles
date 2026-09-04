@@ -7,6 +7,7 @@ b = branch
 ba = branch -a
 bd = branch -D
 bl = blame
+bm = branch -m
 bs = checkout
 f = fetch
 d = diff

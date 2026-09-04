@@ -1,6 +1,7 @@
-theme = "ocean"
+theme = "github-light-default"
+# theme = "ocean"
 
-[themes.ocean]
-base = "nord"
-label = "Ocean"
-accent = "#7fd1ff"
+# [themes.ocean]
+# base = "nord"
+# label = "Ocean"
+# accent = "#7fd1ff"

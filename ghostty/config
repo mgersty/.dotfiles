@@ -2,25 +2,25 @@
 # theme = Cobalt2
 # theme=Cyberdyne
 # theme=Duckbones
-# theme=GitLab Light
+theme=GitLab Light
 # theme=GitHub Light Default
 # theme=Alabaster
 # theme = GitHub Light Default
 # font-family=Inconsolata Nerd Font
-font-family=UbuntuMono Nerd Font
-# font-family=Monaco
+# font-family=UbuntuMono Nerd Font
+font-family=Monaco
 background-blur=false
-background-opacity=.3
+background-opacity=0
 font-size=14
-mouse-scroll-multiplier=0.5
-keybind = alt+left=unbind
-keybind = alt+right=unbind
+mouse-scroll-multiplier=0.6
 macos-option-as-alt = true
 window-padding-x=10
 window-padding-y=10
 window-padding-balance=true
 cursor-style=block_hollow
 command = zsh -l
+keybind = alt+left=unbind
+keybind = alt+right=unbind
 
 # terminal type
 env = TERM=xterm-256color

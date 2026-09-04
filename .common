@@ -1,5 +1,6 @@
 
 export DISABLE_AUTO_TITLES=true
+export SLUMBER_CONFIG_PATH=$HOME/.dotfiles/slumber/config.yml
 
 alias ll='ls -allh'
 alias rgrep='rg'

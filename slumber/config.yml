@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/LucasPickering/slumber/refs/tags/v5.2.5/schemas/config.json
+# ^ This enables schema validation and autocomplete in your editor
+# https://github.com/redhat-developer/yaml-language-server
+
+# For configuration options, see:
+# https://slumber.lucaspickering.me/api/configuration/index.html
+
+input_bindings:
+  submit: [enter]
+# theme:
+#   primary_color: "#4682B4"
+#   border_color: "#15446a"
+#   primary_text_color: "#FFFFFF"
+#   text_color: "black"
+#   text_box_background_color: "#FFFFFF"
