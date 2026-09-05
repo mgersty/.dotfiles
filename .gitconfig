@@ -12,7 +12,7 @@ bs = checkout
 f = fetch
 d = diff
 dt = difftool
-ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+ll = log --color --graph --date=format:'%D - %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' -20
 m = merge
 mt = mergetool
 ps = push
