@@ -10,7 +10,6 @@ local servers = {
   "ruff",
   "rustls",
   "yamlls",
-  "typescriptls",
   "zls",
 }
 

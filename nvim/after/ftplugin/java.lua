@@ -56,7 +56,7 @@ local HOME = os.getenv("HOME")
 local ROOT_DIR = require("jdtls.setup").find_root({ '.git' }) or
                  require("jdtls.setup").find_root({ 'settings.gradle' })
 local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home"
+local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 -- Helidon 27.x builds at <version.java>26</version.java>. Without a matching
 -- JavaSE-26 runtime registered, m2e can't configure those modules.
 local JDK26_PATH = get_os() == "linux" and "/usr/lib/jvm/java-26-openjdk" or "/opt/homebrew/opt/openjdk@26"
