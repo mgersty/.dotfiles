@@ -1,24 +1,14 @@
-# theme = Material Dark
-# theme = Cobalt2
 theme=Cyberdyne
-# theme=Duckbones
-# theme=GitLab Light
-# theme=GitHub Light Default
-# theme=Alabaster
-# theme = GitHub Light Default
-# font-family=Inconsolata Nerd Font
-# font-family=UbuntuMono Nerd Font
-font-family=Monaco
 background-blur=false
-background-opacity=0.3
+background-opacity=0
 font-size=14
 mouse-scroll-multiplier=0.6
-macos-option-as-alt = true
 window-padding-x=10
 window-padding-y=10
 window-padding-balance=true
 cursor-style=block_hollow
-command = zsh -l
+
+# Leave the shell unset so Ghostty uses the user's default shell on both macOS and Linux.
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 
@@ -27,29 +17,3 @@ env = TERM=xterm-256color
 
 # scrollback
 scrollback-limit = 10000
-
-# splits
-# keybind = ctrl+s>v=new_split:right
-# keybind = ctrl+s>b=new_split:down
-
-# # tabs
-# keybind = ctrl+s>c=new_tab
-# keybind = alt+left=previous_tab
-# keybind = alt+right=next_tab
-
-# # # split navigation
-# keybind = ctrl+h=goto_split:left
-# keybind = ctrl+l=goto_split:right
-# keybind = ctrl+k=goto_split:up
-# keybind = ctrl+j=goto_split:down
-
-# # resize splits
-# keybind = ctrl+s>left=resize_split:left,10
-# keybind = ctrl+s>right=resize_split:right,10
-# keybind = ctrl+s>up=resize_split:up,10
-# keybind = ctrl+s>down=resize_split:down,10
-
-
-# # clipboard
-# keybind = ctrl+shift+c=copy_to_clipboard
-# keybind = ctrl+shift+v=paste_from_clipboard

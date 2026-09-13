@@ -3,19 +3,8 @@ if not status then
     return
 end
 
-function get_os()
-    local handle = io.popen("uname -s 2>/dev/null")
-    if handle then
-        local os_name = handle:read("*a"):lower():gsub("\n", "")
-        handle:close()
-
-        if os_name:find("linux") then
-            return "linux"
-        elseif os_name:find("darwin") then
-            return "macos"
-        end
-    end
-    return "unknown"
+local function is_linux_os()
+    return vim.loop.os_uname().sysname == "Linux"
 end
 
 local function format_code()
@@ -52,14 +41,34 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
     desc = "Format current file",
 })
 
-local HOME = os.getenv("HOME")
+local HOME = vim.fn.expand("~")
 local ROOT_DIR = require("jdtls.setup").find_root({ '.git' }) or
                  require("jdtls.setup").find_root({ 'settings.gradle' })
-local CONFIG_DIR = get_os() == "linux" and "config_linux" or "config_mac"
-local DEFAULT_JDK_PATH = get_os() == "linux" and "/usr/lib/jvm/java-21-openjdk" or "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
--- Helidon 27.x builds at <version.java>26</version.java>. Without a matching
--- JavaSE-26 runtime registered, m2e can't configure those modules.
-local JDK26_PATH = get_os() == "linux" and "/usr/lib/jvm/java-26-openjdk" or "/opt/homebrew/opt/openjdk@26"
+local CONFIG_DIR = is_linux_os() and "config_linux" or "config_mac"
+
+-- Prefer JAVA_HOME, but also work when Java is only available on PATH. This
+-- avoids embedding package-manager-specific paths for either macOS or Linux.
+local function java_home_from_executable(java)
+    if java == "" then
+        return nil
+    end
+    local resolved = vim.fn.resolve(java)
+    local home = vim.fn.fnamemodify(resolved, ":h:h")
+    if home:match("/Contents/Home$") then
+        return home
+    end
+    return vim.fn.isdirectory(home) == 1 and home or nil
+end
+
+local DEFAULT_JDK_PATH = os.getenv("JAVA_HOME")
+if not DEFAULT_JDK_PATH or DEFAULT_JDK_PATH == "" then
+    DEFAULT_JDK_PATH = java_home_from_executable(vim.fn.exepath("java"))
+end
+DEFAULT_JDK_PATH = DEFAULT_JDK_PATH or ""
+
+-- Helidon 27.x builds at <version.java>26</version.java>. JAVA26_HOME is
+-- optional; projects that need Java 26 can set it without changing this file.
+local JDK26_PATH = os.getenv("JAVA26_HOME") or ""
 
 local function java_runtimes()
     local runtimes = {}
@@ -97,7 +106,8 @@ local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 
-local JDTLS_JAVA_PATH = DEFAULT_JDK_PATH .. "/bin/java"
+local JDTLS_JAVA_PATH = (DEFAULT_JDK_PATH ~= "" and DEFAULT_JDK_PATH .. "/bin/java")
+    or vim.fn.exepath("java")
 
 local config = {
     cmd = {
@@ -154,7 +164,7 @@ local config = {
                     wrapper = { enabled = true },
                     version = "9.1.0",
                     java = {
-                        home = DEFAULT_JDK_PATH,
+                        home = DEFAULT_JDK_PATH ~= "" and DEFAULT_JDK_PATH or nil,
                     },
                 },
             },
@@ -229,7 +239,7 @@ require('jdtls').start_or_attach(config)
 local dap = require('dap')
 dap.configurations.java = {
     {
-        javaExec = "/usr/local/opt/openjdk@21/bin/java",
+        javaExec = JDTLS_JAVA_PATH,
         mainClass = "com.example.helloworld.DemoApplication",
 
         -- If using the JDK9+ module system, this needs to be extended

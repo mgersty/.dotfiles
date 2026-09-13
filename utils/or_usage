@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+API_URL="https://openrouter.ai/api/v1/analytics/query"
+CREDITS_URL="https://openrouter.ai/api/v1/credits"
+
+usage() {
+    cat <<'EOF'
+Usage: or_usage [OPTION]
+
+Show today's OpenRouter usage, grouped by model.
+
+Options:
+  -h, --help    Show this help message and exit
+
+Environment:
+  OPENROUTER_MANAGEMENT_KEY
+                OpenRouter management API key used to query analytics.
+
+Requirements:
+  bash, curl, date, jq
+
+Examples:
+  export OPENROUTER_MANAGEMENT_KEY='...'
+  or_usage
+EOF
+}
+
+case "${1:-}" in
+    "") ;;
+    -h|--help)
+        usage
+        exit 0
+        ;;
+    *)
+        echo "Error: unknown option: $1" >&2
+        echo "Try '$(basename "$0") --help' for more information." >&2
+        exit 2
+        ;;
+esac
+
+if [[ -z "${OPENROUTER_MANAGEMENT_KEY:-}" ]]; then
+    echo "Error: OPENROUTER_MANAGEMENT_KEY is not set." >&2
+    exit 1
+fi
+
+START="$(date -u +%Y-%m-%d)T00:00:00Z"
+END="$(date -u -d 'tomorrow' +%Y-%m-%d)T00:00:00Z"
+
+REQUEST_BODY="$(jq -n \
+    --arg start "$START" \
+    --arg end "$END" \
+    '{
+        metrics: [
+            "total_usage",
+            "request_count",
+            "tokens_total",
+            "cache_hit_rate"
+        ],
+        dimensions: ["model"],
+        time_range: {
+            start: $start,
+            end: $end
+        },
+        order_by: {
+            field: "total_usage",
+            direction: "desc"
+        },
+        limit: 100
+    }'
+)"
+
+RESPONSE="$(
+    curl -sS \
+        -X POST "$API_URL" \
+        -H "Authorization: Bearer $OPENROUTER_MANAGEMENT_KEY" \
+        -H "Content-Type: application/json" \
+        -d "$REQUEST_BODY"
+)"
+
+CREDITS_RESPONSE="$(
+    curl -sS \
+        "$CREDITS_URL" \
+        -H "Authorization: Bearer $OPENROUTER_MANAGEMENT_KEY"
+)"
+
+# Check for valid JSON responses.
+if ! jq -e . >/dev/null 2>&1 <<< "$RESPONSE"; then
+    echo "Error: OpenRouter returned invalid analytics JSON." >&2
+    echo "$RESPONSE" >&2
+    exit 1
+fi
+
+if ! jq -e . >/dev/null 2>&1 <<< "$CREDITS_RESPONSE"; then
+    echo "Error: OpenRouter returned invalid credits JSON." >&2
+    echo "$CREDITS_RESPONSE" >&2
+    exit 1
+fi
+
+# Check for API errors.
+if jq -e '.error' >/dev/null 2>&1 <<< "$RESPONSE"; then
+    echo "OpenRouter analytics API error:" >&2
+    jq '.error' <<< "$RESPONSE" >&2
+    exit 1
+fi
+
+if jq -e '.error' >/dev/null 2>&1 <<< "$CREDITS_RESPONSE"; then
+    echo "OpenRouter credits API error:" >&2
+    jq '.error' <<< "$CREDITS_RESPONSE" >&2
+    exit 1
+fi
+
+echo
+echo "OpenRouter Usage — Today"
+echo "────────────────────────────────────────────"
+
+jq -r '
+    .data.data[]
+    | "\(.model)\n  Cost:     $\(.total_usage)\n  Requests: \(.request_count)\n  Tokens:   \(.tokens_total)\n  Cache:    \((.cache_hit_rate * 100) | floor)%\n"
+' <<< "$RESPONSE"
+
+echo "────────────────────────────────────────────"
+
+jq -r '
+    .data.data
+    | {
+        usage: ([.[].total_usage // 0] | add),
+        requests: ([.[].request_count // 0 | tonumber] | add),
+        tokens: ([.[].tokens_total // 0 | tonumber] | add)
+    }
+    | "Total:    $\(.usage)\nRequests: \(.requests)\nTokens:   \(.tokens)"
+' <<< "$RESPONSE"
+
+echo "────────────────────────────────────────────"
+
+jq -r '
+    .data
+    | (.total_credits | tonumber) as $credits
+    | (.total_usage | tonumber) as $usage
+    | "Credits:   $\($credits)\nUsed:      $\($usage)\nRemaining: $\($credits - $usage)"
+' <<< "$CREDITS_RESPONSE"
+
+echo
