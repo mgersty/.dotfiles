@@ -17,6 +17,7 @@ pi/**/*.pem
 pi/**/bin
 pi/**/cache
 pi/**/credentials/
+pi/web-search-cache
 
 #--- IGNORE: Local State & Chat History ---
 pi/**/sessions/

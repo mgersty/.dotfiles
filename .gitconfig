@@ -39,10 +39,9 @@ template = ~/.gitmessage
 editor = vim
 pager = delta
 [pager]
-    diff = hunk pager
-    show = hunk pager
-    stash = hunk pager
-
+	diff = hunk pager --mode split
+show = hunk pager
+stash = hunk pager
 
 [credential]
 UseHttpPath = true

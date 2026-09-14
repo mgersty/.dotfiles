@@ -7,9 +7,11 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 fi
 
 # ==========================================
-# IMPORTS
+# OH MY ZSHELL SETUP
 # ==========================================
-source $ZSH/oh-my-zsh.sh
+ZSH_THEME="robbyrussell"
+plugins=(git zsh-autosuggestions)
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # ==========================================
 # ENVIRONMENT VARIABLES
@@ -19,7 +21,6 @@ export SLUMBER_CONFIG_PATH=$HOME/.dotfiles/slumber/config.yml
 export PI_CODING_AGENT_DIR="$HOME/.dotfiles/pi"
 export PERSONAL_NOTES_HOME=$HOME/personal.notes
 export AWS_PAGER="jq"
-
 export JAVA_HOME='/usr/lib/jvm/java-21-openjdk'
 export PATH=$JAVA_HOME/bin:$PATH
 
@@ -81,13 +82,4 @@ alias aws_list_stacks="aws cloudformation describe-stacks | jq '.Stacks[].StackN
 alias aws_whoami='aws sts get-caller-identity | jq .'
 alias list_ec2="aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | (.InstanceId+\" -> \"+.PrivateDnsName+\" -> \"+.State.Name)'"
 
-# ==========================================
-# OH MY ZSHELL SETUP
-# ==========================================
-ZSH_THEME="robbyrussell"
-plugins=(git zsh-autosuggestions)
-
 PROMPT='%n@%m '$PROMPT
-
-
-
