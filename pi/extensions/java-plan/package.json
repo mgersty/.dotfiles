@@ -1,0 +1,39 @@
+{
+  "name": "java-plan",
+  "version": "0.1.0",
+  "description": "Pi extension that surveys Java projects and generates implementation plans",
+  "type": "module",
+  "private": false,
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "scan.ts",
+    "tsconfig.json",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": ">=0.85.0",
+    "@earendil-works/pi-coding-agent": ">=0.85.0",
+    "@earendil-works/pi-tui": ">=0.85.0"
+  },
+  "dependencies": {
+    "typebox": "^1.1.38"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.85.1",
+    "@earendil-works/pi-coding-agent": "^0.85.1",
+    "@earendil-works/pi-tui": "^0.85.1",
+    "@types/node": "^24.0.0",
+    "typescript": "^6.0.3"
+  },
+  "author": "",
+  "license": "MIT"
+}

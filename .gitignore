@@ -5,3 +5,30 @@ target
 .settings
 .project
 .classpath
+
+# ==========================================
+# .gitignore for .pi/agent
+# ==========================================
+
+# --- ALWAYS IGNORE: Credentials & Sensitive Info ---
+pi/**/auth.json
+pi/**/*.env
+pi/**/*.pem
+pi/**/bin
+pi/**/cache
+pi/**/credentials/
+
+#--- IGNORE: Local State & Chat History ---
+pi/**/sessions/
+pi/**/logs/
+pi/**/*.log
+pi/**/history/
+pi/**/state.json
+pi/**/.cache/
+
+# --- IGNORE: Machine-Specific Environment ---
+local-models.json
+node_modules/
+dist/
+.env.local
+

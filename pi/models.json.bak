@@ -1,0 +1,35 @@
+{
+  "providers": {
+    "llama-cpp": {
+      "baseUrl": "http://hal:8082/v1",
+      "api": "openai-completions",
+      "apiKey": "none",
+      "models": [
+        {
+          "id": "gemma-4-31B-it-qat-UD-Q4_K_XL.gguf",
+          "name": "Big Bitch",
+          "reasoning": false,
+          "input": ["text","image"],
+          "contextWindow": 200000
+        }
+      ]
+    },
+    "vllm": {
+      "name": "vLLM on hal",
+      "baseUrl": "http://10.1.1.105:8000/v1",
+      "api": "openai-completions",
+      "apiKey": "none",
+      "models": [
+        {
+          "id": "qwen3-coder-30b",
+          "name": "Qwen3 Coder 30B A3B (AWQ)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 131072,
+          "maxTokens": 16384
+        }
+      ]
+    }
+  }
+}

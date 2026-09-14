@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.73.1",
+  "defaultProvider": "vllm",
+  "defaultModel": "qwen3-coder-30b",
+  "packages": [
+    "git:github.com/maxedapps/pi-docparser"
+  ],
+  "theme": "dark",
+  "hideThinkingBlock": true,
+  "defaultThinkingLevel": "medium"
+}

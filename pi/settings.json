@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "0.84.3",
+  "defaultProvider": "evil_hal",
+  "defaultModel": "qwen3.8-27b",
+  "defaultThinkingLevel": "off",
+  "packages": [
+    "git:github.com/maxedapps/pi-docparser",
+    "npm:pi-deadloop",
+    "npm:pi-web-access",
+    "npm:pi-subagents",
+    "npm:pi-context-view"
+  ],
+  "theme": "dark",
+  "hideThinkingBlock": false
+}
