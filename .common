@@ -51,6 +51,8 @@ alias rm='rm -rf'
 alias notes='cd $PERSONAL_NOTES_HOME/fleeting.notes && vim notes.md'
 alias scratch='vim $PERSONAL_NOTES_HOME/fleeting.notes/scratch.txt'
 alias hlocal="cd $HOME/.local"
+alias showpath="print -l $path"
+
 
 #TMUX CONFIG
 alias tn='tmux new-session -s'

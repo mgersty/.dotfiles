@@ -17,3 +17,6 @@ env = TERM=xterm-256color
 
 # scrollback
 scrollback-limit = 10000
+
+config-file = ?linux
+config-file = ?Macos
