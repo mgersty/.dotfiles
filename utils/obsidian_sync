@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+REMOTE="google.drive:"
+REMOTE_PATH="personal.notes"                       # Example: "Documents"
+LOCAL_DIR="$HOME/personal.notes.test"
+LOG_FILE="$HOME/.local/state/google-drive-copy.log"
+
+mkdir -p "$LOCAL_DIR" "$(dirname "$LOG_FILE")"
+
+if ! command -v rclone >/dev/null 2>&1; then
+    echo "Error: rclone is not installed or not in PATH." >&2
+    exit 1
+fi
+
+if ! rclone listremotes | grep -Fxq "$REMOTE"; then
+    echo "Error: rclone remote '$REMOTE' is not configured." >&2
+    echo "Run: rclone config" >&2
+    exit 1
+fi
+
+REMOTE="${REMOTE}${REMOTE_PATH:+/$REMOTE_PATH}"
+
+echo "Pulling from $REMOTE to $LOCAL_DIR"
+echo "No files will be deleted."
+
+rclone copy \
+    "$REMOTE" \
+    "$LOCAL_DIR" \
+    --create-empty-src-dirs \
+    --stats=30s \
+    --log-level=INFO \
+    --log-file="$LOG_FILE"
+
+echo "Pull completed successfully."
+echo "Log: $LOG_FILE"
+
+
+echo "Pushing from $LOCAL_DIR" to $REMOTE
+echo "No files will be deleted."
+
+rclone copy \
+    "$LOCAL_DIR" \
+    "$REMOTE" \
+    --create-empty-src-dirs \
+    --stats=30s \
+    --log-level=INFO \
+    --log-file="$LOG_FILE"
+
+echo "Push completed successfully."
+echo "Log: $LOG_FILE"
