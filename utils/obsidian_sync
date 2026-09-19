@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 REMOTE="google.drive:"
 REMOTE_PATH="personal.notes"                       # Example: "Documents"
-LOCAL_DIR="$HOME/personal.notes.test"
+LOCAL_DIR="$HOME/personal.notes"
 LOG_FILE="$HOME/.local/state/google-drive-copy.log"
 
 mkdir -p "$LOCAL_DIR" "$(dirname "$LOG_FILE")"
