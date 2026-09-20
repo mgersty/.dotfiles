@@ -18,6 +18,7 @@ pi/**/bin
 pi/**/cache
 pi/**/credentials/
 pi/web-search-cache
+pi/models-store.json
 
 #--- IGNORE: Local State & Chat History ---
 pi/**/sessions/
