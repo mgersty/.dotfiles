@@ -24,5 +24,8 @@ return {
                 return require("obsidian.builtin").zettel_id()
             end
         end,
+        templates = {
+            folder="templates"
+        }
     },
 }
