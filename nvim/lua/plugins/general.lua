@@ -4,6 +4,9 @@ return {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
     },
+    { "dhruvasagar/vim-table-mode",
+        ft = { "markdown", "text", "md" },
+    },
     { "echasnovski/mini.icons" },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
