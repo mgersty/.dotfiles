@@ -1,10 +1,12 @@
 -- General Plugins
 return {
+    { "tpope/vim-surround" },
     {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
     },
-    { "dhruvasagar/vim-table-mode",
+    {
+        "dhruvasagar/vim-table-mode",
         ft = { "markdown", "text", "md" },
     },
     { "echasnovski/mini.icons" },
@@ -76,7 +78,7 @@ return {
                         StaticMethod = { icon = ' ', hl = 'Function' },
                         Macro = { icon = ' ', hl = 'Function' },
                     },
-                },
+                }
             })
         end,
     },
