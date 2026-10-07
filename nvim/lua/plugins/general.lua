@@ -1,5 +1,15 @@
 -- General Plugins
 return {
+    {
+        "hat0uma/csvview.nvim",
+        opts = {
+            view = {
+                -- "border" replaces delimiters with vertical lines (│)
+                -- "highlight" keeps original commas but colors them
+                display_mode = "border",
+            },
+        },
+    },
     { "tpope/vim-surround" },
     {
         "pmizio/typescript-tools.nvim",
