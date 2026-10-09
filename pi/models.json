@@ -13,9 +13,31 @@
       "models": [
         {
           "id": "qwen3.8-27b",
-          "name": "Qwen3.8 27B (GGUF UD-Q2_K_XL, Vulkan)",
+          "name": "Qwen3.8 27B (GGUF UD-Q8_K_XL, ROCm/HIP)",
           "reasoning": true,
           "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "compat": {
+            "thinkingFormat": "qwen-chat-template",
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": true
+          }
+        }
+      ]
+    },
+    "hal_thinkingcap": {
+      "name": "ThinkingCap-Qwen3.8-27B on hal (Q8_0, ROCm/HIP, MTP)",
+      "baseUrl": "http://hal:8010/v1",
+      "api": "openai-completions",
+      "apiKey": "none",
+      "models": [
+        {
+          "id": "thinkingcap-27b",
+          "name": "ThinkingCap Qwen3.8 27B (GGUF Q8_0, ROCm/HIP, MTP)",
+          "reasoning": true,
+          "input": ["text", "image"],
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "contextWindow": 262144,
           "maxTokens": 16384,
