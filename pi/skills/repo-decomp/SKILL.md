@@ -16,10 +16,8 @@ Write the report so it reads as one connected story, not a list of file notes. O
 1. **TLDR** — 2-3 short paragraphs answering the question directly. End with 3-5 bullet
    "key ideas" that capture the design in one line each (e.g. naming the core abstractions,
    the data model, the extension model).
-2. **Architecture diagram** — one ASCII diagram showing the main layers/modules and how the
-   question's subject flows through them. This is the map the rest of the report follows.
-3. **Key logical flow** — one ASCII flow or sequence diagram of the primary path the question
-   is about (e.g. "one prompt, one turn"), so readers see the system in motion.
+2. **Architecture diagram** — one ASCII diagram showing the main layers/modules and how the question's subject flows through them. This is the map the rest of the report follows.
+3. **Key logical flow** — one ASCII diagram of the primary flow the question is about (e.g. "one prompt, one turn"), so readers see the system in motion.
 4. **Important modules and files** — a table (path → one-line role) covering everything the
    sections below will discuss, ordered so the table itself reads top-to-bottom like the
    narrative.
