@@ -52,6 +52,7 @@ alias notes='cd $PERSONAL_NOTES_HOME/fleeting.notes && vim notes.md'
 alias scratch='vim $PERSONAL_NOTES_HOME/fleeting.notes/scratch.txt'
 alias hlocal="cd $HOME/.local"
 alias showpath="print -l $path"
+alias sync_obsidian_config='cp -r app*.json community-plugins.json plugins themes snippets ~/.dotfiles/obsidian'
 
 
 #TMUX CONFIG

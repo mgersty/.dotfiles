@@ -1,0 +1,18 @@
+body {
+  --file-line-width: 90% !important;
+}
+.callout {
+  --callout-color: #326da8; /* Changes the border/background color (RGB) */
+}
+.callout[data-callout="code"] {
+    --callout-icon: lucide-code;    /* Sets a programming '</>' icon */
+}
+.callout[data-callout="diagram"] {
+    --callout-icon: layers;    /* Sets a programming '</>' icon */
+}
+.callout[data-callout="flow"] {
+    --callout-icon: workflow;    /* Sets a programming '</>' icon */
+}
+.callout[data-callout="table"] {
+    --callout-icon: table;    /* Sets a programming '</>' icon */
+}

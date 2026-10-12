@@ -13,7 +13,24 @@ return {
     { "tpope/vim-surround" },
     {
         "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        config = function()
+            require("typescript-tools").setup({})
+        end,
+    },
+    {
+        'stevearc/conform.nvim',
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    typescript = { "prettierd", "prettier", stop_after_first = true },
+                },
+                -- format_on_save = {
+                --     timeout_ms = 500,
+                --     lsp_format = "fallback", -- Use LSP if prettier isn't available
+                -- },
+            })
+        end,
     },
     {
         "dhruvasagar/vim-table-mode",

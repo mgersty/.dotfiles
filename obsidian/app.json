@@ -1,6 +1,11 @@
 {
-  "readableLineLength": false,
+  "readableLineLength": true,
   "vimMode": true,
   "showLineNumber": false,
-  "promptDelete": false
+  "promptDelete": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "fleeting.notes",
+  "showUnsupportedFiles": true,
+  "propertiesInDocument": "hidden",
+  "showInlineTitle": false
 }

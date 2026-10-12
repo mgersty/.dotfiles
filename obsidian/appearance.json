@@ -1,5 +1,8 @@
 {
   "accentColor": "#054bf0",
-  "theme": "moonstone",
-  "cssTheme": "Baseline"
+  "theme": "obsidian",
+  "cssTheme": "Baseline",
+  "enabledCssSnippets": [
+    "styles"
+  ]
 }

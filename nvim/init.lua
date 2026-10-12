@@ -1,5 +1,11 @@
 vim.lsp.log.set_level("debug")
 
+-- `:clear` empties the message/command area.
+vim.api.nvim_create_user_command("Clear", function()
+  vim.cmd("messages clear")
+  vim.cmd("redraw")
+end, { desc = "Clear Neovim messages" })
+
 require("core.lazy")
 require("core.lsp")
 require("config.options")

@@ -22,6 +22,9 @@ end
 
 vim.lsp.enable(servers)
 
+-- Prettier is a formatter CLI, not an LSP server. Run it via Conform.nvim.
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
