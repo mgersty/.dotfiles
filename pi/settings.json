@@ -5,7 +5,6 @@
   "defaultThinkingLevel": "off",
   "packages": [
     "git:github.com/maxedapps/pi-docparser",
-    "npm:pi-deadloop",
     "npm:pi-web-access",
     "npm:pi-subagents",
     "npm:pi-context-view"
