@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.3",
+  "lastChangelogVersion": "1.4.0",
   "defaultProvider": "evil_hal",
   "defaultModel": "qwen3.8-27b",
   "defaultThinkingLevel": "off",
