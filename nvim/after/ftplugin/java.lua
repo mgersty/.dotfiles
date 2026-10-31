@@ -42,8 +42,10 @@ vim.api.nvim_create_user_command("JdtFormat", format_code, {
 })
 
 local HOME = vim.fn.expand("~")
-local ROOT_DIR = require("jdtls.setup").find_root({ '.git' }) or
-                 require("jdtls.setup").find_root({ 'settings.gradle' })
+local ROOT_DIR = require("jdtls.setup").find_root({
+    'mvnw', 'gradlew', 'settings.gradle', 'settings.gradle.kts',
+    'pom.xml', 'build.gradle', 'build.gradle.kts', 'build.xml', '.git',
+}) or vim.fn.getcwd()
 local CONFIG_DIR = is_linux_os() and "config_linux" or "config_mac"
 
 -- Prefer JAVA_HOME, but also work when Java is only available on PATH. This
@@ -60,11 +62,32 @@ local function java_home_from_executable(java)
     return vim.fn.isdirectory(home) == 1 and home or nil
 end
 
-local DEFAULT_JDK_PATH = os.getenv("JAVA_HOME")
-if not DEFAULT_JDK_PATH or DEFAULT_JDK_PATH == "" then
-    DEFAULT_JDK_PATH = java_home_from_executable(vim.fn.exepath("java"))
+-- The installed JDTLS snapshot requires Java 25. Prefer an explicit JDTLS_JAVA_HOME,
+-- then JAVA_HOME, then the newest installed /usr/lib/jvm JDK (the shell's PATH
+-- may intentionally select an older JDK for project builds).
+local function jdtls_java_home()
+    for _, candidate in ipairs({ os.getenv("JDTLS_JAVA_HOME"), os.getenv("JAVA_HOME") }) do
+        if candidate and candidate ~= "" and vim.fn.isdirectory(candidate) == 1 then
+            return candidate
+        end
+    end
+
+    local jvm_dirs = vim.fn.glob("/usr/lib/jvm/java-*-openjdk-*", true, true)
+    table.sort(jvm_dirs, function(a, b)
+        local av = tonumber(a:match("java%-(%d+)") or "0")
+        local bv = tonumber(b:match("java%-(%d+)") or "0")
+        return av > bv
+    end)
+    for _, candidate in ipairs(jvm_dirs) do
+        if vim.fn.executable(candidate .. "/bin/java") == 1 then
+            return candidate
+        end
+    end
+
+    return java_home_from_executable(vim.fn.exepath("java")) or ""
 end
-DEFAULT_JDK_PATH = DEFAULT_JDK_PATH or ""
+
+local DEFAULT_JDK_PATH = jdtls_java_home()
 
 -- Helidon 27.x builds at <version.java>26</version.java>. JAVA26_HOME is
 -- optional; projects that need Java 26 can set it without changing this file.
@@ -80,9 +103,14 @@ local function java_runtimes()
     return runtimes
 end
 
-local JDTLS_PATH = HOME .. "/.local/share/language.servers/java/jdtls"
+local JDTLS_PATH = HOME .. "/.local/share/language.servers/jdtls"
 local JDTLS_LAUNCHER_PATH = vim.fn.glob(JDTLS_PATH .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, false)
 local JDTLS_DEPENDENCIES_DIR = HOME .. "/.dotfiles/nvim/jdtls_dependencies"
+
+if JDTLS_LAUNCHER_PATH == "" then
+    vim.notify("jdtls launcher not found under " .. JDTLS_PATH, vim.log.levels.ERROR)
+    return
+end
 
 local function retrieve_supplementary_dependecies()
     local dependency_bundle = {}
@@ -136,7 +164,7 @@ local config = {
         JDTLS_PATH .. "/" .. CONFIG_DIR,
 
         "-data",
-        HOME .. "/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(ROOT_DIR, ":t")
+        HOME .. "/.cache/jdtls/workspace/" .. vim.fn.sha256(ROOT_DIR)
 
     },
     root_dir = ROOT_DIR,
