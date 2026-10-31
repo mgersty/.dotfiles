@@ -7,7 +7,8 @@
     "git:github.com/maxedapps/pi-docparser",
     "npm:pi-web-access",
     "npm:pi-subagents",
-    "npm:pi-context-view"
+    "npm:pi-context-view",
+    "npm:pi-gauge"
   ],
   "theme": "dark",
   "hideThinkingBlock": false
