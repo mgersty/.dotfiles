@@ -27,32 +27,56 @@ export PATH=$JAVA_HOME/bin:$PATH
 # ==========================================
 # ALIASES
 # ==========================================
+
+#FILE SYSTEM & NAVIGATION
 alias ll='ls -allh'
-alias rgrep='rg'
+alias cp='cp -r'
+alias mkdir='mkdir -p'
+alias rm='rm -rf'  # Warning: defined twice in original list
 alias diff='diff --brief --recursive --exclude="target" --exclude=".git" --exclude=".idea"'
-alias profile="vim ~/.zshrc"
-alias src="source ~/.zshrc"
-alias vim="nvim"
-alias rm='rm -rf'
+
 alias dotfiles='cd ~/.dotfiles'
+alias hlocal="cd $HOME/.local"
+alias sandbox='cd ~/sandbox'
+
+#TEXT EDITING & NOTES
+alias vim="nvim"
 alias vimd='cd ~/.dotfiles && vim ~/.dotfiles'
 alias clear_vim_swp='find ~/.local/state/nvim -type f -name "*.sw[klmnop]" -delete'
+
+alias notes='cd $PERSONAL_NOTES_HOME/fleeting.notes && vim notes.md'
+alias scratch='vim $PERSONAL_NOTES_HOME/fleeting.notes/scratch.txt'
+
+#SHELL CONFIGS & PATHS
+alias profile="vim ~/.zshrc"
+alias src="source ~/.zshrc"
 alias lookup_path="echo $PATH | tr ':' '\n'"
-alias sandbox='cd ~/sandbox'
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown -h now'
+alias showpath="print -l $path"
+
+#SEARCH & LOGS
+alias rgrep='rg'
 alias showlog='cat ~/.local/state/nvim/lsp.log | lsplog -'
 alias lsplogs='tail -F ~/.local/state/nvim/lsp.log | lsplog -'
 alias lsplogs_raw='tail -F ~/.local/state/nvim/lsp.log'
 alias clear_lsplogs='echo "" > ~/.local/state/nvim/lsp.log'
+
+#APP CACHES
 alias clear_jdtls_workspace='rm ~/.cache/jdtls/workspace/*'
-alias cp='cp -r'
-alias rm='rm -rf'
-alias notes='cd $PERSONAL_NOTES_HOME/fleeting.notes && vim notes.md'
-alias scratch='vim $PERSONAL_NOTES_HOME/fleeting.notes/scratch.txt'
-alias hlocal="cd $HOME/.local"
-alias showpath="print -l $path"
 alias sync_obsidian_config='cp -r app*.json community-plugins.json plugins themes snippets ~/.dotfiles/obsidian'
+
+#POWER MANAGEMENT
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown -h now'
+
+#SYSTEMTCTL
+alias sc='systemctl'
+alias scs='systemctl status'
+alias scstart='sudo systemctl start'
+alias scstop='sudo systemctl stop'
+alias screstart='sudo systemctl restart'
+alias scenable='sudo systemctl enable'
+alias scdisable='sudo systemctl disable'
+alias sclog='journalctl -u' # Bonus: quickly check a service's logs
 
 
 #TMUX CONFIG
