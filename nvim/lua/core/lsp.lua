@@ -1,11 +1,10 @@
 
 local servers = {
-  -- "angularls",
+  "lua-ls",
   "bashls",
   "clangd",
   "jsonls",
   "lemminx",
-  "lua-ls",
   "pyright",
   "ruff",
   "rustls",
