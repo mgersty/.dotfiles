@@ -14,6 +14,8 @@ Turn them off only when the reader says "stop adhd mode" or "normal mode". Confi
 4. Time estimates feel uniform. "A bit of work" and "a few hours" register the same. Vague estimates fail.
 5. Dopamine is scarce. Visible progress matters. Buried wins do not register.
 
+## Format
+- always respond with ASD-STE100
 ## Rules
 
 ### 1. Lead with the next action
